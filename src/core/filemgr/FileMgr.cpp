@@ -14,6 +14,8 @@ namespace YimMenu
         m_RootFolder = rootFolder;
 
         CreateFolderIfNotExists(m_RootFolder);
+		CreateFolderIfNotExists(Folder(m_RootFolder / "scripts"));
+		CreateFolderIfNotExists(Folder(m_RootFolder / "scripts" / "disabled"));
     }
 
     const std::filesystem::path& FileMgr::CreateFolderIfNotExists(const std::filesystem::path &folder)

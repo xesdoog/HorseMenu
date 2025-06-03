@@ -15,15 +15,15 @@
 #include "game/features/Features.hpp"
 #include "game/frontend/GUI.hpp"
 #include "game/pointers/Pointers.hpp"
+#include "lua/LuaAPI.hpp"
 
 
 namespace YimMenu
 {
 	static DWORD Main(void*)
 	{
-		const auto documents = std::filesystem::path(std::getenv("appdata")) / "HorseMenu";
-		FileMgr::Init(documents);
-
+		const auto appdata = std::filesystem::path(std::getenv("appdata")) / "HorseMenu";
+		FileMgr::Init(appdata);
 		LogHelper::Init("Terminus", FileMgr::GetProjectFile("./cout.log"));
 
 		g_HotkeySystem.RegisterCommands();
@@ -31,6 +31,7 @@ namespace YimMenu
 		Settings::Initialize(FileMgr::GetProjectFile("./settings.json"));
 
 		auto PlayerDatabaseInstance = std::make_unique<PlayerDatabase>();
+		auto& Lua = LuaAPI::Get();
 
 		if (!ModuleMgr.LoadModules())
 			goto unload;
@@ -47,7 +48,7 @@ namespace YimMenu
 		Hooking::LateInit();
 
 		ScriptMgr::Init();
-		LOG(INFO) << "ScriptMgr initialized";
+		LOG(INFO) << "Script Manager initialized";
 
 		FiberPool::Init(5);
 		LOG(INFO) << "FiberPool initialized";
@@ -59,6 +60,8 @@ namespace YimMenu
 		ScriptMgr::AddScript(std::make_unique<Script>(&ContextMenuTick));
 		ScriptMgr::AddScript(std::make_unique<Script>(&MapEditor::Update));
 
+		Lua.Initialize();
+
 		Notifications::Show("Terminus", "Loaded succesfully", NotificationType::Success);
 
 #ifndef NDEBUG
@@ -68,6 +71,7 @@ namespace YimMenu
 		while (g_Running)
 		{
 			Settings::Tick(); // TODO: move this somewhere else
+			Lua.Update();
 		}
 
 		LOG(INFO) << "Unloading";

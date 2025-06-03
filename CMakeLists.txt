@@ -7,6 +7,7 @@ include(cmake/vulkan.cmake)
 include(cmake/async-logger.cmake)
 include(cmake/imgui.cmake)
 include(cmake/json.cmake)
+include(cmake/lua.cmake)
 include(cmake/minhook.cmake)
 include(cmake/rdr-classes.cmake)
 
@@ -31,11 +32,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     "${minhook_SOURCE_DIR}/include"    
     "${minhook_SOURCE_DIR}/src/hde"    
     "${RDR-Classes_SOURCE_DIR}"
+    "${sol2_SOURCE_DIR}/include"
     "${vulkan_SOURCE_DIR}/include"
 )
 
 message(STATUS "Setting up linked libraries")
-target_link_libraries(${PROJECT_NAME} PRIVATE AsyncLogger imgui minhook nlohmann_json::nlohmann_json dbghelp RDR-Classes "${DEPS_DIR}/vulkan-1.lib")
+target_link_libraries(${PROJECT_NAME} PRIVATE AsyncLogger imgui lua_static minhook nlohmann_json::nlohmann_json dbghelp RDR-Classes "${DEPS_DIR}/vulkan-1.lib")
 
 add_compile_definitions("_CRT_SECURE_NO_WARNINGS" "NOMINMAX" "WIN32_LEAN_AND_MEAN")
 

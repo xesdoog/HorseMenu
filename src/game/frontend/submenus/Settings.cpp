@@ -6,6 +6,7 @@
 #include "game/backend/Self.hpp"
 #include "game/features/Features.hpp"
 #include "game/frontend/items/Items.hpp"
+#include "lua/LuaAPI.hpp"
 
 namespace YimMenu::Submenus
 {
@@ -32,22 +33,152 @@ namespace YimMenu::Submenus
 		}
 	};
 
+	static void LuaScripts()
+	{
+		auto& Lua = LuaAPI::Get();
+		static bool autoReloadEnabled = false;
+		static int selectedScript = -1;
+		static std::string selectedPath;
+
+		if (ImGui::Checkbox("Enable Auto-Reload", &autoReloadEnabled))
+		{
+			Lua.SetAutoReload(autoReloadEnabled);
+		}
+
+		ImGui::BeginChild("Lua Script Manager", ImVec2(0, 300), true);
+		{
+			ImGui::Columns(2, "ScriptControls", false);
+			ImGui::BeginChild("ScriptList", ImVec2(ImGui::GetColumnWidth() - 10, 0), true);
+			{
+				if (ImGui::BeginTabBar("ScriptTabs"))
+				{
+					auto DrawScriptList = [&](const std::vector<std::string>& paths, const char* listId)
+					{
+						static std::vector<std::string> scriptNames;
+						static std::vector<const char*> scriptNamesCStr;
+						scriptNames.clear();
+						scriptNamesCStr.clear();
+
+						for (const auto& path : paths)
+							scriptNames.push_back(std::filesystem::path(path).filename().string());
+
+						for (const auto& name : scriptNames)
+							scriptNamesCStr.push_back(name.c_str());
+
+						ImGui::SetNextItemWidth(-1);
+						ImGui::ListBox(listId,
+						    &selectedScript,
+						    scriptNamesCStr.data(),
+						    static_cast<int>(scriptNamesCStr.size()),
+						    scriptNamesCStr.size() > 10 ? 10 : static_cast<int>(scriptNamesCStr.size()));
+
+						if (selectedScript >= 0 && selectedScript < paths.size())
+							selectedPath = paths[selectedScript];
+					};
+
+					if (ImGui::BeginTabItem("Enabled"))
+					{
+						auto enabledScripts = std::vector<std::string>();
+						for (const auto& [path, _] : Lua.GetLoadedScripts())
+							enabledScripts.push_back(path);
+
+						DrawScriptList(enabledScripts, "##EnabledList");
+						ImGui::EndTabItem();
+					}
+
+					if (ImGui::BeginTabItem("Disabled"))
+					{
+						auto disabledScripts = std::vector<std::string>();
+						for (const auto& [path, _] : Lua.GetDisabledScripts())
+							disabledScripts.push_back(path);
+
+						DrawScriptList(disabledScripts, "##DisabledList");
+						ImGui::EndTabItem();
+					}
+
+					ImGui::EndTabBar();
+				}
+			}
+			ImGui::EndChild();
+
+			ImGui::NextColumn();
+			ImGui::BeginChild("ScriptControls", ImVec2(0, 0), true);
+			{
+				if (!selectedPath.empty())
+				{
+					bool isEnabled = Lua.IsScriptEnabled(selectedPath);
+
+					if (ImGui::Button(isEnabled ? "Disable" : "Enable", ImVec2(-1, 0)))
+					{
+						if (isEnabled)
+							Lua.DisableScript(selectedPath);
+						else
+							Lua.EnableScript(selectedPath);
+
+						Lua.LoadAllScripts();
+						selectedScript = -1;
+						selectedPath.clear();
+					}
+
+					if (ImGui::Button("Reload", ImVec2(-1, 0)))
+					{
+						Lua.ReloadScript(selectedPath);
+					}
+
+					if (ImGui::Button("Show In Explorer", ImVec2(-1, 0)))
+					{
+						std::string cmd = "explorer /select,\"" + selectedPath + "\"";
+						system(cmd.c_str());
+					}
+				}
+
+				ImGui::Spacing();
+				ImGui::Separator();
+
+				if (ImGui::Button("Reload All", ImVec2(-1, 0)))
+				{
+					Lua.ReloadAllScripts();
+				}
+
+				if (ImGui::Button("Enable All", ImVec2(-1, 0)))
+				{
+					Lua.EnableAllScripts();
+					Lua.LoadAllScripts();
+					selectedScript = -1;
+					selectedPath.clear();
+				}
+
+				if (ImGui::Button("Disable All", ImVec2(-1, 0)))
+				{
+					Lua.DisableAllScripts();
+					Lua.LoadAllScripts();
+					selectedScript = -1;
+					selectedPath.clear();
+				}
+			}
+			ImGui::EndChild();
+		}
+		ImGui::EndChild();
+	}
+
 	Settings::Settings() :
 	    Submenu::Submenu("Settings")
 	{
 		auto hotkeys           = std::make_shared<Category>("Hotkeys");
 		auto gui               = std::make_shared<Category>("GUI");
 		auto protections       = std::make_shared<Category>("Protection");
+		auto luaScripts        = std::make_shared<Category>("Lua Scripts");
 		auto syncGroup         = std::make_shared<Group>("Sync");
 		auto networkEventGroup = std::make_shared<Group>("Network Events");
 		auto scriptEventGroup  = std::make_shared<Group>("Script Events");
 		auto playerEsp         = std::make_shared<Group>("Player ESP", 10);
 		auto pedEsp            = std::make_shared<Group>("Ped ESP", 10);
-		auto overlay            = std::make_shared<Group>("Overlay");
+		auto overlay           = std::make_shared<Group>("Overlay");
 		auto context           = std::make_shared<Group>("Context Menu");
 		auto misc              = std::make_shared<Group>("Misc");
 
 		hotkeys->AddItem(std::make_shared<ImGuiItem>(Hotkeys));
+		luaScripts->AddItem(std::make_shared<ImGuiItem>(LuaScripts));
 
 		// Players
 		playerEsp->AddItem(std::make_shared<BoolCommandItem>("espdrawplayers"_J));
@@ -123,5 +254,6 @@ namespace YimMenu::Submenus
 		AddCategory(std::move(hotkeys));
 		AddCategory(std::move(gui));
 		AddCategory(std::move(protections));
+		AddCategory(std::move(luaScripts));
 	}
 }

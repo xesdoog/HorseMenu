@@ -15,7 +15,7 @@
 #include "game/features/Features.hpp"
 #include "game/frontend/GUI.hpp"
 #include "game/pointers/Pointers.hpp"
-#include "lua/LuaAPI.hpp"
+#include "lua/LuaManager.hpp"
 
 
 namespace YimMenu
@@ -27,11 +27,12 @@ namespace YimMenu
 		LogHelper::Init("Terminus", FileMgr::GetProjectFile("./cout.log"));
 
 		g_HotkeySystem.RegisterCommands();
+		g_LuaManager = new LuaManager(FileMgr::GetProjectFolder("scripts"));
+
 		SavedLocations::FetchSavedLocations();
 		Settings::Initialize(FileMgr::GetProjectFile("./settings.json"));
 
 		auto PlayerDatabaseInstance = std::make_unique<PlayerDatabase>();
-		auto& Lua = LuaAPI::Get();
 
 		if (!ModuleMgr.LoadModules())
 			goto unload;
@@ -60,9 +61,9 @@ namespace YimMenu
 		ScriptMgr::AddScript(std::make_unique<Script>(&ContextMenuTick));
 		ScriptMgr::AddScript(std::make_unique<Script>(&MapEditor::Update));
 
-		Lua.Initialize();
-
 		Notifications::Show("Terminus", "Loaded succesfully", NotificationType::Success);
+
+		g_LuaManager->LoadAllModules();
 
 #ifndef NDEBUG
 		LOG(WARNING) << "Debug Build. Switch to RelWithDebInfo or Release build configurations to have a more stable experience.";
@@ -71,7 +72,7 @@ namespace YimMenu
 		while (g_Running)
 		{
 			Settings::Tick(); // TODO: move this somewhere else
-			Lua.Update();
+			g_LuaManager->Update();
 		}
 
 		LOG(INFO) << "Unloading";
@@ -87,9 +88,14 @@ namespace YimMenu
 
 		PlayerDatabaseInstance.reset();
 
+		delete g_LuaManager;
+		g_LuaManager = nullptr;
+		LOG(INFO) << "Lua Manager uninitialized";
+
 	unload:
 		Hooking::Destroy();
 		LOG(INFO) << "Hooking uninitialized";
+
 		Renderer::Destroy();
 		LOG(INFO) << "Renderer uninitialized";
 

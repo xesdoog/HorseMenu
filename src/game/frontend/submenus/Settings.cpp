@@ -6,7 +6,7 @@
 #include "game/backend/Self.hpp"
 #include "game/features/Features.hpp"
 #include "game/frontend/items/Items.hpp"
-#include "lua/LuaAPI.hpp"
+#include "lua/LuaManager.hpp"
 
 namespace YimMenu::Submenus
 {
@@ -35,14 +35,19 @@ namespace YimMenu::Submenus
 
 	static void LuaScripts()
 	{
-		auto& Lua = LuaAPI::Get();
-		static bool autoReloadEnabled = false;
-		static int selectedScript = -1;
-		static std::string selectedPath;
-
-		if (ImGui::Checkbox("Enable Auto-Reload", &autoReloadEnabled))
+		if (!g_LuaManager)
 		{
-			Lua.SetAutoReload(autoReloadEnabled);
+			ImGui::Text("Lua Manager was not initialized.");
+			return;
+		}
+
+		static bool autoReloadEnabled = true;
+		static int selectedScript = -1;
+		static std::shared_ptr<LuaModule> selectedModule = nullptr;
+
+		if (ImGui::Checkbox("Auto-Reload Changed Scripts", &autoReloadEnabled))
+		{
+			g_LuaManager->SetAutoReload(autoReloadEnabled);
 		}
 
 		ImGui::BeginChild("Lua Script Manager", ImVec2(0, 300), true);
@@ -52,47 +57,38 @@ namespace YimMenu::Submenus
 			{
 				if (ImGui::BeginTabBar("ScriptTabs"))
 				{
-					auto DrawScriptList = [&](const std::vector<std::string>& paths, const char* listId)
-					{
-						static std::vector<std::string> scriptNames;
-						static std::vector<const char*> scriptNamesCStr;
-						scriptNames.clear();
-						scriptNamesCStr.clear();
+					auto DrawModuleList = [](const auto& modules, const char* listId) {
+						static std::vector<const char*> moduleNames;
+						moduleNames.clear();
 
-						for (const auto& path : paths)
-							scriptNames.push_back(std::filesystem::path(path).filename().string());
-
-						for (const auto& name : scriptNames)
-							scriptNamesCStr.push_back(name.c_str());
+						for (const auto& [name, module] : modules)
+							moduleNames.push_back(name.c_str());
 
 						ImGui::SetNextItemWidth(-1);
-						ImGui::ListBox(listId,
+						ImGui::ListBox(
+							listId,
 						    &selectedScript,
-						    scriptNamesCStr.data(),
-						    static_cast<int>(scriptNamesCStr.size()),
-						    scriptNamesCStr.size() > 10 ? 10 : static_cast<int>(scriptNamesCStr.size()));
+						    moduleNames.data(),
+						    static_cast<int>(moduleNames.size()),
+						    moduleNames.size() > 10 ? 10 : static_cast<int>(moduleNames.size()));
 
-						if (selectedScript >= 0 && selectedScript < paths.size())
-							selectedPath = paths[selectedScript];
+						if (selectedScript >= 0 && selectedScript < static_cast<int>(moduleNames.size()))
+						{
+							auto it = modules.begin();
+							std::advance(it, selectedScript);
+							selectedModule = it->second;
+						}
 					};
 
 					if (ImGui::BeginTabItem("Enabled"))
 					{
-						auto enabledScripts = std::vector<std::string>();
-						for (const auto& [path, _] : Lua.GetLoadedScripts())
-							enabledScripts.push_back(path);
-
-						DrawScriptList(enabledScripts, "##EnabledList");
+						DrawModuleList(g_LuaManager->GetEnabledModules(), "##EnabledList");
 						ImGui::EndTabItem();
 					}
 
 					if (ImGui::BeginTabItem("Disabled"))
 					{
-						auto disabledScripts = std::vector<std::string>();
-						for (const auto& [path, _] : Lua.GetDisabledScripts())
-							disabledScripts.push_back(path);
-
-						DrawScriptList(disabledScripts, "##DisabledList");
+						DrawModuleList(g_LuaManager->GetDisabledModules(), "##DisabledList");
 						ImGui::EndTabItem();
 					}
 
@@ -104,30 +100,30 @@ namespace YimMenu::Submenus
 			ImGui::NextColumn();
 			ImGui::BeginChild("ScriptControls", ImVec2(0, 0), true);
 			{
-				if (!selectedPath.empty())
+				if (selectedModule)
 				{
-					bool isEnabled = Lua.IsScriptEnabled(selectedPath);
+					bool isEnabled = !selectedModule->IsDisabled();
 
 					if (ImGui::Button(isEnabled ? "Disable" : "Enable", ImVec2(-1, 0)))
 					{
 						if (isEnabled)
-							Lua.DisableScript(selectedPath);
+							g_LuaManager->DisableModule(selectedModule->GetName());
 						else
-							Lua.EnableScript(selectedPath);
+							g_LuaManager->EnableModule(selectedModule->GetName());
 
-						Lua.LoadAllScripts();
+						g_LuaManager->LoadAllModules();
+						selectedModule.reset();
 						selectedScript = -1;
-						selectedPath.clear();
 					}
 
 					if (ImGui::Button("Reload", ImVec2(-1, 0)))
 					{
-						Lua.ReloadScript(selectedPath);
+						selectedModule->Reload();
 					}
 
 					if (ImGui::Button("Show In Explorer", ImVec2(-1, 0)))
 					{
-						std::string cmd = "explorer /select,\"" + selectedPath + "\"";
+						std::string cmd = "explorer /select,\"" + selectedModule->GetPath().string() + "\"";
 						system(cmd.c_str());
 					}
 				}
@@ -137,23 +133,23 @@ namespace YimMenu::Submenus
 
 				if (ImGui::Button("Reload All", ImVec2(-1, 0)))
 				{
-					Lua.ReloadAllScripts();
+					g_LuaManager->ReloadAllModules();
 				}
 
 				if (ImGui::Button("Enable All", ImVec2(-1, 0)))
 				{
-					Lua.EnableAllScripts();
-					Lua.LoadAllScripts();
+					g_LuaManager->EnableAllModules();
+					g_LuaManager->LoadAllModules();
+					selectedModule.reset();
 					selectedScript = -1;
-					selectedPath.clear();
 				}
 
 				if (ImGui::Button("Disable All", ImVec2(-1, 0)))
 				{
-					Lua.DisableAllScripts();
-					Lua.LoadAllScripts();
+					g_LuaManager->DisableAllModules();
+					g_LuaManager->LoadAllModules();
+					selectedModule.reset();
 					selectedScript = -1;
-					selectedPath.clear();
 				}
 			}
 			ImGui::EndChild();

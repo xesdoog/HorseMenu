@@ -1,2 +1,3 @@
 build/
 .vs
+src/lua/rdr3_gen_lua_natives.py

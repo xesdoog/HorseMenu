@@ -1,0 +1,166 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static void LUA_NATIVE_AITRANSPORT_TASK_ENTER_TRANSPORT(uintptr_t args)
+	{
+		AITRANSPORT::TASK_ENTER_TRANSPORT((Any*)args);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_TASK_EXIT_TRANSPORT(uintptr_t args)
+	{
+		AITRANSPORT::TASK_EXIT_TRANSPORT((Any*)args);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_PED_ON_TRANSPORT_SEAT(Ped ped, Entity transportEntity, int seat, int flags)
+	{
+		AITRANSPORT::SET_PED_ON_TRANSPORT_SEAT(ped, transportEntity, seat, flags);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_PED_OFF_TRANSPORT_SEAT(Ped ped, int flags)
+	{
+		AITRANSPORT::SET_PED_OFF_TRANSPORT_SEAT(ped, flags);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_CONFIG_FLAG(Entity transportEntity, int flagId, bool value)
+	{
+		AITRANSPORT::SET_TRANSPORT_CONFIG_FLAG(transportEntity, flagId, value);
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_GET_TRANSPORT_CONFIG_FLAG(Entity transportEntity, int flagId, bool p2)
+	{
+		auto retval = (bool)AITRANSPORT::GET_TRANSPORT_CONFIG_FLAG(transportEntity, flagId, p2);
+		return retval;
+	}
+
+	static std::tuple<Any, int> LUA_NATIVE_AITRANSPORT_GET_TRANSPORT_USAGE_FLAGS_(Entity transportEntity, int flags)
+	{
+		std::tuple<Any, int> return_values;
+		std::get<0>(return_values) = AITRANSPORT::_GET_TRANSPORT_USAGE_FLAGS(transportEntity, &flags);
+		std::get<1>(return_values) = flags;
+
+		return return_values;
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_USAGE_FLAGS_(Entity transportEntity, int flags)
+	{
+		AITRANSPORT::_SET_TRANSPORT_USAGE_FLAGS(transportEntity, flags);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_ACCESSIBLE_SEAT_FLAGS(Entity transportEntity, int flags)
+	{
+		AITRANSPORT::SET_TRANSPORT_ACCESSIBLE_SEAT_FLAGS(transportEntity, flags);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_0x4B6C9A43F7D9109B_(Any p0, Any p1)
+	{
+		AITRANSPORT::_0x4B6C9A43F7D9109B(p0, p1);
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_PED_ON_TRANSPORT_ENTITY_(Ped ped, Entity transportEntity)
+	{
+		auto retval = (bool)AITRANSPORT::_IS_PED_ON_TRANSPORT_ENTITY(ped, transportEntity);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_PED_ON_TRANSPORT_SEAT_(Ped ped, bool p1)
+	{
+		auto retval = (bool)AITRANSPORT::_IS_PED_ON_TRANSPORT_SEAT(ped, p1);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_TRANSPORT_SEAT_OCCUPIED_(Entity transportEntity, int seatIndex)
+	{
+		auto retval = (bool)AITRANSPORT::_IS_TRANSPORT_SEAT_OCCUPIED(transportEntity, seatIndex);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_TRANSPORT_SEAT_FREE_(Entity transportEntity, int seatIndex)
+	{
+		auto retval = (bool)AITRANSPORT::_IS_TRANSPORT_SEAT_FREE(transportEntity, seatIndex);
+		return retval;
+	}
+
+	static Ped LUA_NATIVE_AITRANSPORT_GET_PED_IN_TRANSPORT_SEAT_(Entity transportEntity, int seatIndex)
+	{
+		auto retval = AITRANSPORT::_GET_PED_IN_TRANSPORT_SEAT(transportEntity, seatIndex);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_PED_ENTERING_TRANSPORT(Ped ped, Entity transportEntity, bool p2)
+	{
+		auto retval = (bool)AITRANSPORT::IS_PED_ENTERING_TRANSPORT(ped, transportEntity, p2);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_AITRANSPORT_IS_PED_EXITING_TRANSPORT(Ped ped, Entity transportEntity)
+	{
+		auto retval = (bool)AITRANSPORT::IS_PED_EXITING_TRANSPORT(ped, transportEntity);
+		return retval;
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_0x4248AB2EEB3C75AD_(Entity transportEntity, Ped ped, bool p2)
+	{
+		AITRANSPORT::_0x4248AB2EEB3C75AD(transportEntity, ped, p2);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_PED_USE_TRANSPORT_SEAT_PREFERENCE_(Ped ped, Entity transportEntity, int preferenceSlot, int p3, int seatIndex)
+	{
+		AITRANSPORT::_SET_PED_USE_TRANSPORT_SEAT_PREFERENCE(ped, transportEntity, preferenceSlot, p3, seatIndex);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_0x5639FBEA922788DA_(Entity transportEntity)
+	{
+		AITRANSPORT::_0x5639FBEA922788DA(transportEntity);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_AI_CAN_USE_TRANSPORT_(Entity transportEntity, bool state)
+	{
+		AITRANSPORT::_SET_AI_CAN_USE_TRANSPORT(transportEntity, state);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_0x8C8371EDFAF014A0_(Ped ped, float p1)
+	{
+		AITRANSPORT::_0x8C8371EDFAF014A0(ped, p1);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_0xF8C20282B237E3F7_(Ped ped)
+	{
+		AITRANSPORT::_0xF8C20282B237E3F7(ped);
+	}
+
+	static void LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_PRIORITY_SEAT_(Entity transportEntity, int seatIndex)
+	{
+		AITRANSPORT::_SET_TRANSPORT_PRIORITY_SEAT(transportEntity, seatIndex);
+	}
+
+	void init_native_binding_AITRANSPORT(sol::state& L)
+	{
+		auto AITRANSPORT = L["AITRANSPORT"].get_or_create<sol::table>();
+		AITRANSPORT.set_function("TASK_ENTER_TRANSPORT", LUA_NATIVE_AITRANSPORT_TASK_ENTER_TRANSPORT);
+		AITRANSPORT.set_function("TASK_EXIT_TRANSPORT", LUA_NATIVE_AITRANSPORT_TASK_EXIT_TRANSPORT);
+		AITRANSPORT.set_function("SET_PED_ON_TRANSPORT_SEAT", LUA_NATIVE_AITRANSPORT_SET_PED_ON_TRANSPORT_SEAT);
+		AITRANSPORT.set_function("SET_PED_OFF_TRANSPORT_SEAT", LUA_NATIVE_AITRANSPORT_SET_PED_OFF_TRANSPORT_SEAT);
+		AITRANSPORT.set_function("SET_TRANSPORT_CONFIG_FLAG", LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_CONFIG_FLAG);
+		AITRANSPORT.set_function("GET_TRANSPORT_CONFIG_FLAG", LUA_NATIVE_AITRANSPORT_GET_TRANSPORT_CONFIG_FLAG);
+		AITRANSPORT.set_function("GET_TRANSPORT_USAGE_FLAGS_", LUA_NATIVE_AITRANSPORT_GET_TRANSPORT_USAGE_FLAGS_);
+		AITRANSPORT.set_function("SET_TRANSPORT_USAGE_FLAGS_", LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_USAGE_FLAGS_);
+		AITRANSPORT.set_function("SET_TRANSPORT_ACCESSIBLE_SEAT_FLAGS", LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_ACCESSIBLE_SEAT_FLAGS);
+		AITRANSPORT.set_function("0x4B6C9A43F7D9109B_", LUA_NATIVE_AITRANSPORT_0x4B6C9A43F7D9109B_);
+		AITRANSPORT.set_function("IS_PED_ON_TRANSPORT_ENTITY_", LUA_NATIVE_AITRANSPORT_IS_PED_ON_TRANSPORT_ENTITY_);
+		AITRANSPORT.set_function("IS_PED_ON_TRANSPORT_SEAT_", LUA_NATIVE_AITRANSPORT_IS_PED_ON_TRANSPORT_SEAT_);
+		AITRANSPORT.set_function("IS_TRANSPORT_SEAT_OCCUPIED_", LUA_NATIVE_AITRANSPORT_IS_TRANSPORT_SEAT_OCCUPIED_);
+		AITRANSPORT.set_function("IS_TRANSPORT_SEAT_FREE_", LUA_NATIVE_AITRANSPORT_IS_TRANSPORT_SEAT_FREE_);
+		AITRANSPORT.set_function("GET_PED_IN_TRANSPORT_SEAT_", LUA_NATIVE_AITRANSPORT_GET_PED_IN_TRANSPORT_SEAT_);
+		AITRANSPORT.set_function("IS_PED_ENTERING_TRANSPORT", LUA_NATIVE_AITRANSPORT_IS_PED_ENTERING_TRANSPORT);
+		AITRANSPORT.set_function("IS_PED_EXITING_TRANSPORT", LUA_NATIVE_AITRANSPORT_IS_PED_EXITING_TRANSPORT);
+		AITRANSPORT.set_function("0x4248AB2EEB3C75AD_", LUA_NATIVE_AITRANSPORT_0x4248AB2EEB3C75AD_);
+		AITRANSPORT.set_function("SET_PED_USE_TRANSPORT_SEAT_PREFERENCE_", LUA_NATIVE_AITRANSPORT_SET_PED_USE_TRANSPORT_SEAT_PREFERENCE_);
+		AITRANSPORT.set_function("0x5639FBEA922788DA_", LUA_NATIVE_AITRANSPORT_0x5639FBEA922788DA_);
+		AITRANSPORT.set_function("SET_AI_CAN_USE_TRANSPORT_", LUA_NATIVE_AITRANSPORT_SET_AI_CAN_USE_TRANSPORT_);
+		AITRANSPORT.set_function("0x8C8371EDFAF014A0_", LUA_NATIVE_AITRANSPORT_0x8C8371EDFAF014A0_);
+		AITRANSPORT.set_function("0xF8C20282B237E3F7_", LUA_NATIVE_AITRANSPORT_0xF8C20282B237E3F7_);
+		AITRANSPORT.set_function("SET_TRANSPORT_PRIORITY_SEAT_", LUA_NATIVE_AITRANSPORT_SET_TRANSPORT_PRIORITY_SEAT_);
+	}
+}

@@ -1,0 +1,196 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static bool LUA_NATIVE_UILOG_UILOG_IS_ENTRY_REGISTERED_(int p0, Hash p1)
+	{
+		auto retval = (bool)UILOG::_UILOG_IS_ENTRY_REGISTERED(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_ADD_ENTRY_HASH_(int p0, int p1, float x, float y, float z, Hash p5, Hash p6, Any p7)
+	{
+		UILOG::_UILOG_ADD_ENTRY_HASH(p0, p1, x, y, z, p5, p6, p7);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_ADD_ITEM_TO_TASK_LIST_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6, Any p7)
+	{
+		UILOG::_UILOG_ADD_ITEM_TO_TASK_LIST(p0, p1, p2, p3, p4, p5, p6, p7);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_ENTRY_ICON_TEXTURE_(int p0, Hash p1, Hash icon, Hash iconDictionary)
+	{
+		UILOG::_UILOG_SET_ENTRY_ICON_TEXTURE(p0, p1, icon, iconDictionary);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_ENTRY_BRIEF_TEXTURE_(int p0, Hash p1, Hash texture, Hash textureDictionary)
+	{
+		UILOG::_UILOG_SET_ENTRY_BRIEF_TEXTURE(p0, p1, texture, textureDictionary);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_UPDATE_ENTRY_SUBHEADER_(int p0, Hash p1, sol::stack_object p2)
+	{
+		UILOG::_UILOG_UPDATE_ENTRY_SUBHEADER(p0, p1, p2.is<const char*>() ? p2.as<const char*>() : nullptr);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_ENTRY_PINNED_(int p0, Hash p1, bool p2)
+	{
+		UILOG::_UILOG_SET_ENTRY_PINNED(p0, p1, p2);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_MARK_MISSION_COMPLETED_(Hash p0)
+	{
+		UILOG::_UILOG_MARK_MISSION_COMPLETED(p0);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_MARK_ENTRY_AVAILABILITY_(int p0, Hash p1, int p2, sol::stack_object p3)
+	{
+		UILOG::_UILOG_MARK_ENTRY_AVAILABILITY(p0, p1, p2, p3.is<const char*>() ? p3.as<const char*>() : nullptr);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_MARK_ALL_ENTRIES_AVAILABILITY_(int p0, sol::stack_object p1)
+	{
+		UILOG::_UILOG_MARK_ALL_ENTRIES_AVAILABILITY(p0, p1.is<const char*>() ? p1.as<const char*>() : nullptr);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_REMOVE_ENTRY_(int p0, Hash p1)
+	{
+		UILOG::_UILOG_REMOVE_ENTRY(p0, p1);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_DISPLAY_COMPLETION_RATING_(int logEntryType, Hash p1, bool p2)
+	{
+		UILOG::_UILOG_SET_DISPLAY_COMPLETION_RATING(logEntryType, p1, p2);
+	}
+
+	static void LUA_NATIVE_UILOG_0xA49D6D503E3EA847_(Any p0, Any p1, Any p2, Any p3, Any p4)
+	{
+		UILOG::_0xA49D6D503E3EA847(p0, p1, p2, p3, p4);
+	}
+
+	static void LUA_NATIVE_UILOG_0x763637F9B838B0A7_(int p0, Hash p1, sol::stack_object p2)
+	{
+		UILOG::_0x763637F9B838B0A7(p0, p1, p2.is<const char*>() ? p2.as<const char*>() : nullptr);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_CLEAR_ALL_ENTRIES_()
+	{
+		UILOG::_UILOG_CLEAR_ALL_ENTRIES();
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_ADD_OR_UPDATE_OBJECTIVE_(int p0, Hash p1, Hash p2, sol::stack_object p3, bool p4, bool p5, bool p6)
+	{
+		UILOG::_UILOG_ADD_OR_UPDATE_OBJECTIVE(p0, p1, p2, p3.is<const char*>() ? p3.as<const char*>() : nullptr, p4, p5, p6);
+	}
+
+	static void LUA_NATIVE_UILOG_0xA20398536B7F1134_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5)
+	{
+		UILOG::_0xA20398536B7F1134(p0, p1, p2, p3, p4, p5);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_CACHED_OBJECTIVE_(sol::stack_object p0)
+	{
+		UILOG::_UILOG_SET_CACHED_OBJECTIVE(p0.is<const char*>() ? p0.as<const char*>() : nullptr);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_CLEAR_CACHED_OBJECTIVE_()
+	{
+		UILOG::_UILOG_CLEAR_CACHED_OBJECTIVE();
+	}
+
+	static bool LUA_NATIVE_UILOG_UILOG_HAS_DISPLAYED_CACHED_OBJECTIVE_()
+	{
+		auto retval = (bool)UILOG::_UILOG_HAS_DISPLAYED_CACHED_OBJECTIVE();
+		return retval;
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_CLEAR_HAS_DISPLAYED_CACHED_OBJECTIVE_()
+	{
+		UILOG::_UILOG_CLEAR_HAS_DISPLAYED_CACHED_OBJECTIVE();
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_HAS_DISPLAYED_CACHED_OBJECTIVE_()
+	{
+		UILOG::_UILOG_SET_HAS_DISPLAYED_CACHED_OBJECTIVE();
+	}
+
+	static const char* LUA_NATIVE_UILOG_UILOG_GET_CACHED_OBJECTIVE_()
+	{
+		auto retval = UILOG::_UILOG_GET_CACHED_OBJECTIVE();
+		return retval;
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_PRINT_CACHED_OBJECTIVE_()
+	{
+		UILOG::_UILOG_PRINT_CACHED_OBJECTIVE();
+	}
+
+	static Any LUA_NATIVE_UILOG_UILOG_SET_PENDING_DETAILS_ID_(int p0, Hash p1)
+	{
+		auto retval = UILOG::_UILOG_SET_PENDING_DETAILS_ID(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_UILOG_0x2A4765812202E671_()
+	{
+		auto retval = UILOG::_0x2A4765812202E671();
+		return retval;
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_ADD_TOTAL_TAKE_ENTRY_(Hash p0, Hash p1, sol::stack_object p2, sol::stack_object p3, Hash p4)
+	{
+		UILOG::_UILOG_ADD_TOTAL_TAKE_ENTRY(p0, p1, p2.is<const char*>() ? p2.as<const char*>() : nullptr, p3.is<const char*>() ? p3.as<const char*>() : nullptr, p4);
+	}
+
+	static void LUA_NATIVE_UILOG_UILOG_SET_TOTAL_TAKE_SUMMARY_(sol::stack_object p0, sol::stack_object p1)
+	{
+		UILOG::_UILOG_SET_TOTAL_TAKE_SUMMARY(p0.is<const char*>() ? p0.as<const char*>() : nullptr, p1.is<const char*>() ? p1.as<const char*>() : nullptr);
+	}
+
+	static int LUA_NATIVE_UILOG_UILOG_POST_NOTIFICATION_(uintptr_t data)
+	{
+		auto retval = UILOG::_UILOG_POST_NOTIFICATION((Any*)data);
+		return retval;
+	}
+
+	static void LUA_NATIVE_UILOG_0xDA0A30153FCC0FFD_()
+	{
+		UILOG::_0xDA0A30153FCC0FFD();
+	}
+
+	void init_native_binding_UILOG(sol::state& L)
+	{
+		auto UILOG = L["UILOG"].get_or_create<sol::table>();
+		UILOG.set_function("UILOG_IS_ENTRY_REGISTERED_", LUA_NATIVE_UILOG_UILOG_IS_ENTRY_REGISTERED_);
+		UILOG.set_function("UILOG_ADD_ENTRY_HASH_", LUA_NATIVE_UILOG_UILOG_ADD_ENTRY_HASH_);
+		UILOG.set_function("UILOG_ADD_ITEM_TO_TASK_LIST_", LUA_NATIVE_UILOG_UILOG_ADD_ITEM_TO_TASK_LIST_);
+		UILOG.set_function("UILOG_SET_ENTRY_ICON_TEXTURE_", LUA_NATIVE_UILOG_UILOG_SET_ENTRY_ICON_TEXTURE_);
+		UILOG.set_function("UILOG_SET_ENTRY_BRIEF_TEXTURE_", LUA_NATIVE_UILOG_UILOG_SET_ENTRY_BRIEF_TEXTURE_);
+		UILOG.set_function("UILOG_UPDATE_ENTRY_SUBHEADER_", LUA_NATIVE_UILOG_UILOG_UPDATE_ENTRY_SUBHEADER_);
+		UILOG.set_function("UILOG_SET_ENTRY_PINNED_", LUA_NATIVE_UILOG_UILOG_SET_ENTRY_PINNED_);
+		UILOG.set_function("UILOG_MARK_MISSION_COMPLETED_", LUA_NATIVE_UILOG_UILOG_MARK_MISSION_COMPLETED_);
+		UILOG.set_function("UILOG_MARK_ENTRY_AVAILABILITY_", LUA_NATIVE_UILOG_UILOG_MARK_ENTRY_AVAILABILITY_);
+		UILOG.set_function("UILOG_MARK_ALL_ENTRIES_AVAILABILITY_", LUA_NATIVE_UILOG_UILOG_MARK_ALL_ENTRIES_AVAILABILITY_);
+		UILOG.set_function("UILOG_REMOVE_ENTRY_", LUA_NATIVE_UILOG_UILOG_REMOVE_ENTRY_);
+		UILOG.set_function("UILOG_SET_DISPLAY_COMPLETION_RATING_", LUA_NATIVE_UILOG_UILOG_SET_DISPLAY_COMPLETION_RATING_);
+		UILOG.set_function("0xA49D6D503E3EA847_", LUA_NATIVE_UILOG_0xA49D6D503E3EA847_);
+		UILOG.set_function("0x763637F9B838B0A7_", LUA_NATIVE_UILOG_0x763637F9B838B0A7_);
+		UILOG.set_function("UILOG_CLEAR_ALL_ENTRIES_", LUA_NATIVE_UILOG_UILOG_CLEAR_ALL_ENTRIES_);
+		UILOG.set_function("UILOG_ADD_OR_UPDATE_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_ADD_OR_UPDATE_OBJECTIVE_);
+		UILOG.set_function("0xA20398536B7F1134_", LUA_NATIVE_UILOG_0xA20398536B7F1134_);
+		UILOG.set_function("UILOG_SET_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_SET_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_CLEAR_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_CLEAR_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_HAS_DISPLAYED_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_HAS_DISPLAYED_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_CLEAR_HAS_DISPLAYED_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_CLEAR_HAS_DISPLAYED_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_SET_HAS_DISPLAYED_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_SET_HAS_DISPLAYED_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_GET_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_GET_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_PRINT_CACHED_OBJECTIVE_", LUA_NATIVE_UILOG_UILOG_PRINT_CACHED_OBJECTIVE_);
+		UILOG.set_function("UILOG_SET_PENDING_DETAILS_ID_", LUA_NATIVE_UILOG_UILOG_SET_PENDING_DETAILS_ID_);
+		UILOG.set_function("0x2A4765812202E671_", LUA_NATIVE_UILOG_0x2A4765812202E671_);
+		UILOG.set_function("UILOG_ADD_TOTAL_TAKE_ENTRY_", LUA_NATIVE_UILOG_UILOG_ADD_TOTAL_TAKE_ENTRY_);
+		UILOG.set_function("UILOG_SET_TOTAL_TAKE_SUMMARY_", LUA_NATIVE_UILOG_UILOG_SET_TOTAL_TAKE_SUMMARY_);
+		UILOG.set_function("UILOG_POST_NOTIFICATION_", LUA_NATIVE_UILOG_UILOG_POST_NOTIFICATION_);
+		UILOG.set_function("0xDA0A30153FCC0FFD_", LUA_NATIVE_UILOG_0xDA0A30153FCC0FFD_);
+	}
+}

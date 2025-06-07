@@ -1,0 +1,303 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static float LUA_NATIVE_FLOCK_GET_SPECIES_TUNING_FLOAT_PARAM(Hash p0, int p1, int p2)
+	{
+		auto retval = FLOCK::GET_SPECIES_TUNING_FLOAT_PARAM(p0, p1, p2);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_SPECIES_TUNING_FLOAT_PARAM(Hash p0, int p1, int p2, float p3)
+	{
+		FLOCK::SET_SPECIES_TUNING_FLOAT_PARAM(p0, p1, p2, p3);
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_SPECIES_TUNING_BOOL_PARAM(Hash p0, int p1, int p2, bool p3)
+	{
+		FLOCK::SET_SPECIES_TUNING_BOOL_PARAM(p0, p1, p2, p3);
+	}
+
+	static float LUA_NATIVE_FLOCK_GET_ANIMAL_TUNING_FLOAT_PARAM(Ped animal, int index)
+	{
+		auto retval = FLOCK::GET_ANIMAL_TUNING_FLOAT_PARAM(animal, index);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_ANIMAL_TUNING_FLOAT_PARAM(Ped animal, int index, float value)
+	{
+		FLOCK::SET_ANIMAL_TUNING_FLOAT_PARAM(animal, index, value);
+	}
+
+	static void LUA_NATIVE_FLOCK_RESET_ANIMAL_TUNING_FLOAT_PARAM(Ped animal, int index)
+	{
+		FLOCK::RESET_ANIMAL_TUNING_FLOAT_PARAM(animal, index);
+	}
+
+	static bool LUA_NATIVE_FLOCK_GET_ANIMAL_TUNING_BOOL_PARAM(Ped animal, int index)
+	{
+		auto retval = (bool)FLOCK::GET_ANIMAL_TUNING_BOOL_PARAM(animal, index);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_ANIMAL_TUNING_BOOL_PARAM(Ped animal, int index, bool value)
+	{
+		FLOCK::SET_ANIMAL_TUNING_BOOL_PARAM(animal, index, value);
+	}
+
+	static void LUA_NATIVE_FLOCK_RESET_ANIMAL_TUNING_BOOL_PARAM(Ped animal, int index)
+	{
+		FLOCK::RESET_ANIMAL_TUNING_BOOL_PARAM(animal, index);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x8049B17BEC937662_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6)
+	{
+		auto retval = FLOCK::_0x8049B17BEC937662(p0, p1, p2, p3, p4, p5, p6);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_FLOCK_0xE93415B3307208E5_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6, Any p7, Any p8)
+	{
+		auto retval = FLOCK::_0xE93415B3307208E5(p0, p1, p2, p3, p4, p5, p6, p7, p8);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x19870C40C7EE15BE_(Any p0, Any p1)
+	{
+		auto retval = FLOCK::_0x19870C40C7EE15BE(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0x0816C31480764AB0_(Any p0, Any p1, Any p2, Any p3)
+	{
+		FLOCK::_0x0816C31480764AB0(p0, p1, p2, p3);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xC3D581A34BC0A1F0_(Any p0, Any p1)
+	{
+		FLOCK::_0xC3D581A34BC0A1F0(p0, p1);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xF2CCA7B68CFAB2B9_(Hash species, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float p10, float p11, float p12, float p13)
+	{
+		FLOCK::_0xF2CCA7B68CFAB2B9(species, x1, y1, z1, x2, y2, z2, x3, y3, z3, p10, p11, p12, p13);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xFB16F08F47B83B4C_(Any p0)
+	{
+		FLOCK::_0xFB16F08F47B83B4C(p0);
+	}
+
+	static bool LUA_NATIVE_FLOCK_GET_ANIMAL_IS_WILD_(Ped ped)
+	{
+		auto retval = (bool)FLOCK::_GET_ANIMAL_IS_WILD(ped);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_ANIMAL_IS_WILD_(Ped ped, bool toggle)
+	{
+		FLOCK::_SET_ANIMAL_IS_WILD(ped, toggle);
+	}
+
+	static int LUA_NATIVE_FLOCK_GET_ANIMAL_RARITY_(Ped ped)
+	{
+		auto retval = FLOCK::_GET_ANIMAL_RARITY(ped);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_SET_ANIMAL_RARITY_(Ped ped, int rarityLevel)
+	{
+		FLOCK::_SET_ANIMAL_RARITY(ped, rarityLevel);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xFF1E339CE40EAAAF_(Any p0, Any p1)
+	{
+		FLOCK::_0xFF1E339CE40EAAAF(p0, p1);
+	}
+
+	static bool LUA_NATIVE_FLOCK_IS_HERD_VALID_(ScrHandle herdHandle)
+	{
+		auto retval = (bool)FLOCK::_IS_HERD_VALID(herdHandle);
+		return retval;
+	}
+
+	static ScrHandle LUA_NATIVE_FLOCK_CREATE_HERD_()
+	{
+		auto retval = FLOCK::_CREATE_HERD();
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0xE0961AED72642B80_(Any p0)
+	{
+		FLOCK::_0xE0961AED72642B80(p0);
+	}
+
+	static void LUA_NATIVE_FLOCK_ADD_PED_TO_FLOCK_(Any p0, Ped ped)
+	{
+		FLOCK::_ADD_PED_TO_FLOCK(p0, ped);
+	}
+
+	static void LUA_NATIVE_FLOCK_0x408D1149C5E39C1E_(Any p0, Any p1)
+	{
+		FLOCK::_0x408D1149C5E39C1E(p0, p1);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x9E13ACC38BA8F9C3_(Any p0, Any p1)
+	{
+		auto retval = FLOCK::_0x9E13ACC38BA8F9C3(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x34B9C4D86DF2C2F3_(Any p0)
+	{
+		auto retval = FLOCK::_0x34B9C4D86DF2C2F3(p0);
+		return retval;
+	}
+
+	static Vector3 LUA_NATIVE_FLOCK_0x1DA6CB02071055D5_(Any p0)
+	{
+		auto retval = FLOCK::_0x1DA6CB02071055D5(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0xC95611869E14F8AF_(Any p0, Any p1, Any p2, Any p3)
+	{
+		FLOCK::_0xC95611869E14F8AF(p0, p1, p2, p3);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x09EE00B8F858E0BE_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6)
+	{
+		auto retval = FLOCK::_0x09EE00B8F858E0BE(p0, p1, p2, p3, p4, p5, p6);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0xE36D2CB540597EF7_(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6, Any p7)
+	{
+		FLOCK::_0xE36D2CB540597EF7(p0, p1, p2, p3, p4, p5, p6, p7);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0xD95F04A4E73BE85E_(Any p0, Any p1)
+	{
+		auto retval = FLOCK::_0xD95F04A4E73BE85E(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0x17E3E5C46ECCD308_(Any p0, Any p1, Any p2)
+	{
+		FLOCK::_0x17E3E5C46ECCD308(p0, p1, p2);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xC72CE37081DAE625_(Any p0, Any p1, Any p2, Any p3)
+	{
+		FLOCK::_0xC72CE37081DAE625(p0, p1, p2, p3);
+	}
+
+	static void LUA_NATIVE_FLOCK_0x67A43EA3F6FE0076_(Any p0)
+	{
+		FLOCK::_0x67A43EA3F6FE0076(p0);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x36486AF7DA93A464_(Any p0)
+	{
+		auto retval = FLOCK::_0x36486AF7DA93A464(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_FLOCK_0x6C57BEA886A20C6B_(Any p0, Any p1)
+	{
+		FLOCK::_0x6C57BEA886A20C6B(p0, p1);
+	}
+
+	static void LUA_NATIVE_FLOCK_0x1520626FFAFFFA8F_(Any p0, Any p1)
+	{
+		FLOCK::_0x1520626FFAFFFA8F(p0, p1);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xFA821997794F48E7_(Any p0, Any p1, Any p2)
+	{
+		FLOCK::_0xFA821997794F48E7(p0, p1, p2);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xCC6B5AAFC87BFC7B_(Any p0, Any p1, Any p2)
+	{
+		FLOCK::_0xCC6B5AAFC87BFC7B(p0, p1, p2);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xFDB008B3BCF5992F_(Any p0, Any p1, Any p2)
+	{
+		FLOCK::_0xFDB008B3BCF5992F(p0, p1, p2);
+	}
+
+	static void LUA_NATIVE_FLOCK_0x2DF3D457D86F8E57_(Any p0, Any p1)
+	{
+		FLOCK::_0x2DF3D457D86F8E57(p0, p1);
+	}
+
+	static void LUA_NATIVE_FLOCK_0x706B434FEFAD6A24_(Any p0)
+	{
+		FLOCK::_0x706B434FEFAD6A24(p0);
+	}
+
+	static void LUA_NATIVE_FLOCK_0xA881F5C77A560906_(Any p0)
+	{
+		FLOCK::_0xA881F5C77A560906(p0);
+	}
+
+	static Any LUA_NATIVE_FLOCK_0x53187E563F938E76_(Any p0)
+	{
+		auto retval = FLOCK::_0x53187E563F938E76(p0);
+		return retval;
+	}
+
+	void init_native_binding_FLOCK(sol::state& L)
+	{
+		auto FLOCK = L["FLOCK"].get_or_create<sol::table>();
+		FLOCK.set_function("GET_SPECIES_TUNING_FLOAT_PARAM", LUA_NATIVE_FLOCK_GET_SPECIES_TUNING_FLOAT_PARAM);
+		FLOCK.set_function("SET_SPECIES_TUNING_FLOAT_PARAM", LUA_NATIVE_FLOCK_SET_SPECIES_TUNING_FLOAT_PARAM);
+		FLOCK.set_function("SET_SPECIES_TUNING_BOOL_PARAM", LUA_NATIVE_FLOCK_SET_SPECIES_TUNING_BOOL_PARAM);
+		FLOCK.set_function("GET_ANIMAL_TUNING_FLOAT_PARAM", LUA_NATIVE_FLOCK_GET_ANIMAL_TUNING_FLOAT_PARAM);
+		FLOCK.set_function("SET_ANIMAL_TUNING_FLOAT_PARAM", LUA_NATIVE_FLOCK_SET_ANIMAL_TUNING_FLOAT_PARAM);
+		FLOCK.set_function("RESET_ANIMAL_TUNING_FLOAT_PARAM", LUA_NATIVE_FLOCK_RESET_ANIMAL_TUNING_FLOAT_PARAM);
+		FLOCK.set_function("GET_ANIMAL_TUNING_BOOL_PARAM", LUA_NATIVE_FLOCK_GET_ANIMAL_TUNING_BOOL_PARAM);
+		FLOCK.set_function("SET_ANIMAL_TUNING_BOOL_PARAM", LUA_NATIVE_FLOCK_SET_ANIMAL_TUNING_BOOL_PARAM);
+		FLOCK.set_function("RESET_ANIMAL_TUNING_BOOL_PARAM", LUA_NATIVE_FLOCK_RESET_ANIMAL_TUNING_BOOL_PARAM);
+		FLOCK.set_function("0x8049B17BEC937662_", LUA_NATIVE_FLOCK_0x8049B17BEC937662_);
+		FLOCK.set_function("0xE93415B3307208E5_", LUA_NATIVE_FLOCK_0xE93415B3307208E5_);
+		FLOCK.set_function("0x19870C40C7EE15BE_", LUA_NATIVE_FLOCK_0x19870C40C7EE15BE_);
+		FLOCK.set_function("0x0816C31480764AB0_", LUA_NATIVE_FLOCK_0x0816C31480764AB0_);
+		FLOCK.set_function("0xC3D581A34BC0A1F0_", LUA_NATIVE_FLOCK_0xC3D581A34BC0A1F0_);
+		FLOCK.set_function("0xF2CCA7B68CFAB2B9_", LUA_NATIVE_FLOCK_0xF2CCA7B68CFAB2B9_);
+		FLOCK.set_function("0xFB16F08F47B83B4C_", LUA_NATIVE_FLOCK_0xFB16F08F47B83B4C_);
+		FLOCK.set_function("GET_ANIMAL_IS_WILD_", LUA_NATIVE_FLOCK_GET_ANIMAL_IS_WILD_);
+		FLOCK.set_function("SET_ANIMAL_IS_WILD_", LUA_NATIVE_FLOCK_SET_ANIMAL_IS_WILD_);
+		FLOCK.set_function("GET_ANIMAL_RARITY_", LUA_NATIVE_FLOCK_GET_ANIMAL_RARITY_);
+		FLOCK.set_function("SET_ANIMAL_RARITY_", LUA_NATIVE_FLOCK_SET_ANIMAL_RARITY_);
+		FLOCK.set_function("0xFF1E339CE40EAAAF_", LUA_NATIVE_FLOCK_0xFF1E339CE40EAAAF_);
+		FLOCK.set_function("IS_HERD_VALID_", LUA_NATIVE_FLOCK_IS_HERD_VALID_);
+		FLOCK.set_function("CREATE_HERD_", LUA_NATIVE_FLOCK_CREATE_HERD_);
+		FLOCK.set_function("0xE0961AED72642B80_", LUA_NATIVE_FLOCK_0xE0961AED72642B80_);
+		FLOCK.set_function("ADD_PED_TO_FLOCK_", LUA_NATIVE_FLOCK_ADD_PED_TO_FLOCK_);
+		FLOCK.set_function("0x408D1149C5E39C1E_", LUA_NATIVE_FLOCK_0x408D1149C5E39C1E_);
+		FLOCK.set_function("0x9E13ACC38BA8F9C3_", LUA_NATIVE_FLOCK_0x9E13ACC38BA8F9C3_);
+		FLOCK.set_function("0x34B9C4D86DF2C2F3_", LUA_NATIVE_FLOCK_0x34B9C4D86DF2C2F3_);
+		FLOCK.set_function("0x1DA6CB02071055D5_", LUA_NATIVE_FLOCK_0x1DA6CB02071055D5_);
+		FLOCK.set_function("0xC95611869E14F8AF_", LUA_NATIVE_FLOCK_0xC95611869E14F8AF_);
+		FLOCK.set_function("0x09EE00B8F858E0BE_", LUA_NATIVE_FLOCK_0x09EE00B8F858E0BE_);
+		FLOCK.set_function("0xE36D2CB540597EF7_", LUA_NATIVE_FLOCK_0xE36D2CB540597EF7_);
+		FLOCK.set_function("0xD95F04A4E73BE85E_", LUA_NATIVE_FLOCK_0xD95F04A4E73BE85E_);
+		FLOCK.set_function("0x17E3E5C46ECCD308_", LUA_NATIVE_FLOCK_0x17E3E5C46ECCD308_);
+		FLOCK.set_function("0xC72CE37081DAE625_", LUA_NATIVE_FLOCK_0xC72CE37081DAE625_);
+		FLOCK.set_function("0x67A43EA3F6FE0076_", LUA_NATIVE_FLOCK_0x67A43EA3F6FE0076_);
+		FLOCK.set_function("0x36486AF7DA93A464_", LUA_NATIVE_FLOCK_0x36486AF7DA93A464_);
+		FLOCK.set_function("0x6C57BEA886A20C6B_", LUA_NATIVE_FLOCK_0x6C57BEA886A20C6B_);
+		FLOCK.set_function("0x1520626FFAFFFA8F_", LUA_NATIVE_FLOCK_0x1520626FFAFFFA8F_);
+		FLOCK.set_function("0xFA821997794F48E7_", LUA_NATIVE_FLOCK_0xFA821997794F48E7_);
+		FLOCK.set_function("0xCC6B5AAFC87BFC7B_", LUA_NATIVE_FLOCK_0xCC6B5AAFC87BFC7B_);
+		FLOCK.set_function("0xFDB008B3BCF5992F_", LUA_NATIVE_FLOCK_0xFDB008B3BCF5992F_);
+		FLOCK.set_function("0x2DF3D457D86F8E57_", LUA_NATIVE_FLOCK_0x2DF3D457D86F8E57_);
+		FLOCK.set_function("0x706B434FEFAD6A24_", LUA_NATIVE_FLOCK_0x706B434FEFAD6A24_);
+		FLOCK.set_function("0xA881F5C77A560906_", LUA_NATIVE_FLOCK_0xA881F5C77A560906_);
+		FLOCK.set_function("0x53187E563F938E76_", LUA_NATIVE_FLOCK_0x53187E563F938E76_);
+	}
+}

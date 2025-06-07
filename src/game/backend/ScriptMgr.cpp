@@ -88,4 +88,13 @@ namespace YimMenu
 		std::lock_guard lock(m_Mutex);
 		m_Scripts.push_back(std::move(script));
 	}
+
+	void ScriptMgr::RemoveScriptImpl(Script* script)
+	{
+		std::lock_guard lock(m_Mutex);
+
+		std::erase_if(m_Scripts, [script](const std::unique_ptr<Script>& ptr) {
+			return ptr.get() == script;
+		});
+	}
 }

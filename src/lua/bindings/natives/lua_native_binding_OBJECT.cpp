@@ -1,0 +1,988 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static Object LUA_NATIVE_OBJECT_CREATE_OBJECT(Hash ModelIndex, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, bool RegisterAsNetworkObject, bool ScriptHostObject, bool ForceToBeObject, bool p7, bool p8)
+	{
+		auto retval = OBJECT::CREATE_OBJECT(ModelIndex, VecNewCoorsX, VecNewCoorsY, VecNewCoorsZ, RegisterAsNetworkObject, ScriptHostObject, ForceToBeObject, p7, p8);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_CREATE_OBJECT_NO_OFFSET(Hash ModelIndex, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, bool RegisterAsNetworkObject, bool ScriptHostObject, bool ForceToBeObject, bool p7)
+	{
+		auto retval = OBJECT::CREATE_OBJECT_NO_OFFSET(ModelIndex, VecNewCoorsX, VecNewCoorsY, VecNewCoorsZ, RegisterAsNetworkObject, ScriptHostObject, ForceToBeObject, p7);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_DELETE_OBJECT(Object ObjectIndex)
+	{
+		OBJECT::DELETE_OBJECT(&ObjectIndex);
+		return ObjectIndex;
+	}
+
+	static bool LUA_NATIVE_OBJECT_PLACE_OBJECT_ON_GROUND_PROPERLY(Object ObjectIndex, bool p1)
+	{
+		auto retval = (bool)OBJECT::PLACE_OBJECT_ON_GROUND_PROPERLY(ObjectIndex, p1);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_SLIDE_OBJECT(Object ObjectID, float VecDestCoorstX, float VecDestCoorstY, float VecDestCoorstZ, float VecIncrementX, float VecIncrementY, float VecIncrementZ, bool StopOnCollision)
+	{
+		auto retval = (bool)OBJECT::SLIDE_OBJECT(ObjectID, VecDestCoorstX, VecDestCoorstY, VecDestCoorstZ, VecIncrementX, VecIncrementY, VecIncrementZ, StopOnCollision);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE(Object ObjectID, bool Targettable)
+	{
+		OBJECT::SET_OBJECT_TARGETTABLE(ObjectID, Targettable);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE_2_(Object object, bool targettable)
+	{
+		OBJECT::_SET_OBJECT_TARGETTABLE_2(object, targettable);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE_FOCUS_(Object object, bool p1, bool p2)
+	{
+		OBJECT::_SET_OBJECT_TARGETTABLE_FOCUS(object, p1, p2);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xF6E88489B4E6EBE5_(Any p0, Any p1)
+	{
+		OBJECT::_0xF6E88489B4E6EBE5(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xE157A8A336C7F04A_(Any p0, Any p1)
+	{
+		OBJECT::_0xE157A8A336C7F04A(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x46CBCF0E98A4E156_(Any p0, Any p1)
+	{
+		OBJECT::_0x46CBCF0E98A4E156(p0, p1);
+	}
+
+	static Object LUA_NATIVE_OBJECT_GET_CLOSEST_OBJECT_OF_TYPE(float scrVecCentreCoorsX, float scrVecCentreCoorsY, float scrVecCentreCoorsZ, float Radius, Hash ObjectModelHashKey, bool RegisterAsScriptObject, bool ScriptHostObject, bool RegisterAsNetworkObject)
+	{
+		auto retval = OBJECT::GET_CLOSEST_OBJECT_OF_TYPE(scrVecCentreCoorsX, scrVecCentreCoorsY, scrVecCentreCoorsZ, Radius, ObjectModelHashKey, RegisterAsScriptObject, ScriptHostObject, RegisterAsNetworkObject);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_HAS_OBJECT_BEEN_BROKEN(Object ObjectID)
+	{
+		auto retval = (bool)OBJECT::HAS_OBJECT_BEEN_BROKEN(ObjectID);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_HAS_CLOSEST_OBJECT_OF_TYPE_BEEN_BROKEN(float scrVecCoorsX, float scrVecCoorsY, float scrVecCoorsZ, float Radius, Hash model, int SearchFlags)
+	{
+		auto retval = (bool)OBJECT::HAS_CLOSEST_OBJECT_OF_TYPE_BEEN_BROKEN(scrVecCoorsX, scrVecCoorsY, scrVecCoorsZ, Radius, model, SearchFlags);
+		return retval;
+	}
+
+	static Vector3 LUA_NATIVE_OBJECT_GET_OFFSET_FROM_COORD_AND_HEADING_IN_WORLD_COORDS(float vPosX, float vPosY, float vPosZ, float fHeading, float vOffsetX, float vOffsetY, float vOffsetZ)
+	{
+		auto retval = OBJECT::GET_OFFSET_FROM_COORD_AND_HEADING_IN_WORLD_COORDS(vPosX, vPosY, vPosZ, fHeading, vOffsetX, vOffsetY, vOffsetZ);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_ADD_DOOR_TO_SYSTEM_NEW_(Hash doorHash, bool p1, bool p2, bool p3, int threadId, int p5, bool p6)
+	{
+		OBJECT::_ADD_DOOR_TO_SYSTEM_NEW(doorHash, p1, p2, p3, threadId, p5, p6);
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_NETWORK_(Hash doorHash)
+	{
+		auto retval = (bool)OBJECT::_IS_DOOR_REGISTERED_WITH_NETWORK(doorHash);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_REMOVE_DOOR_FROM_SYSTEM(Hash doorEnumHash)
+	{
+		OBJECT::REMOVE_DOOR_FROM_SYSTEM(doorEnumHash);
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_DOOR_STATE(Hash doorEnumHash, int state)
+	{
+		OBJECT::DOOR_SYSTEM_SET_DOOR_STATE(doorEnumHash, state);
+	}
+
+	static int LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_DOOR_STATE(Hash doorEnumHash)
+	{
+		auto retval = OBJECT::DOOR_SYSTEM_GET_DOOR_STATE(doorEnumHash);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_RATE(Hash doorEnumHash, float fAutomaticRate)
+	{
+		OBJECT::DOOR_SYSTEM_SET_AUTOMATIC_RATE(doorEnumHash, fAutomaticRate);
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_DISTANCE(Hash doorEnumHash, float fAutomaticDistance)
+	{
+		OBJECT::DOOR_SYSTEM_SET_AUTOMATIC_DISTANCE(doorEnumHash, fAutomaticDistance);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xB3B1546D23DF8DE1_(Any p0, Any p1, Any p2, Any p3, Any p4)
+	{
+		OBJECT::_0xB3B1546D23DF8DE1(p0, p1, p2, p3, p4);
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_OPEN_RATIO(Hash doorEnumHash, float fOpenRatio, bool forceUpdate)
+	{
+		OBJECT::DOOR_SYSTEM_SET_OPEN_RATIO(doorEnumHash, fOpenRatio, forceUpdate);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x3A77DAE8B4FD7586_(Any p0, Any p1)
+	{
+		OBJECT::_0x3A77DAE8B4FD7586(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_ABLE_TO_CHANGE_OPEN_RATIO_WHILE_LOCKED_(Hash doorHash, bool p1)
+	{
+		OBJECT::_DOOR_SYSTEM_SET_ABLE_TO_CHANGE_OPEN_RATIO_WHILE_LOCKED(doorHash, p1);
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_OWNER_(Hash doorHash)
+	{
+		auto retval = (bool)OBJECT::_IS_DOOR_REGISTERED_WITH_OWNER(doorHash);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_CHANGE_SCRIPT_OWNER_(Hash doorHash)
+	{
+		OBJECT::_DOOR_SYSTEM_CHANGE_SCRIPT_OWNER(doorHash);
+	}
+
+	static float LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_AUTOMATIC_RATE_(Hash doorHash)
+	{
+		auto retval = OBJECT::_DOOR_SYSTEM_GET_AUTOMATIC_RATE(doorHash);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x6E2AA80BB0C03728_(Any p0, Any p1)
+	{
+		auto retval = OBJECT::_0x6E2AA80BB0C03728(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_STATE_(Hash doorHash, bool disable)
+	{
+		OBJECT::_DOOR_SYSTEM_SET_AUTOMATIC_STATE(doorHash, disable);
+	}
+
+	static float LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_OPEN_RATIO(Hash doorEnumHash)
+	{
+		auto retval = OBJECT::DOOR_SYSTEM_GET_OPEN_RATIO(doorEnumHash);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_0x7F458B543006C8FE_(Any p0, Any p1)
+	{
+		OBJECT::_0x7F458B543006C8FE(p0, p1);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0xACD4F9831DFAD7F5_(Any p0)
+	{
+		auto retval = OBJECT::_0xACD4F9831DFAD7F5(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_0x0C0A373D181BF900_(Any p0)
+	{
+		OBJECT::_0x0C0A373D181BF900(p0);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xA93F925F1942E434_(Any p0, Any p1)
+	{
+		OBJECT::_0xA93F925F1942E434(p0, p1);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x4D8611DFE1126478_(Any p0)
+	{
+		auto retval = OBJECT::_0x4D8611DFE1126478(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_0x57C242543B7B8FB9_(Any p0, Any p1)
+	{
+		OBJECT::_0x57C242543B7B8FB9(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x4AE07EBA3462C5D5_(Any p0, Any p1)
+	{
+		OBJECT::_0x4AE07EBA3462C5D5(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x22031584496CFB70_(Any p0, Any p1)
+	{
+		OBJECT::_0x22031584496CFB70(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xC07B91B996C1DE89_(Any p0, Any p1)
+	{
+		OBJECT::_0xC07B91B996C1DE89(p0, p1);
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_SYSTEM(Hash doorEnumHash)
+	{
+		auto retval = (bool)OBJECT::IS_DOOR_REGISTERED_WITH_SYSTEM(doorEnumHash);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_DOOR_CLOSED(Hash doorEnumHash)
+	{
+		auto retval = (bool)OBJECT::IS_DOOR_CLOSED(doorEnumHash);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x0943113E02322164_(Object object, int p1)
+	{
+		auto retval = OBJECT::_0x0943113E02322164(object, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x614D0B4533F842D3_(Any p0)
+	{
+		auto retval = OBJECT::_0x614D0B4533F842D3(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_DOOR_SYSTEM_FORCE_SHUT_(Hash doorHash, bool p1)
+	{
+		OBJECT::_DOOR_SYSTEM_FORCE_SHUT(doorHash, p1);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0xEBA314768FB35D58_(Any p0)
+	{
+		auto retval = OBJECT::_0xEBA314768FB35D58(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_0x5230BF34EB0EC645_(Any p0)
+	{
+		OBJECT::_0x5230BF34EB0EC645(p0);
+	}
+
+	static bool LUA_NATIVE_OBJECT_DOES_OBJECT_OF_TYPE_EXIST_AT_COORDS(float VecCoorsX, float VecCoorsY, float VecCoorsZ, float Radius, Hash ModelIndex, bool checkPhysicsExists)
+	{
+		auto retval = (bool)OBJECT::DOES_OBJECT_OF_TYPE_EXIST_AT_COORDS(VecCoorsX, VecCoorsY, VecCoorsZ, Radius, ModelIndex, checkPhysicsExists);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_POINT_IN_ANGLED_AREA(float VecPointX, float VecPointY, float VecPointZ, float VecCoors1X, float VecCoors1Y, float VecCoors1Z, float VecCoors2X, float VecCoors2Y, float VecCoors2Z, float DistanceP1toP4, bool HighlightArea, bool bCheck3D)
+	{
+		auto retval = (bool)OBJECT::IS_POINT_IN_ANGLED_AREA(VecPointX, VecPointY, VecPointZ, VecCoors1X, VecCoors1Y, VecCoors1Z, VecCoors2X, VecCoors2Y, VecCoors2Z, DistanceP1toP4, HighlightArea, bCheck3D);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_ALLOW_LOW_LOD_BUOYANCY(Object ObjectID, bool AllowFlag)
+	{
+		OBJECT::SET_OBJECT_ALLOW_LOW_LOD_BUOYANCY(ObjectID, AllowFlag);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_PHYSICS_PARAMS(Object ObjectIndex, float fMass, float fGravityFactor, float TranslationalDampingX, float TranslationalDampingY, float TranslationalDampingZ, float RotationalDampingX, float RotationalDampingY, float RotationalDampingZ, float fCollisionMargin, float fMaxAngularSpeed, float fBuoyancyFactor)
+	{
+		OBJECT::SET_OBJECT_PHYSICS_PARAMS(ObjectIndex, fMass, fGravityFactor, TranslationalDampingX, TranslationalDampingY, TranslationalDampingZ, RotationalDampingX, RotationalDampingY, RotationalDampingZ, fCollisionMargin, fMaxAngularSpeed, fBuoyancyFactor);
+	}
+
+	static float LUA_NATIVE_OBJECT_GET_OBJECT_FRAGMENT_DAMAGE_HEALTH(Object ObjectIndex, bool HealthPercentageByMass)
+	{
+		auto retval = OBJECT::GET_OBJECT_FRAGMENT_DAMAGE_HEALTH(ObjectIndex, HealthPercentageByMass);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x235C863DA77BD88D_(Any p0, Any p1, Any p2)
+	{
+		auto retval = OBJECT::_0x235C863DA77BD88D(p0, p1, p2);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_ACTIVATE_OBJECT_PHYSICS_AS_SOON_AS_IT_IS_UNFROZEN(Object ObjectIndex, bool bActivatePhysicsWhenUnfrozen)
+	{
+		OBJECT::SET_ACTIVATE_OBJECT_PHYSICS_AS_SOON_AS_IT_IS_UNFROZEN(ObjectIndex, bActivatePhysicsWhenUnfrozen);
+	}
+
+	static void LUA_NATIVE_OBJECT_BREAK_OBJECT_FRAGMENT_CHILD(Object ObjectIndex, int Component, bool Disappear)
+	{
+		OBJECT::BREAK_OBJECT_FRAGMENT_CHILD(ObjectIndex, Component, Disappear);
+	}
+
+	static void LUA_NATIVE_OBJECT_BREAK_ALL_OBJECT_FRAGMENT_BONES(Object object)
+	{
+		OBJECT::BREAK_ALL_OBJECT_FRAGMENT_BONES(object);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xAAACF33CBF9B990A_(Any p0, Any p1)
+	{
+		OBJECT::_0xAAACF33CBF9B990A(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_DAMAGE_BONE_ON_PROP_(Object object, int bone)
+	{
+		OBJECT::_DAMAGE_BONE_ON_PROP(object, bone);
+	}
+
+	static void LUA_NATIVE_OBJECT_FIX_OBJECT_FRAGMENT(Object ObjectIndex)
+	{
+		OBJECT::FIX_OBJECT_FRAGMENT(ObjectIndex);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x58DE624FA7FB0E7F_(Any p0)
+	{
+		auto retval = OBJECT::_0x58DE624FA7FB0E7F(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_0x491439AEF410A2FC_(Any p0)
+	{
+		OBJECT::_0x491439AEF410A2FC(p0);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_BREAK_SCALE_(Object object, float scale)
+	{
+		OBJECT::_SET_OBJECT_BREAK_SCALE(object, scale);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xCEAB54F4632C6EF6_(Any p0, Any p1)
+	{
+		OBJECT::_0xCEAB54F4632C6EF6(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_TRACK_OBJECT_VISIBILITY(Object ObjectID)
+	{
+		OBJECT::TRACK_OBJECT_VISIBILITY(ObjectID);
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_OBJECT_VISIBLE(Object ObjectID)
+	{
+		auto retval = (bool)OBJECT::IS_OBJECT_VISIBLE(ObjectID);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_TAKES_DAMAGE_FROM_COLLIDING_WITH_BUILDINGS(Object ObjectIndex, bool bTakesDamage)
+	{
+		OBJECT::SET_OBJECT_TAKES_DAMAGE_FROM_COLLIDING_WITH_BUILDINGS(ObjectIndex, bTakesDamage);
+	}
+
+	static void LUA_NATIVE_OBJECT_ALLOW_DAMAGE_EVENTS_FOR_NON_NETWORKED_OBJECTS(bool enabled)
+	{
+		OBJECT::ALLOW_DAMAGE_EVENTS_FOR_NON_NETWORKED_OBJECTS(enabled);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x6579860A5558524A_(Any p0, Any p1)
+	{
+		OBJECT::_0x6579860A5558524A(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xDFA1237F5228263F_(Any p0, Any p1)
+	{
+		OBJECT::_0xDFA1237F5228263F(p0, p1);
+	}
+
+	static float LUA_NATIVE_OBJECT_GET_LIGHT_INTENSITY_FROM_OBJECT_(Object object)
+	{
+		auto retval = OBJECT::_GET_LIGHT_INTENSITY_FROM_OBJECT(object);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_LIGHT_INTENSITY_FOR_OBJECT_(Object object, float lightIntensity)
+	{
+		OBJECT::_SET_LIGHT_INTENSITY_FOR_OBJECT(object, lightIntensity);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_LIGHT_TRANSLUCENCY_FOR_OBJECT_(Object object, float value)
+	{
+		OBJECT::_SET_LIGHT_TRANSLUCENCY_FOR_OBJECT(object, value);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_LIGHT_SCATTERING_DISABLED_FOR_OBJECT_(Object object, bool disable)
+	{
+		OBJECT::_SET_LIGHT_SCATTERING_DISABLED_FOR_OBJECT(object, disable);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x7FCD49388BC9B775_(Any p0, Any p1)
+	{
+		OBJECT::_0x7FCD49388BC9B775(p0, p1);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0xFA99E8E575F2FEF8_(Any p0)
+	{
+		auto retval = OBJECT::_0xFA99E8E575F2FEF8(p0);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_GET_RAYFIRE_MAP_OBJECT(float PosX, float PosY, float PosZ, float fRadius, sol::stack_object RayfireName)
+	{
+		auto retval = OBJECT::GET_RAYFIRE_MAP_OBJECT(PosX, PosY, PosZ, fRadius, RayfireName.is<const char*>() ? RayfireName.as<const char*>() : nullptr);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_STATE_OF_RAYFIRE_MAP_OBJECT(Object RayFireObject, int state)
+	{
+		OBJECT::SET_STATE_OF_RAYFIRE_MAP_OBJECT(RayFireObject, state);
+	}
+
+	static int LUA_NATIVE_OBJECT_GET_STATE_OF_RAYFIRE_MAP_OBJECT(Object RayFireObject)
+	{
+		auto retval = OBJECT::GET_STATE_OF_RAYFIRE_MAP_OBJECT(RayFireObject);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_DOES_RAYFIRE_MAP_OBJECT_EXIST(Object RayFireObject)
+	{
+		auto retval = (bool)OBJECT::DOES_RAYFIRE_MAP_OBJECT_EXIST(RayFireObject);
+		return retval;
+	}
+
+	static float LUA_NATIVE_OBJECT_GET_RAYFIRE_MAP_OBJECT_ANIM_PHASE(Object RayFireObject)
+	{
+		auto retval = OBJECT::GET_RAYFIRE_MAP_OBJECT_ANIM_PHASE(RayFireObject);
+		return retval;
+	}
+
+	static Pickup LUA_NATIVE_OBJECT_CREATE_PICKUP(Hash Type, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, int PlacementFlags, int Amount, bool ScriptHostObject, Hash CustomModel, int p8, float p9, Any p10)
+	{
+		auto retval = OBJECT::CREATE_PICKUP(Type, VecNewCoorsX, VecNewCoorsY, VecNewCoorsZ, PlacementFlags, Amount, ScriptHostObject, CustomModel, p8, p9, p10);
+		return retval;
+	}
+
+	static Pickup LUA_NATIVE_OBJECT_CREATE_PICKUP_ROTATE(Hash Type, float CoorsX, float CoorsY, float CoorsZ, float OrientationX, float OrientationY, float OrientationZ, int PlacementFlags, int Amount, int RotOrder, bool ScriptHostObject, Hash CustomModel, int p12, float p13, Any p14)
+	{
+		auto retval = OBJECT::CREATE_PICKUP_ROTATE(Type, CoorsX, CoorsY, CoorsZ, OrientationX, OrientationY, OrientationZ, PlacementFlags, Amount, RotOrder, ScriptHostObject, CustomModel, p12, p13, p14);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_CREATE_AMBIENT_PICKUP(Hash Type, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, int PlacementFlags, int Amount, Hash CustomModel, bool bCreateAsScriptObject, bool ScriptHostObject, int p9, float p10)
+	{
+		auto retval = OBJECT::CREATE_AMBIENT_PICKUP(Type, VecNewCoorsX, VecNewCoorsY, VecNewCoorsZ, PlacementFlags, Amount, CustomModel, bCreateAsScriptObject, ScriptHostObject, p9, p10);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_CREATE_PORTABLE_PICKUP(Hash Type, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, bool SnapToGround, Hash CustomModel)
+	{
+		auto retval = OBJECT::CREATE_PORTABLE_PICKUP(Type, VecNewCoorsX, VecNewCoorsY, VecNewCoorsZ, SnapToGround, CustomModel);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_ATTACH_PORTABLE_PICKUP_TO_PED(Object PickupID, Ped PedID)
+	{
+		OBJECT::ATTACH_PORTABLE_PICKUP_TO_PED(PickupID, PedID);
+	}
+
+	static void LUA_NATIVE_OBJECT_DETACH_PORTABLE_PICKUP_FROM_PED(Object PickupID)
+	{
+		OBJECT::DETACH_PORTABLE_PICKUP_FROM_PED(PickupID);
+	}
+
+	static void LUA_NATIVE_OBJECT_HIDE_PICKUP_OBJECT_(Object pickupObject, bool toggle)
+	{
+		OBJECT::_HIDE_PICKUP_OBJECT(pickupObject, toggle);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_MAX_NUM_PORTABLE_PICKUPS_CARRIED_BY_PLAYER(Hash modelName, int MaxPickups)
+	{
+		OBJECT::SET_MAX_NUM_PORTABLE_PICKUPS_CARRIED_BY_PLAYER(modelName, MaxPickups);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x3E2616E7EA539480_(Any p0)
+	{
+		auto retval = OBJECT::_0x3E2616E7EA539480(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_LOCAL_PLAYER_CAN_COLLECT_PORTABLE_PICKUPS(bool CanCollect)
+	{
+		OBJECT::SET_LOCAL_PLAYER_CAN_COLLECT_PORTABLE_PICKUPS(CanCollect);
+	}
+
+	static Vector3 LUA_NATIVE_OBJECT_GET_SAFE_PICKUP_COORDS(float VecInCoorsX, float VecInCoorsY, float VecInCoorsZ, float minDist, float maxDist, Any p5)
+	{
+		auto retval = OBJECT::GET_SAFE_PICKUP_COORDS(VecInCoorsX, VecInCoorsY, VecInCoorsZ, minDist, maxDist, p5);
+		return retval;
+	}
+
+	static Vector3 LUA_NATIVE_OBJECT_GET_PICKUP_COORDS(Pickup PickupID)
+	{
+		auto retval = OBJECT::GET_PICKUP_COORDS(PickupID);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_REMOVE_ALL_PICKUPS_OF_TYPE(Hash Type)
+	{
+		OBJECT::REMOVE_ALL_PICKUPS_OF_TYPE(Type);
+	}
+
+	static bool LUA_NATIVE_OBJECT_HAS_PICKUP_BEEN_COLLECTED(Pickup PickupID)
+	{
+		auto retval = (bool)OBJECT::HAS_PICKUP_BEEN_COLLECTED(PickupID);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_REMOVE_PICKUP(Pickup PickupID)
+	{
+		OBJECT::REMOVE_PICKUP(PickupID);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_DO_NOT_AUTO_PLACE_ON_GROUND(Object pickupObject)
+	{
+		OBJECT::SET_PICKUP_DO_NOT_AUTO_PLACE_ON_GROUND(pickupObject);
+	}
+
+	static bool LUA_NATIVE_OBJECT_DOES_PICKUP_EXIST(Pickup PickupID)
+	{
+		auto retval = (bool)OBJECT::DOES_PICKUP_EXIST(PickupID);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_DOES_PICKUP_OBJECT_EXIST(Pickup PickupID)
+	{
+		auto retval = (bool)OBJECT::DOES_PICKUP_OBJECT_EXIST(PickupID);
+		return retval;
+	}
+
+	static Object LUA_NATIVE_OBJECT_GET_PICKUP_OBJECT(Pickup PickupID)
+	{
+		auto retval = OBJECT::GET_PICKUP_OBJECT(PickupID);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_OBJECT_A_PORTABLE_PICKUP(Object ObjectID)
+	{
+		auto retval = (bool)OBJECT::IS_OBJECT_A_PORTABLE_PICKUP(ObjectID);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_IS_PICKUP_TYPE_VALID_(Hash pickupHash)
+	{
+		auto retval = (bool)OBJECT::_IS_PICKUP_TYPE_VALID(pickupHash);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_DOES_PICKUP_OF_TYPE_EXIST_IN_AREA(Hash PickupType, float VecCoordsX, float VecCoordsY, float VecCoordsZ, float Radius)
+	{
+		auto retval = (bool)OBJECT::DOES_PICKUP_OF_TYPE_EXIST_IN_AREA(PickupType, VecCoordsX, VecCoordsY, VecCoordsZ, Radius);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_REGENERATION_TIME(Pickup PickupID, int RegenTime)
+	{
+		OBJECT::SET_PICKUP_REGENERATION_TIME(PickupID, RegenTime);
+	}
+
+	static void LUA_NATIVE_OBJECT_FORCE_PICKUP_REGENERATE(Pickup PickupID)
+	{
+		OBJECT::FORCE_PICKUP_REGENERATE(PickupID);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_NETWORK_PICKUP_USABLE_FOR_PLAYER_(Player player, Hash pickupHash, bool isUsable)
+	{
+		OBJECT::_SET_NETWORK_PICKUP_USABLE_FOR_PLAYER(player, pickupHash, isUsable);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_LOCAL_PLAYER_PERMITTED_TO_COLLECT_PICKUPS_WITH_MODEL(Hash CustomModel, bool Allow)
+	{
+		OBJECT::SET_LOCAL_PLAYER_PERMITTED_TO_COLLECT_PICKUPS_WITH_MODEL(CustomModel, Allow);
+	}
+
+	static void LUA_NATIVE_OBJECT_BLOCK_PICKUP_FROM_PLAYER_COLLECTION(Any p0, Any p1)
+	{
+		OBJECT::BLOCK_PICKUP_FROM_PLAYER_COLLECTION(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_NOT_LOOTABLE(Any p0, Any p1)
+	{
+		OBJECT::SET_PICKUP_NOT_LOOTABLE(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x1F5E07E14A86FAFC_(bool p0)
+	{
+		OBJECT::_0x1F5E07E14A86FAFC(p0);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_TEAM_PICKUP_OBJECT(Object PickupID, int Team, bool bSet)
+	{
+		OBJECT::SET_TEAM_PICKUP_OBJECT(PickupID, Team, bSet);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x9F52AD67D1A91BAD_(Any p0, Any p1)
+	{
+		auto retval = OBJECT::_0x9F52AD67D1A91BAD(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_PREVENT_COLLECTION_OF_PORTABLE_PICKUP(Object PickupID, bool bPrevent, bool bLocalOnly)
+	{
+		OBJECT::PREVENT_COLLECTION_OF_PORTABLE_PICKUP(PickupID, bPrevent, bLocalOnly);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_GENERATION_RANGE_MULTIPLIER(float multiplier)
+	{
+		OBJECT::SET_PICKUP_GENERATION_RANGE_MULTIPLIER(multiplier);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_UNCOLLECTABLE(Pickup PickupID, bool bSet)
+	{
+		OBJECT::SET_PICKUP_UNCOLLECTABLE(PickupID, bSet);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_HIDDEN_WHEN_UNCOLLECTABLE(Pickup PickupID, bool bSet)
+	{
+		OBJECT::SET_PICKUP_HIDDEN_WHEN_UNCOLLECTABLE(PickupID, bSet);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_AMBIENT_PICKUP_LIFETIME_(int lifetime)
+	{
+		OBJECT::_SET_AMBIENT_PICKUP_LIFETIME(lifetime);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_PARTICLE_FX_SPAWN(Any p0, Any p1)
+	{
+		OBJECT::SET_PICKUP_PARTICLE_FX_SPAWN(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_PARTICLE_FX_HIGHLIGHT(Any p0, Any p1)
+	{
+		OBJECT::SET_PICKUP_PARTICLE_FX_HIGHLIGHT(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SUPPRESS_PICKUP_REWARD_TYPE(int pickupFlag, bool bClearPreviousFlags)
+	{
+		OBJECT::SUPPRESS_PICKUP_REWARD_TYPE(pickupFlag, bClearPreviousFlags);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x20135AF9C10D2A3D_(Any p0)
+	{
+		auto retval = OBJECT::_0x20135AF9C10D2A3D(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_PICKUP_COLLECTABLE_ON_MOUNT_(Object object)
+	{
+		OBJECT::_SET_PICKUP_COLLECTABLE_ON_MOUNT(object);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xDE116ECFFDD4B997_(Any p0, Any p1)
+	{
+		OBJECT::_0xDE116ECFFDD4B997(p0, p1);
+	}
+
+	static Hash LUA_NATIVE_OBJECT_GET_WEAPON_TYPE_FROM_PICKUP_TYPE(Hash ePickupType)
+	{
+		auto retval = OBJECT::GET_WEAPON_TYPE_FROM_PICKUP_TYPE(ePickupType);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_OBJECT_GET_AMMO_TYPE_FROM_PICKUP_TYPE_(Hash pickupHash)
+	{
+		auto retval = OBJECT::_GET_AMMO_TYPE_FROM_PICKUP_TYPE(pickupHash);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_TINT_INDEX(Object ObjectIndex, int TintIndex)
+	{
+		OBJECT::SET_OBJECT_TINT_INDEX(ObjectIndex, TintIndex);
+	}
+
+	static float LUA_NATIVE_OBJECT_GET_OBJECT_LIGHT_INTENSITY_(Object object)
+	{
+		auto retval = OBJECT::_GET_OBJECT_LIGHT_INTENSITY(object);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_BURN_OPACITY_(Object object, float opacity)
+	{
+		OBJECT::_SET_OBJECT_BURN_OPACITY(object, opacity);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_BURN_INTENSITY_(Object object, float intensity)
+	{
+		OBJECT::_SET_OBJECT_BURN_INTENSITY(object, intensity);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_BURN_LEVEL_(Object object, float burnLevel, bool affectAsh)
+	{
+		OBJECT::_SET_OBJECT_BURN_LEVEL(object, burnLevel, affectAsh);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x9A74A9CADFA8A598_(Any p0)
+	{
+		OBJECT::_0x9A74A9CADFA8A598(p0);
+	}
+
+	static void LUA_NATIVE_OBJECT_RESET_OBJECT_VELOCITY_(Object object)
+	{
+		OBJECT::_RESET_OBJECT_VELOCITY(object);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_BURN_SPEED_(Object object, float speed, float p2)
+	{
+		OBJECT::_SET_OBJECT_BURN_SPEED(object, speed, p2);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xCBFBD38F2E0A263B_(Any p0, Any p1)
+	{
+		OBJECT::_0xCBFBD38F2E0A263B(p0, p1);
+	}
+
+	static Hash LUA_NATIVE_OBJECT_CONVERT_OLD_PICKUP_TYPE_TO_NEW(Hash OldPickupType)
+	{
+		auto retval = OBJECT::CONVERT_OLD_PICKUP_TYPE_TO_NEW(OldPickupType);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_FORCE_OBJECT_THIS_FRAME(float posX, float posY, float posZ, float radius)
+	{
+		OBJECT::SET_FORCE_OBJECT_THIS_FRAME(posX, posY, posZ, radius);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0xD91E55B6C005EB09_(Any p0, Any p1)
+	{
+		auto retval = OBJECT::_0xD91E55B6C005EB09(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_ONLY_CLEAN_UP_OBJECT_WHEN_OUT_OF_RANGE(Object ObjectIndex)
+	{
+		OBJECT::ONLY_CLEAN_UP_OBJECT_WHEN_OUT_OF_RANGE(ObjectIndex);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xCAAF2BCCFEF37F77_(Object object, Any p1)
+	{
+		OBJECT::_0xCAAF2BCCFEF37F77(object, p1);
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x08C5825A2932EA7B_(Any p0)
+	{
+		auto retval = OBJECT::_0x08C5825A2932EA7B(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x7D4411D6736CD295_(Any p0, Any p1)
+	{
+		auto retval = OBJECT::_0x7D4411D6736CD295(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x250EBB11E81A10BE_(Any p0)
+	{
+		auto retval = OBJECT::_0x250EBB11E81A10BE(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_OBJECT_0x2BF1953C0C21AC88_(Any p0)
+	{
+		auto retval = OBJECT::_0x2BF1953C0C21AC88(p0);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_OBJECT_CREATE_OBJECT_SKELETON(Object object)
+	{
+		auto retval = (bool)OBJECT::CREATE_OBJECT_SKELETON(object);
+		return retval;
+	}
+
+	static void LUA_NATIVE_OBJECT_MAKE_ITEM_CARRIABLE_(Object object)
+	{
+		OBJECT::_MAKE_ITEM_CARRIABLE(object);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xF65EDE5D02A7A760_(Any p0, Any p1)
+	{
+		OBJECT::_0xF65EDE5D02A7A760(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_AUTO_JUMPABLE_BY_HORSE_(Object object, bool p1)
+	{
+		OBJECT::_SET_AUTO_JUMPABLE_BY_HORSE(object, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_NOT_JUMPABLE_BY_HORSE_(Object object, bool p1)
+	{
+		OBJECT::_SET_NOT_JUMPABLE_BY_HORSE(object, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_OBJECT_KICKABLE_(Object object, bool kickable)
+	{
+		OBJECT::_SET_OBJECT_KICKABLE(object, kickable);
+	}
+
+	static void LUA_NATIVE_OBJECT_SET_CUSTOM_TEXTURES_ON_OBJECT(Object object, Hash txdHash, Any p2, Any p3)
+	{
+		OBJECT::SET_CUSTOM_TEXTURES_ON_OBJECT(object, txdHash, p2, p3);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xD503D6F0986D58BC_(Any p0, Any p1)
+	{
+		OBJECT::_0xD503D6F0986D58BC(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0xAEE6C800E124CFE1_(Any p0, Any p1)
+	{
+		OBJECT::_0xAEE6C800E124CFE1(p0, p1);
+	}
+
+	static void LUA_NATIVE_OBJECT_0x3DF1A0A58498E209_(Object object, Any p1)
+	{
+		OBJECT::_0x3DF1A0A58498E209(object, p1);
+	}
+
+	void init_native_binding_OBJECT(sol::state& L)
+	{
+		auto OBJECT = L["OBJECT"].get_or_create<sol::table>();
+		OBJECT.set_function("CREATE_OBJECT", LUA_NATIVE_OBJECT_CREATE_OBJECT);
+		OBJECT.set_function("CREATE_OBJECT_NO_OFFSET", LUA_NATIVE_OBJECT_CREATE_OBJECT_NO_OFFSET);
+		OBJECT.set_function("DELETE_OBJECT", LUA_NATIVE_OBJECT_DELETE_OBJECT);
+		OBJECT.set_function("PLACE_OBJECT_ON_GROUND_PROPERLY", LUA_NATIVE_OBJECT_PLACE_OBJECT_ON_GROUND_PROPERLY);
+		OBJECT.set_function("SLIDE_OBJECT", LUA_NATIVE_OBJECT_SLIDE_OBJECT);
+		OBJECT.set_function("SET_OBJECT_TARGETTABLE", LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE);
+		OBJECT.set_function("SET_OBJECT_TARGETTABLE_2_", LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE_2_);
+		OBJECT.set_function("SET_OBJECT_TARGETTABLE_FOCUS_", LUA_NATIVE_OBJECT_SET_OBJECT_TARGETTABLE_FOCUS_);
+		OBJECT.set_function("0xF6E88489B4E6EBE5_", LUA_NATIVE_OBJECT_0xF6E88489B4E6EBE5_);
+		OBJECT.set_function("0xE157A8A336C7F04A_", LUA_NATIVE_OBJECT_0xE157A8A336C7F04A_);
+		OBJECT.set_function("0x46CBCF0E98A4E156_", LUA_NATIVE_OBJECT_0x46CBCF0E98A4E156_);
+		OBJECT.set_function("GET_CLOSEST_OBJECT_OF_TYPE", LUA_NATIVE_OBJECT_GET_CLOSEST_OBJECT_OF_TYPE);
+		OBJECT.set_function("HAS_OBJECT_BEEN_BROKEN", LUA_NATIVE_OBJECT_HAS_OBJECT_BEEN_BROKEN);
+		OBJECT.set_function("HAS_CLOSEST_OBJECT_OF_TYPE_BEEN_BROKEN", LUA_NATIVE_OBJECT_HAS_CLOSEST_OBJECT_OF_TYPE_BEEN_BROKEN);
+		OBJECT.set_function("GET_OFFSET_FROM_COORD_AND_HEADING_IN_WORLD_COORDS", LUA_NATIVE_OBJECT_GET_OFFSET_FROM_COORD_AND_HEADING_IN_WORLD_COORDS);
+		OBJECT.set_function("ADD_DOOR_TO_SYSTEM_NEW_", LUA_NATIVE_OBJECT_ADD_DOOR_TO_SYSTEM_NEW_);
+		OBJECT.set_function("IS_DOOR_REGISTERED_WITH_NETWORK_", LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_NETWORK_);
+		OBJECT.set_function("REMOVE_DOOR_FROM_SYSTEM", LUA_NATIVE_OBJECT_REMOVE_DOOR_FROM_SYSTEM);
+		OBJECT.set_function("DOOR_SYSTEM_SET_DOOR_STATE", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_DOOR_STATE);
+		OBJECT.set_function("DOOR_SYSTEM_GET_DOOR_STATE", LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_DOOR_STATE);
+		OBJECT.set_function("DOOR_SYSTEM_SET_AUTOMATIC_RATE", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_RATE);
+		OBJECT.set_function("DOOR_SYSTEM_SET_AUTOMATIC_DISTANCE", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_DISTANCE);
+		OBJECT.set_function("0xB3B1546D23DF8DE1_", LUA_NATIVE_OBJECT_0xB3B1546D23DF8DE1_);
+		OBJECT.set_function("DOOR_SYSTEM_SET_OPEN_RATIO", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_OPEN_RATIO);
+		OBJECT.set_function("0x3A77DAE8B4FD7586_", LUA_NATIVE_OBJECT_0x3A77DAE8B4FD7586_);
+		OBJECT.set_function("DOOR_SYSTEM_SET_ABLE_TO_CHANGE_OPEN_RATIO_WHILE_LOCKED_", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_ABLE_TO_CHANGE_OPEN_RATIO_WHILE_LOCKED_);
+		OBJECT.set_function("IS_DOOR_REGISTERED_WITH_OWNER_", LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_OWNER_);
+		OBJECT.set_function("DOOR_SYSTEM_CHANGE_SCRIPT_OWNER_", LUA_NATIVE_OBJECT_DOOR_SYSTEM_CHANGE_SCRIPT_OWNER_);
+		OBJECT.set_function("DOOR_SYSTEM_GET_AUTOMATIC_RATE_", LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_AUTOMATIC_RATE_);
+		OBJECT.set_function("0x6E2AA80BB0C03728_", LUA_NATIVE_OBJECT_0x6E2AA80BB0C03728_);
+		OBJECT.set_function("DOOR_SYSTEM_SET_AUTOMATIC_STATE_", LUA_NATIVE_OBJECT_DOOR_SYSTEM_SET_AUTOMATIC_STATE_);
+		OBJECT.set_function("DOOR_SYSTEM_GET_OPEN_RATIO", LUA_NATIVE_OBJECT_DOOR_SYSTEM_GET_OPEN_RATIO);
+		OBJECT.set_function("0x7F458B543006C8FE_", LUA_NATIVE_OBJECT_0x7F458B543006C8FE_);
+		OBJECT.set_function("0xACD4F9831DFAD7F5_", LUA_NATIVE_OBJECT_0xACD4F9831DFAD7F5_);
+		OBJECT.set_function("0x0C0A373D181BF900_", LUA_NATIVE_OBJECT_0x0C0A373D181BF900_);
+		OBJECT.set_function("0xA93F925F1942E434_", LUA_NATIVE_OBJECT_0xA93F925F1942E434_);
+		OBJECT.set_function("0x4D8611DFE1126478_", LUA_NATIVE_OBJECT_0x4D8611DFE1126478_);
+		OBJECT.set_function("0x57C242543B7B8FB9_", LUA_NATIVE_OBJECT_0x57C242543B7B8FB9_);
+		OBJECT.set_function("0x4AE07EBA3462C5D5_", LUA_NATIVE_OBJECT_0x4AE07EBA3462C5D5_);
+		OBJECT.set_function("0x22031584496CFB70_", LUA_NATIVE_OBJECT_0x22031584496CFB70_);
+		OBJECT.set_function("0xC07B91B996C1DE89_", LUA_NATIVE_OBJECT_0xC07B91B996C1DE89_);
+		OBJECT.set_function("IS_DOOR_REGISTERED_WITH_SYSTEM", LUA_NATIVE_OBJECT_IS_DOOR_REGISTERED_WITH_SYSTEM);
+		OBJECT.set_function("IS_DOOR_CLOSED", LUA_NATIVE_OBJECT_IS_DOOR_CLOSED);
+		OBJECT.set_function("0x0943113E02322164_", LUA_NATIVE_OBJECT_0x0943113E02322164_);
+		OBJECT.set_function("0x614D0B4533F842D3_", LUA_NATIVE_OBJECT_0x614D0B4533F842D3_);
+		OBJECT.set_function("DOOR_SYSTEM_FORCE_SHUT_", LUA_NATIVE_OBJECT_DOOR_SYSTEM_FORCE_SHUT_);
+		OBJECT.set_function("0xEBA314768FB35D58_", LUA_NATIVE_OBJECT_0xEBA314768FB35D58_);
+		OBJECT.set_function("0x5230BF34EB0EC645_", LUA_NATIVE_OBJECT_0x5230BF34EB0EC645_);
+		OBJECT.set_function("DOES_OBJECT_OF_TYPE_EXIST_AT_COORDS", LUA_NATIVE_OBJECT_DOES_OBJECT_OF_TYPE_EXIST_AT_COORDS);
+		OBJECT.set_function("IS_POINT_IN_ANGLED_AREA", LUA_NATIVE_OBJECT_IS_POINT_IN_ANGLED_AREA);
+		OBJECT.set_function("SET_OBJECT_ALLOW_LOW_LOD_BUOYANCY", LUA_NATIVE_OBJECT_SET_OBJECT_ALLOW_LOW_LOD_BUOYANCY);
+		OBJECT.set_function("SET_OBJECT_PHYSICS_PARAMS", LUA_NATIVE_OBJECT_SET_OBJECT_PHYSICS_PARAMS);
+		OBJECT.set_function("GET_OBJECT_FRAGMENT_DAMAGE_HEALTH", LUA_NATIVE_OBJECT_GET_OBJECT_FRAGMENT_DAMAGE_HEALTH);
+		OBJECT.set_function("0x235C863DA77BD88D_", LUA_NATIVE_OBJECT_0x235C863DA77BD88D_);
+		OBJECT.set_function("SET_ACTIVATE_OBJECT_PHYSICS_AS_SOON_AS_IT_IS_UNFROZEN", LUA_NATIVE_OBJECT_SET_ACTIVATE_OBJECT_PHYSICS_AS_SOON_AS_IT_IS_UNFROZEN);
+		OBJECT.set_function("BREAK_OBJECT_FRAGMENT_CHILD", LUA_NATIVE_OBJECT_BREAK_OBJECT_FRAGMENT_CHILD);
+		OBJECT.set_function("BREAK_ALL_OBJECT_FRAGMENT_BONES", LUA_NATIVE_OBJECT_BREAK_ALL_OBJECT_FRAGMENT_BONES);
+		OBJECT.set_function("0xAAACF33CBF9B990A_", LUA_NATIVE_OBJECT_0xAAACF33CBF9B990A_);
+		OBJECT.set_function("DAMAGE_BONE_ON_PROP_", LUA_NATIVE_OBJECT_DAMAGE_BONE_ON_PROP_);
+		OBJECT.set_function("FIX_OBJECT_FRAGMENT", LUA_NATIVE_OBJECT_FIX_OBJECT_FRAGMENT);
+		OBJECT.set_function("0x58DE624FA7FB0E7F_", LUA_NATIVE_OBJECT_0x58DE624FA7FB0E7F_);
+		OBJECT.set_function("0x491439AEF410A2FC_", LUA_NATIVE_OBJECT_0x491439AEF410A2FC_);
+		OBJECT.set_function("SET_OBJECT_BREAK_SCALE_", LUA_NATIVE_OBJECT_SET_OBJECT_BREAK_SCALE_);
+		OBJECT.set_function("0xCEAB54F4632C6EF6_", LUA_NATIVE_OBJECT_0xCEAB54F4632C6EF6_);
+		OBJECT.set_function("TRACK_OBJECT_VISIBILITY", LUA_NATIVE_OBJECT_TRACK_OBJECT_VISIBILITY);
+		OBJECT.set_function("IS_OBJECT_VISIBLE", LUA_NATIVE_OBJECT_IS_OBJECT_VISIBLE);
+		OBJECT.set_function("SET_OBJECT_TAKES_DAMAGE_FROM_COLLIDING_WITH_BUILDINGS", LUA_NATIVE_OBJECT_SET_OBJECT_TAKES_DAMAGE_FROM_COLLIDING_WITH_BUILDINGS);
+		OBJECT.set_function("ALLOW_DAMAGE_EVENTS_FOR_NON_NETWORKED_OBJECTS", LUA_NATIVE_OBJECT_ALLOW_DAMAGE_EVENTS_FOR_NON_NETWORKED_OBJECTS);
+		OBJECT.set_function("0x6579860A5558524A_", LUA_NATIVE_OBJECT_0x6579860A5558524A_);
+		OBJECT.set_function("0xDFA1237F5228263F_", LUA_NATIVE_OBJECT_0xDFA1237F5228263F_);
+		OBJECT.set_function("GET_LIGHT_INTENSITY_FROM_OBJECT_", LUA_NATIVE_OBJECT_GET_LIGHT_INTENSITY_FROM_OBJECT_);
+		OBJECT.set_function("SET_LIGHT_INTENSITY_FOR_OBJECT_", LUA_NATIVE_OBJECT_SET_LIGHT_INTENSITY_FOR_OBJECT_);
+		OBJECT.set_function("SET_LIGHT_TRANSLUCENCY_FOR_OBJECT_", LUA_NATIVE_OBJECT_SET_LIGHT_TRANSLUCENCY_FOR_OBJECT_);
+		OBJECT.set_function("SET_LIGHT_SCATTERING_DISABLED_FOR_OBJECT_", LUA_NATIVE_OBJECT_SET_LIGHT_SCATTERING_DISABLED_FOR_OBJECT_);
+		OBJECT.set_function("0x7FCD49388BC9B775_", LUA_NATIVE_OBJECT_0x7FCD49388BC9B775_);
+		OBJECT.set_function("0xFA99E8E575F2FEF8_", LUA_NATIVE_OBJECT_0xFA99E8E575F2FEF8_);
+		OBJECT.set_function("GET_RAYFIRE_MAP_OBJECT", LUA_NATIVE_OBJECT_GET_RAYFIRE_MAP_OBJECT);
+		OBJECT.set_function("SET_STATE_OF_RAYFIRE_MAP_OBJECT", LUA_NATIVE_OBJECT_SET_STATE_OF_RAYFIRE_MAP_OBJECT);
+		OBJECT.set_function("GET_STATE_OF_RAYFIRE_MAP_OBJECT", LUA_NATIVE_OBJECT_GET_STATE_OF_RAYFIRE_MAP_OBJECT);
+		OBJECT.set_function("DOES_RAYFIRE_MAP_OBJECT_EXIST", LUA_NATIVE_OBJECT_DOES_RAYFIRE_MAP_OBJECT_EXIST);
+		OBJECT.set_function("GET_RAYFIRE_MAP_OBJECT_ANIM_PHASE", LUA_NATIVE_OBJECT_GET_RAYFIRE_MAP_OBJECT_ANIM_PHASE);
+		OBJECT.set_function("CREATE_PICKUP", LUA_NATIVE_OBJECT_CREATE_PICKUP);
+		OBJECT.set_function("CREATE_PICKUP_ROTATE", LUA_NATIVE_OBJECT_CREATE_PICKUP_ROTATE);
+		OBJECT.set_function("CREATE_AMBIENT_PICKUP", LUA_NATIVE_OBJECT_CREATE_AMBIENT_PICKUP);
+		OBJECT.set_function("CREATE_PORTABLE_PICKUP", LUA_NATIVE_OBJECT_CREATE_PORTABLE_PICKUP);
+		OBJECT.set_function("ATTACH_PORTABLE_PICKUP_TO_PED", LUA_NATIVE_OBJECT_ATTACH_PORTABLE_PICKUP_TO_PED);
+		OBJECT.set_function("DETACH_PORTABLE_PICKUP_FROM_PED", LUA_NATIVE_OBJECT_DETACH_PORTABLE_PICKUP_FROM_PED);
+		OBJECT.set_function("HIDE_PICKUP_OBJECT_", LUA_NATIVE_OBJECT_HIDE_PICKUP_OBJECT_);
+		OBJECT.set_function("SET_MAX_NUM_PORTABLE_PICKUPS_CARRIED_BY_PLAYER", LUA_NATIVE_OBJECT_SET_MAX_NUM_PORTABLE_PICKUPS_CARRIED_BY_PLAYER);
+		OBJECT.set_function("0x3E2616E7EA539480_", LUA_NATIVE_OBJECT_0x3E2616E7EA539480_);
+		OBJECT.set_function("SET_LOCAL_PLAYER_CAN_COLLECT_PORTABLE_PICKUPS", LUA_NATIVE_OBJECT_SET_LOCAL_PLAYER_CAN_COLLECT_PORTABLE_PICKUPS);
+		OBJECT.set_function("GET_SAFE_PICKUP_COORDS", LUA_NATIVE_OBJECT_GET_SAFE_PICKUP_COORDS);
+		OBJECT.set_function("GET_PICKUP_COORDS", LUA_NATIVE_OBJECT_GET_PICKUP_COORDS);
+		OBJECT.set_function("REMOVE_ALL_PICKUPS_OF_TYPE", LUA_NATIVE_OBJECT_REMOVE_ALL_PICKUPS_OF_TYPE);
+		OBJECT.set_function("HAS_PICKUP_BEEN_COLLECTED", LUA_NATIVE_OBJECT_HAS_PICKUP_BEEN_COLLECTED);
+		OBJECT.set_function("REMOVE_PICKUP", LUA_NATIVE_OBJECT_REMOVE_PICKUP);
+		OBJECT.set_function("SET_PICKUP_DO_NOT_AUTO_PLACE_ON_GROUND", LUA_NATIVE_OBJECT_SET_PICKUP_DO_NOT_AUTO_PLACE_ON_GROUND);
+		OBJECT.set_function("DOES_PICKUP_EXIST", LUA_NATIVE_OBJECT_DOES_PICKUP_EXIST);
+		OBJECT.set_function("DOES_PICKUP_OBJECT_EXIST", LUA_NATIVE_OBJECT_DOES_PICKUP_OBJECT_EXIST);
+		OBJECT.set_function("GET_PICKUP_OBJECT", LUA_NATIVE_OBJECT_GET_PICKUP_OBJECT);
+		OBJECT.set_function("IS_OBJECT_A_PORTABLE_PICKUP", LUA_NATIVE_OBJECT_IS_OBJECT_A_PORTABLE_PICKUP);
+		OBJECT.set_function("IS_PICKUP_TYPE_VALID_", LUA_NATIVE_OBJECT_IS_PICKUP_TYPE_VALID_);
+		OBJECT.set_function("DOES_PICKUP_OF_TYPE_EXIST_IN_AREA", LUA_NATIVE_OBJECT_DOES_PICKUP_OF_TYPE_EXIST_IN_AREA);
+		OBJECT.set_function("SET_PICKUP_REGENERATION_TIME", LUA_NATIVE_OBJECT_SET_PICKUP_REGENERATION_TIME);
+		OBJECT.set_function("FORCE_PICKUP_REGENERATE", LUA_NATIVE_OBJECT_FORCE_PICKUP_REGENERATE);
+		OBJECT.set_function("SET_NETWORK_PICKUP_USABLE_FOR_PLAYER_", LUA_NATIVE_OBJECT_SET_NETWORK_PICKUP_USABLE_FOR_PLAYER_);
+		OBJECT.set_function("SET_LOCAL_PLAYER_PERMITTED_TO_COLLECT_PICKUPS_WITH_MODEL", LUA_NATIVE_OBJECT_SET_LOCAL_PLAYER_PERMITTED_TO_COLLECT_PICKUPS_WITH_MODEL);
+		OBJECT.set_function("BLOCK_PICKUP_FROM_PLAYER_COLLECTION", LUA_NATIVE_OBJECT_BLOCK_PICKUP_FROM_PLAYER_COLLECTION);
+		OBJECT.set_function("SET_PICKUP_NOT_LOOTABLE", LUA_NATIVE_OBJECT_SET_PICKUP_NOT_LOOTABLE);
+		OBJECT.set_function("0x1F5E07E14A86FAFC_", LUA_NATIVE_OBJECT_0x1F5E07E14A86FAFC_);
+		OBJECT.set_function("SET_TEAM_PICKUP_OBJECT", LUA_NATIVE_OBJECT_SET_TEAM_PICKUP_OBJECT);
+		OBJECT.set_function("0x9F52AD67D1A91BAD_", LUA_NATIVE_OBJECT_0x9F52AD67D1A91BAD_);
+		OBJECT.set_function("PREVENT_COLLECTION_OF_PORTABLE_PICKUP", LUA_NATIVE_OBJECT_PREVENT_COLLECTION_OF_PORTABLE_PICKUP);
+		OBJECT.set_function("SET_PICKUP_GENERATION_RANGE_MULTIPLIER", LUA_NATIVE_OBJECT_SET_PICKUP_GENERATION_RANGE_MULTIPLIER);
+		OBJECT.set_function("SET_PICKUP_UNCOLLECTABLE", LUA_NATIVE_OBJECT_SET_PICKUP_UNCOLLECTABLE);
+		OBJECT.set_function("SET_PICKUP_HIDDEN_WHEN_UNCOLLECTABLE", LUA_NATIVE_OBJECT_SET_PICKUP_HIDDEN_WHEN_UNCOLLECTABLE);
+		OBJECT.set_function("SET_AMBIENT_PICKUP_LIFETIME_", LUA_NATIVE_OBJECT_SET_AMBIENT_PICKUP_LIFETIME_);
+		OBJECT.set_function("SET_PICKUP_PARTICLE_FX_SPAWN", LUA_NATIVE_OBJECT_SET_PICKUP_PARTICLE_FX_SPAWN);
+		OBJECT.set_function("SET_PICKUP_PARTICLE_FX_HIGHLIGHT", LUA_NATIVE_OBJECT_SET_PICKUP_PARTICLE_FX_HIGHLIGHT);
+		OBJECT.set_function("SUPPRESS_PICKUP_REWARD_TYPE", LUA_NATIVE_OBJECT_SUPPRESS_PICKUP_REWARD_TYPE);
+		OBJECT.set_function("0x20135AF9C10D2A3D_", LUA_NATIVE_OBJECT_0x20135AF9C10D2A3D_);
+		OBJECT.set_function("SET_PICKUP_COLLECTABLE_ON_MOUNT_", LUA_NATIVE_OBJECT_SET_PICKUP_COLLECTABLE_ON_MOUNT_);
+		OBJECT.set_function("0xDE116ECFFDD4B997_", LUA_NATIVE_OBJECT_0xDE116ECFFDD4B997_);
+		OBJECT.set_function("GET_WEAPON_TYPE_FROM_PICKUP_TYPE", LUA_NATIVE_OBJECT_GET_WEAPON_TYPE_FROM_PICKUP_TYPE);
+		OBJECT.set_function("GET_AMMO_TYPE_FROM_PICKUP_TYPE_", LUA_NATIVE_OBJECT_GET_AMMO_TYPE_FROM_PICKUP_TYPE_);
+		OBJECT.set_function("SET_OBJECT_TINT_INDEX", LUA_NATIVE_OBJECT_SET_OBJECT_TINT_INDEX);
+		OBJECT.set_function("GET_OBJECT_LIGHT_INTENSITY_", LUA_NATIVE_OBJECT_GET_OBJECT_LIGHT_INTENSITY_);
+		OBJECT.set_function("SET_OBJECT_BURN_OPACITY_", LUA_NATIVE_OBJECT_SET_OBJECT_BURN_OPACITY_);
+		OBJECT.set_function("SET_OBJECT_BURN_INTENSITY_", LUA_NATIVE_OBJECT_SET_OBJECT_BURN_INTENSITY_);
+		OBJECT.set_function("SET_OBJECT_BURN_LEVEL_", LUA_NATIVE_OBJECT_SET_OBJECT_BURN_LEVEL_);
+		OBJECT.set_function("0x9A74A9CADFA8A598_", LUA_NATIVE_OBJECT_0x9A74A9CADFA8A598_);
+		OBJECT.set_function("RESET_OBJECT_VELOCITY_", LUA_NATIVE_OBJECT_RESET_OBJECT_VELOCITY_);
+		OBJECT.set_function("SET_OBJECT_BURN_SPEED_", LUA_NATIVE_OBJECT_SET_OBJECT_BURN_SPEED_);
+		OBJECT.set_function("0xCBFBD38F2E0A263B_", LUA_NATIVE_OBJECT_0xCBFBD38F2E0A263B_);
+		OBJECT.set_function("CONVERT_OLD_PICKUP_TYPE_TO_NEW", LUA_NATIVE_OBJECT_CONVERT_OLD_PICKUP_TYPE_TO_NEW);
+		OBJECT.set_function("SET_FORCE_OBJECT_THIS_FRAME", LUA_NATIVE_OBJECT_SET_FORCE_OBJECT_THIS_FRAME);
+		OBJECT.set_function("0xD91E55B6C005EB09_", LUA_NATIVE_OBJECT_0xD91E55B6C005EB09_);
+		OBJECT.set_function("ONLY_CLEAN_UP_OBJECT_WHEN_OUT_OF_RANGE", LUA_NATIVE_OBJECT_ONLY_CLEAN_UP_OBJECT_WHEN_OUT_OF_RANGE);
+		OBJECT.set_function("0xCAAF2BCCFEF37F77_", LUA_NATIVE_OBJECT_0xCAAF2BCCFEF37F77_);
+		OBJECT.set_function("0x08C5825A2932EA7B_", LUA_NATIVE_OBJECT_0x08C5825A2932EA7B_);
+		OBJECT.set_function("0x7D4411D6736CD295_", LUA_NATIVE_OBJECT_0x7D4411D6736CD295_);
+		OBJECT.set_function("0x250EBB11E81A10BE_", LUA_NATIVE_OBJECT_0x250EBB11E81A10BE_);
+		OBJECT.set_function("0x2BF1953C0C21AC88_", LUA_NATIVE_OBJECT_0x2BF1953C0C21AC88_);
+		OBJECT.set_function("CREATE_OBJECT_SKELETON", LUA_NATIVE_OBJECT_CREATE_OBJECT_SKELETON);
+		OBJECT.set_function("MAKE_ITEM_CARRIABLE_", LUA_NATIVE_OBJECT_MAKE_ITEM_CARRIABLE_);
+		OBJECT.set_function("0xF65EDE5D02A7A760_", LUA_NATIVE_OBJECT_0xF65EDE5D02A7A760_);
+		OBJECT.set_function("SET_AUTO_JUMPABLE_BY_HORSE_", LUA_NATIVE_OBJECT_SET_AUTO_JUMPABLE_BY_HORSE_);
+		OBJECT.set_function("SET_NOT_JUMPABLE_BY_HORSE_", LUA_NATIVE_OBJECT_SET_NOT_JUMPABLE_BY_HORSE_);
+		OBJECT.set_function("SET_OBJECT_KICKABLE_", LUA_NATIVE_OBJECT_SET_OBJECT_KICKABLE_);
+		OBJECT.set_function("SET_CUSTOM_TEXTURES_ON_OBJECT", LUA_NATIVE_OBJECT_SET_CUSTOM_TEXTURES_ON_OBJECT);
+		OBJECT.set_function("0xD503D6F0986D58BC_", LUA_NATIVE_OBJECT_0xD503D6F0986D58BC_);
+		OBJECT.set_function("0xAEE6C800E124CFE1_", LUA_NATIVE_OBJECT_0xAEE6C800E124CFE1_);
+		OBJECT.set_function("0x3DF1A0A58498E209_", LUA_NATIVE_OBJECT_0x3DF1A0A58498E209_);
+	}
+}

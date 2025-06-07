@@ -37,7 +37,26 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 message(STATUS "Setting up linked libraries")
-target_link_libraries(${PROJECT_NAME} PRIVATE AsyncLogger imgui lua_static minhook nlohmann_json::nlohmann_json dbghelp RDR-Classes "${DEPS_DIR}/vulkan-1.lib")
+target_link_libraries(${PROJECT_NAME} PRIVATE
+	AsyncLogger
+	imgui
+	lua_static
+	sol2::sol2
+	minhook
+	nlohmann_json::nlohmann_json
+	dbghelp
+	RDR-Classes
+	"${DEPS_DIR}/vulkan-1.lib"
+)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    SOL_SAFE_USERTYPE=1
+    SOL_SAFE_REFERENCES=1
+    SOL_SAFE_FUNCTION=1
+    SOL_SAFE_NUMERICS=1
+    SOL_SAFE_GETTER=1
+    SOL_NO_CHECK_NUMBER_PRECISION=1
+)
 
 add_compile_definitions("_CRT_SECURE_NO_WARNINGS" "NOMINMAX" "WIN32_LEAN_AND_MEAN")
 

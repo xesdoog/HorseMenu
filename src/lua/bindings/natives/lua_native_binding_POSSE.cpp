@@ -1,0 +1,222 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static Any LUA_NATIVE_POSSE_0xC086FF658B2E51DB_()
+	{
+		auto retval = POSSE::_0xC086FF658B2E51DB();
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC086FF658B2E51DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC086FF658B2E51DA(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC087FF658B2E51DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC087FF658B2E51DA(p0, p1);
+		return retval;
+	}
+
+	static int LUA_NATIVE_POSSE_POSSE_GET_POSSE_MEMBERSHIP_COUNT()
+	{
+		auto retval = POSSE::POSSE_GET_POSSE_MEMBERSHIP_COUNT();
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC089FF658B2E51DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC089FF658B2E51DA(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_POSSE_0xC08AFF658B2E51DA_(Any p0)
+	{
+		POSSE::_0xC08AFF658B2E51DA(p0);
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08BFF658B2E51DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC08BFF658B2E51DA(p0);
+		return retval;
+	}
+
+	static void LUA_NATIVE_POSSE_0xC08AFF658B2E51DB_(Any p0)
+	{
+		POSSE::_0xC08AFF658B2E51DB(p0);
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08CFF658B2E51DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC08CFF658B2E51DA(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC09CFF658B2E51DA_(Any p0, Any p1, Any p2)
+	{
+		auto retval = POSSE::_0xC09CFF658B2E51DA(p0, p1, p2);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08DEF658B2E51DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC08DEF658B2E51DA(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08DFF658B2E51DA_()
+	{
+		auto retval = POSSE::_0xC08DFF658B2E51DA();
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08DFF658B2E51DB_(Any p0)
+	{
+		auto retval = POSSE::_0xC08DFF658B2E51DB(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08EFF658B2E51DB_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC08EFF658B2E51DB(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08FFF658B2E51DA_()
+	{
+		auto retval = POSSE::_0xC08FFF658B2E51DA();
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC08FFF658B2E51DB_(Any p0)
+	{
+		auto retval = POSSE::_0xC08FFF658B2E51DB(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E61DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC084FF658B2E61DA(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E71DA_(Any p0, Any p1, Any p2)
+	{
+		auto retval = POSSE::_0xC084FF658B2E71DA(p0, p1, p2);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E81DA_(Any p0, Any p1, Any p2)
+	{
+		auto retval = POSSE::_0xC084FF658B2E81DA(p0, p1, p2);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E52DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC084FF658B2E52DA(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E53DA_()
+	{
+		auto retval = POSSE::_0xC084FF658B2E53DA();
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E54DA_(Any p0)
+	{
+		auto retval = POSSE::_0xC084FF658B2E54DA(p0);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC084FF658B2E55DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC084FF658B2E55DA(p0, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_POSSE_0xC484FF658B2E55DA_(Any p0)
+	{
+		POSSE::_0xC484FF658B2E55DA(p0);
+	}
+
+	static void LUA_NATIVE_POSSE_0xC584FF658B2E55DA_(Any p0)
+	{
+		POSSE::_0xC584FF658B2E55DA(p0);
+	}
+
+	static void LUA_NATIVE_POSSE_0xC684FF658B2E55DA_(Any p0)
+	{
+		POSSE::_0xC684FF658B2E55DA(p0);
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC184FF658B2E55DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC184FF658B2E55DA(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC284FF658B2E55DA_(Any p0, Any p1, Any p2)
+	{
+		auto retval = POSSE::_0xC284FF658B2E55DA(p0, p1, p2);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC394FF658B2E55DA_(Any p0, Any p1, Any p2, Any p3)
+	{
+		auto retval = POSSE::_0xC394FF658B2E55DA(p0, p1, p2, p3);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC07CFF658B2E51DA_(Any p0, Any p1)
+	{
+		auto retval = POSSE::_0xC07CFF658B2E51DA(p0, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_POSSE_0xC06CFF658B2E51DA_(Any p0, Any p1, Any p2)
+	{
+		auto retval = POSSE::_0xC06CFF658B2E51DA(p0, p1, p2);
+		return retval;
+	}
+
+	void init_native_binding_POSSE(sol::state& L)
+	{
+		auto POSSE = L["POSSE"].get_or_create<sol::table>();
+		POSSE.set_function("0xC086FF658B2E51DB_", LUA_NATIVE_POSSE_0xC086FF658B2E51DB_);
+		POSSE.set_function("0xC086FF658B2E51DA_", LUA_NATIVE_POSSE_0xC086FF658B2E51DA_);
+		POSSE.set_function("0xC087FF658B2E51DA_", LUA_NATIVE_POSSE_0xC087FF658B2E51DA_);
+		POSSE.set_function("POSSE_GET_POSSE_MEMBERSHIP_COUNT", LUA_NATIVE_POSSE_POSSE_GET_POSSE_MEMBERSHIP_COUNT);
+		POSSE.set_function("0xC089FF658B2E51DA_", LUA_NATIVE_POSSE_0xC089FF658B2E51DA_);
+		POSSE.set_function("0xC08AFF658B2E51DA_", LUA_NATIVE_POSSE_0xC08AFF658B2E51DA_);
+		POSSE.set_function("0xC08BFF658B2E51DA_", LUA_NATIVE_POSSE_0xC08BFF658B2E51DA_);
+		POSSE.set_function("0xC08AFF658B2E51DB_", LUA_NATIVE_POSSE_0xC08AFF658B2E51DB_);
+		POSSE.set_function("0xC08CFF658B2E51DA_", LUA_NATIVE_POSSE_0xC08CFF658B2E51DA_);
+		POSSE.set_function("0xC09CFF658B2E51DA_", LUA_NATIVE_POSSE_0xC09CFF658B2E51DA_);
+		POSSE.set_function("0xC08DEF658B2E51DA_", LUA_NATIVE_POSSE_0xC08DEF658B2E51DA_);
+		POSSE.set_function("0xC08DFF658B2E51DA_", LUA_NATIVE_POSSE_0xC08DFF658B2E51DA_);
+		POSSE.set_function("0xC08DFF658B2E51DB_", LUA_NATIVE_POSSE_0xC08DFF658B2E51DB_);
+		POSSE.set_function("0xC08EFF658B2E51DB_", LUA_NATIVE_POSSE_0xC08EFF658B2E51DB_);
+		POSSE.set_function("0xC08FFF658B2E51DA_", LUA_NATIVE_POSSE_0xC08FFF658B2E51DA_);
+		POSSE.set_function("0xC08FFF658B2E51DB_", LUA_NATIVE_POSSE_0xC08FFF658B2E51DB_);
+		POSSE.set_function("0xC084FF658B2E61DA_", LUA_NATIVE_POSSE_0xC084FF658B2E61DA_);
+		POSSE.set_function("0xC084FF658B2E71DA_", LUA_NATIVE_POSSE_0xC084FF658B2E71DA_);
+		POSSE.set_function("0xC084FF658B2E81DA_", LUA_NATIVE_POSSE_0xC084FF658B2E81DA_);
+		POSSE.set_function("0xC084FF658B2E52DA_", LUA_NATIVE_POSSE_0xC084FF658B2E52DA_);
+		POSSE.set_function("0xC084FF658B2E53DA_", LUA_NATIVE_POSSE_0xC084FF658B2E53DA_);
+		POSSE.set_function("0xC084FF658B2E54DA_", LUA_NATIVE_POSSE_0xC084FF658B2E54DA_);
+		POSSE.set_function("0xC084FF658B2E55DA_", LUA_NATIVE_POSSE_0xC084FF658B2E55DA_);
+		POSSE.set_function("0xC484FF658B2E55DA_", LUA_NATIVE_POSSE_0xC484FF658B2E55DA_);
+		POSSE.set_function("0xC584FF658B2E55DA_", LUA_NATIVE_POSSE_0xC584FF658B2E55DA_);
+		POSSE.set_function("0xC684FF658B2E55DA_", LUA_NATIVE_POSSE_0xC684FF658B2E55DA_);
+		POSSE.set_function("0xC184FF658B2E55DA_", LUA_NATIVE_POSSE_0xC184FF658B2E55DA_);
+		POSSE.set_function("0xC284FF658B2E55DA_", LUA_NATIVE_POSSE_0xC284FF658B2E55DA_);
+		POSSE.set_function("0xC394FF658B2E55DA_", LUA_NATIVE_POSSE_0xC394FF658B2E55DA_);
+		POSSE.set_function("0xC07CFF658B2E51DA_", LUA_NATIVE_POSSE_0xC07CFF658B2E51DA_);
+		POSSE.set_function("0xC06CFF658B2E51DA_", LUA_NATIVE_POSSE_0xC06CFF658B2E51DA_);
+	}
+}

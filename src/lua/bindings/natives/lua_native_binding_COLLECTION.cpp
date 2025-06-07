@@ -1,0 +1,224 @@
+#include "lua_native_binding.hpp"
+#include "game/rdr/Natives.hpp"
+
+namespace Lua::native
+{
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_GET_CATEGORY_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_CATEGORY(collectableItem);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_GET_SUBCATEGORY_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_SUBCATEGORY(collectableItem);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_GET_IPL_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_IPL(collectableItem);
+		return retval;
+	}
+
+	static Vector3 LUA_NATIVE_COLLECTION_COLLECTABLE_GET_PLACEMENT_LOCATION_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_PLACEMENT_LOCATION(collectableItem);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_COLLECTABLE_GET_NUM_FOUND_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_NUM_FOUND(collectableItem);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_COLLECTABLE_GET_NUM_TURNED_IN_(Hash collectableItem)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_NUM_TURNED_IN(collectableItem);
+		return retval;
+	}
+
+	static void LUA_NATIVE_COLLECTION_COLLECTABLE_INCREMENT_NUM_FOUND_(Hash collectableItem, int amount)
+	{
+		COLLECTION::_COLLECTABLE_INCREMENT_NUM_FOUND(collectableItem, amount);
+	}
+
+	static void LUA_NATIVE_COLLECTION_COLLECTABLE_INCREMENT_NUM_TURNED_IN_(Hash collectableItem, int amount)
+	{
+		COLLECTION::_COLLECTABLE_INCREMENT_NUM_TURNED_IN(collectableItem, amount);
+	}
+
+	static int LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_COLLECTABLES_(Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_CATEGORY_GET_NUM_COLLECTABLES(collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_GET_COLLECTABLE_ITEM_HASH_(int index, Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_GET_COLLECTABLE_ITEM_HASH(index, collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_FOUND_(Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_CATEGORY_GET_NUM_FOUND(collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_TURNED_IN_(Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_CATEGORY_GET_NUM_TURNED_IN(collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_0x33825A7388A6B9F6_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0x33825A7388A6B9F6(collectableCategory, p1);
+		return retval;
+	}
+
+	static int LUA_NATIVE_COLLECTION_0x755901C7598B97BC_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0x755901C7598B97BC(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xB9020EC89C07DF04_(Hash collectableCategory, int p1, int index)
+	{
+		auto retval = COLLECTION::_0xB9020EC89C07DF04(collectableCategory, p1, index);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_COLLECTION_0xFC832B06127D8E99_(Hash collectableCategory, int p1)
+	{
+		auto retval = (bool)COLLECTION::_0xFC832B06127D8E99(collectableCategory, p1);
+		return retval;
+	}
+
+	static void LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_SET_HAS_RECEIVED_LIST(Any p0, Any p1, Any p2)
+	{
+		COLLECTION::COLLECTABLE_CATEGORY_SET_HAS_RECEIVED_LIST(p0, p1, p2);
+	}
+
+	static bool LUA_NATIVE_COLLECTION_0x6BAB7ACED1017204_(Hash collectableCategory, int p1)
+	{
+		auto retval = (bool)COLLECTION::_0x6BAB7ACED1017204(collectableCategory, p1);
+		return retval;
+	}
+
+	static bool LUA_NATIVE_COLLECTION_0x61BEFBA3CE7A3BC8_(Hash collectableCategory, int p1)
+	{
+		auto retval = (bool)COLLECTION::_0x61BEFBA3CE7A3BC8(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xC4AC39719C1BB559_(Hash collectableCategory, Any p1)
+	{
+		auto retval = COLLECTION::_0xC4AC39719C1BB559(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0x93F2E7B5DB85657B_(Any p0, Any p1)
+	{
+		auto retval = COLLECTION::_0x93F2E7B5DB85657B(p0, p1);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_GET_CATEGORY_ITEM_SET_BUY_AWARD(Hash collectableCategory, Hash p1)
+	{
+		auto retval = COLLECTION::COLLECTABLE_GET_CATEGORY_ITEM_SET_BUY_AWARD(collectableCategory, p1);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_0x9ADEE485726025D4_(Hash collectableCategory)
+	{
+		auto retval = COLLECTION::_0x9ADEE485726025D4(collectableCategory);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xD1806FB3EDED6D11_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0xD1806FB3EDED6D11(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0x3FD91F1A148A0468_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0x3FD91F1A148A0468(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xC3CA424E1F12ED0C_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0xC3CA424E1F12ED0C(collectableCategory, p1);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_NAME_(Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_NAME(collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static Hash LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_DICTIONARY_(Hash collectableCategory, Hash collectableSubcategory)
+	{
+		auto retval = COLLECTION::_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_DICTIONARY(collectableCategory, collectableSubcategory);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xD297F68928A58130_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0xD297F68928A58130(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0x775FA1FC87666847_(Hash collectableCategory, int p1)
+	{
+		auto retval = COLLECTION::_0x775FA1FC87666847(collectableCategory, p1);
+		return retval;
+	}
+
+	static Any LUA_NATIVE_COLLECTION_0xEC3959E9950BF56B_(int p0)
+	{
+		auto retval = COLLECTION::_0xEC3959E9950BF56B(p0);
+		return retval;
+	}
+
+	void init_native_binding_COLLECTION(sol::state& L)
+	{
+		auto COLLECTION = L["COLLECTION"].get_or_create<sol::table>();
+		COLLECTION.set_function("COLLECTABLE_GET_CATEGORY_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_CATEGORY_);
+		COLLECTION.set_function("COLLECTABLE_GET_SUBCATEGORY_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_SUBCATEGORY_);
+		COLLECTION.set_function("COLLECTABLE_GET_IPL_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_IPL_);
+		COLLECTION.set_function("COLLECTABLE_GET_PLACEMENT_LOCATION_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_PLACEMENT_LOCATION_);
+		COLLECTION.set_function("COLLECTABLE_GET_NUM_FOUND_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_NUM_FOUND_);
+		COLLECTION.set_function("COLLECTABLE_GET_NUM_TURNED_IN_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_NUM_TURNED_IN_);
+		COLLECTION.set_function("COLLECTABLE_INCREMENT_NUM_FOUND_", LUA_NATIVE_COLLECTION_COLLECTABLE_INCREMENT_NUM_FOUND_);
+		COLLECTION.set_function("COLLECTABLE_INCREMENT_NUM_TURNED_IN_", LUA_NATIVE_COLLECTION_COLLECTABLE_INCREMENT_NUM_TURNED_IN_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_GET_NUM_COLLECTABLES_", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_COLLECTABLES_);
+		COLLECTION.set_function("COLLECTABLE_GET_COLLECTABLE_ITEM_HASH_", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_COLLECTABLE_ITEM_HASH_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_GET_NUM_FOUND_", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_FOUND_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_GET_NUM_TURNED_IN_", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_NUM_TURNED_IN_);
+		COLLECTION.set_function("0x33825A7388A6B9F6_", LUA_NATIVE_COLLECTION_0x33825A7388A6B9F6_);
+		COLLECTION.set_function("0x755901C7598B97BC_", LUA_NATIVE_COLLECTION_0x755901C7598B97BC_);
+		COLLECTION.set_function("0xB9020EC89C07DF04_", LUA_NATIVE_COLLECTION_0xB9020EC89C07DF04_);
+		COLLECTION.set_function("0xFC832B06127D8E99_", LUA_NATIVE_COLLECTION_0xFC832B06127D8E99_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_SET_HAS_RECEIVED_LIST", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_SET_HAS_RECEIVED_LIST);
+		COLLECTION.set_function("0x6BAB7ACED1017204_", LUA_NATIVE_COLLECTION_0x6BAB7ACED1017204_);
+		COLLECTION.set_function("0x61BEFBA3CE7A3BC8_", LUA_NATIVE_COLLECTION_0x61BEFBA3CE7A3BC8_);
+		COLLECTION.set_function("0xC4AC39719C1BB559_", LUA_NATIVE_COLLECTION_0xC4AC39719C1BB559_);
+		COLLECTION.set_function("0x93F2E7B5DB85657B_", LUA_NATIVE_COLLECTION_0x93F2E7B5DB85657B_);
+		COLLECTION.set_function("COLLECTABLE_GET_CATEGORY_ITEM_SET_BUY_AWARD", LUA_NATIVE_COLLECTION_COLLECTABLE_GET_CATEGORY_ITEM_SET_BUY_AWARD);
+		COLLECTION.set_function("0x9ADEE485726025D4_", LUA_NATIVE_COLLECTION_0x9ADEE485726025D4_);
+		COLLECTION.set_function("0xD1806FB3EDED6D11_", LUA_NATIVE_COLLECTION_0xD1806FB3EDED6D11_);
+		COLLECTION.set_function("0x3FD91F1A148A0468_", LUA_NATIVE_COLLECTION_0x3FD91F1A148A0468_);
+		COLLECTION.set_function("0xC3CA424E1F12ED0C_", LUA_NATIVE_COLLECTION_0xC3CA424E1F12ED0C_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_NAME_", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_NAME_);
+		COLLECTION.set_function("COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_DICTIONARY_", LUA_NATIVE_COLLECTION_COLLECTABLE_CATEGORY_GET_TOAST_TEXTURE_DICTIONARY_);
+		COLLECTION.set_function("0xD297F68928A58130_", LUA_NATIVE_COLLECTION_0xD297F68928A58130_);
+		COLLECTION.set_function("0x775FA1FC87666847_", LUA_NATIVE_COLLECTION_0x775FA1FC87666847_);
+		COLLECTION.set_function("0xEC3959E9950BF56B_", LUA_NATIVE_COLLECTION_0xEC3959E9950BF56B_);
+	}
+}

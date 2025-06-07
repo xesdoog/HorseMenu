@@ -42,7 +42,7 @@ namespace YimMenu::Submenus
 		}
 
 		static bool autoReloadEnabled = true;
-		static int selectedScript = -1;
+		static int selectedModuleIndex = -1;
 		static std::shared_ptr<LuaModule> selectedModule = nullptr;
 
 		if (ImGui::Checkbox("Auto-Reload Changed Scripts", &autoReloadEnabled))
@@ -67,15 +67,15 @@ namespace YimMenu::Submenus
 						ImGui::SetNextItemWidth(-1);
 						ImGui::ListBox(
 							listId,
-						    &selectedScript,
+						    &selectedModuleIndex,
 						    moduleNames.data(),
 						    static_cast<int>(moduleNames.size()),
 						    moduleNames.size() > 10 ? 10 : static_cast<int>(moduleNames.size()));
 
-						if (selectedScript >= 0 && selectedScript < static_cast<int>(moduleNames.size()))
+						if (selectedModuleIndex >= 0 && selectedModuleIndex < static_cast<int>(moduleNames.size()))
 						{
 							auto it = modules.begin();
-							std::advance(it, selectedScript);
+							std::advance(it, selectedModuleIndex);
 							selectedModule = it->second;
 						}
 					};
@@ -100,25 +100,47 @@ namespace YimMenu::Submenus
 			ImGui::NextColumn();
 			ImGui::BeginChild("ScriptControls", ImVec2(0, 0), true);
 			{
+				if (ImGui::Button("Reload All", ImVec2(-1, 0)))
+				{
+					g_LuaManager->ReloadAllModules();
+					selectedModuleIndex = -1;
+				}
+
+				if (ImGui::Button("Enable All", ImVec2(-1, 0)))
+				{
+					g_LuaManager->EnableAllModules();
+				}
+
+				if (ImGui::Button("Disable All", ImVec2(-1, 0)))
+				{
+					g_LuaManager->DisableAllModules();
+					selectedModuleIndex = -1;
+				}
+
+				ImGui::Spacing();
+				ImGui::Separator();
+
 				if (selectedModule)
 				{
 					bool isEnabled = !selectedModule->IsDisabled();
 
 					if (ImGui::Button(isEnabled ? "Disable" : "Enable", ImVec2(-1, 0)))
 					{
-						if (isEnabled)
-							g_LuaManager->DisableModule(selectedModule->GetName());
-						else
-							g_LuaManager->EnableModule(selectedModule->GetName());
+						const auto& moduleName = selectedModule->GetName();
 
-						g_LuaManager->LoadAllModules();
+						if (isEnabled)
+							g_LuaManager->DisableModule(moduleName);
+						else
+							g_LuaManager->EnableModule(moduleName);
+
 						selectedModule.reset();
-						selectedScript = -1;
+						selectedModuleIndex = -1;
 					}
 
 					if (ImGui::Button("Reload", ImVec2(-1, 0)))
 					{
-						selectedModule->Reload();
+						const auto& moduleName = selectedModule->GetName();
+						g_LuaManager->ReloadModule(moduleName);
 					}
 
 					if (ImGui::Button("Show In Explorer", ImVec2(-1, 0)))
@@ -126,30 +148,6 @@ namespace YimMenu::Submenus
 						std::string cmd = "explorer /select,\"" + selectedModule->GetPath().string() + "\"";
 						system(cmd.c_str());
 					}
-				}
-
-				ImGui::Spacing();
-				ImGui::Separator();
-
-				if (ImGui::Button("Reload All", ImVec2(-1, 0)))
-				{
-					g_LuaManager->ReloadAllModules();
-				}
-
-				if (ImGui::Button("Enable All", ImVec2(-1, 0)))
-				{
-					g_LuaManager->EnableAllModules();
-					g_LuaManager->LoadAllModules();
-					selectedModule.reset();
-					selectedScript = -1;
-				}
-
-				if (ImGui::Button("Disable All", ImVec2(-1, 0)))
-				{
-					g_LuaManager->DisableAllModules();
-					g_LuaManager->LoadAllModules();
-					selectedModule.reset();
-					selectedScript = -1;
 				}
 			}
 			ImGui::EndChild();

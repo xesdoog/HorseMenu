@@ -3,7 +3,9 @@
 
 #include "LuaModule.hpp"
 #include "bindings/log.hpp"
-#include "bindings/module.hpp"
+#include "bindings/self.hpp"
+#include "bindings/script.hpp"
+#include "bindings/natives/lua_native_binding.hpp"
 
 
 namespace YimMenu
@@ -83,14 +85,7 @@ namespace YimMenu
 
 	LuaModule::~LuaModule()
 	{
-		/*
-		if (!m_disabled)
-		{
-			m_state["!module_name"] = sol::nil;
-			m_state["LuaModule"] = sol::nil;
-			// LOG(VERBOSE) << "[LuaModule] Destroyed: " << m_name;
-		}
-		*/
+		CleanupScripts();
 	}
 
 	bool LuaModule::Load()
@@ -115,7 +110,7 @@ namespace YimMenu
 		InitAPI();
 
 		m_state.set("!module_name", m_name);
-		m_state.set("LuaModule", this);
+		m_state.set("!this", this);
 		m_state.set_exception_handler(ExceptionHandler);
 		m_state.set_panic(sol::c_call<decltype(&PanicHandler), &PanicHandler>);
 
@@ -142,11 +137,6 @@ namespace YimMenu
 			LOG(FATAL) << "[LuaModule] Exception while loading " << m_name << ": " << e.what() << '\n';
 			return false;
 		}
-	}
-
-	bool LuaModule::Reload()
-	{
-		return Load();
 	}
 
 	bool LuaModule::IsValid() const
@@ -197,11 +187,47 @@ namespace YimMenu
 	}
 
 	void LuaModule::InitAPI()
-		// test
 	{
 		SetLuaRequireFolder();
-
-		Lua::module::bind(m_state);
 		Lua::log::bind(m_state);
+		Lua::self::bind(m_state);
+		Lua::script::bind(m_state);
+		Lua::native::init_native_binding(m_state);
+	}
+
+	void LuaModule::TickScripts()
+	{
+		std::lock_guard guard(m_registeredScriptsMutex);
+
+		for (auto it = m_registeredScripts.begin(); it != m_registeredScripts.end();)
+		{
+			Script* script = *it;
+
+			if (script && script->m_Done)
+			{
+				ScriptMgr::RemoveScript(script);
+				it = m_registeredScripts.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
+
+	void LuaModule::CleanupScripts()
+	{
+		std::lock_guard guard(m_registeredScriptsMutex);
+
+		for (auto& script : m_registeredScripts)
+		{
+			if (script && script->m_Callback && !script->m_Done)
+			{
+				script->m_Done = true;
+				ScriptMgr::RemoveScript(script);
+			}
+		}
+
+		m_registeredScripts.clear();
 	}
 }

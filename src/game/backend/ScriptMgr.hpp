@@ -60,6 +60,11 @@ namespace YimMenu
 			GetInstance().AddScriptImpl(std::move(script));
 		}
 
+		static void RemoveScript(Script* script)
+		{
+			GetInstance().RemoveScriptImpl(script);
+		}
+
 		static bool CanTick()
 		{
 			return GetInstance().m_CanTick;
@@ -75,6 +80,7 @@ namespace YimMenu
 		void TickImpl();
 		void YieldImpl(std::optional<std::chrono::high_resolution_clock::duration> time = std::nullopt);
 		void AddScriptImpl(std::unique_ptr<Script> script);
+		void RemoveScriptImpl(Script* script);
 
 		static ScriptMgr& GetInstance()
 		{

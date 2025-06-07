@@ -1,8 +1,6 @@
 #pragma once
 
-#include <sol/sol.hpp>
-
-namespace Lua::module
+namespace Lua::self
 {
 	void bind(sol::state& state);
 }

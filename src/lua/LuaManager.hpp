@@ -23,9 +23,13 @@ namespace YimMenu
 		void EnableAllModules();
 		void DisableAllModules();
 
+		void LoadModule(const std::filesystem::path& modulePath);
 		void EnableModule(const std::string& name);
 		void DisableModule(const std::string& name);
+		void UnloadModule(const std::string& name);
+		void ReloadModule(const std::string& name);
 		void ForEachModule(const std::function<void(std::shared_ptr<LuaModule>)>& fn);
+		void HandleError(const sol::error& error, const sol::state_view& state);
 
 		const auto& GetScriptsFolder() const
 		{
@@ -50,9 +54,10 @@ namespace YimMenu
 		std::unordered_map<std::string, std::shared_ptr<LuaModule>> m_disabledModules;
 		std::unordered_map<std::string, std::filesystem::file_time_type> m_failedModules;
 
+		std::mutex m_enabledModulesMutex;
+		std::mutex m_disabledModulesMutex;
 		std::filesystem::path m_scriptsFolder;
 		std::filesystem::path m_disabledFolder;
-
 		std::chrono::high_resolution_clock::time_point m_nextReloadCheckTime;
 		static constexpr std::chrono::seconds m_reloadInterval{2};
 

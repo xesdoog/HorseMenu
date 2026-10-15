@@ -9,7 +9,7 @@
 #include "util/Teleport.hpp"
 
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	static float GetDistanceFromLocation(const SavedLocation& t)
 	{
@@ -145,7 +145,7 @@ namespace YimMenu::Submenus
 							{
 								FiberPool::Push([l] {
 									rage::fvector3 l_ = {l.x, l.y, l.z};
-									YimMenu::Teleport::TeleportEntity(Self::GetPed().GetHandle(), l_, false);
+									Teminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), l_, false);
 								});
 							}
 						}

@@ -9,7 +9,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/data/ScriptNames.hpp"
 
-namespace YimMenu::Scripts
+namespace Teminus::Scripts
 {
 	rage::scrThread* FindScriptThread(joaat_t hash)
 	{

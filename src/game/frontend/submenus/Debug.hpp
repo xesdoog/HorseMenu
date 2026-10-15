@@ -1,7 +1,7 @@
 #pragma once
 #include "core/frontend/manager/UIManager.hpp"
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	class Debug : public Submenu
 	{

@@ -12,7 +12,7 @@
 #include "game/backend/MapEditor/Menu/NativeDrawing.hpp"
 
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class Chat : public Command
 	{

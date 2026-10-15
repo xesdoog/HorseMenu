@@ -1,7 +1,7 @@
 #include "Protobufs.hpp"
 #include "StrToHex.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 #pragma pack(push, 1)
 	struct pb_element

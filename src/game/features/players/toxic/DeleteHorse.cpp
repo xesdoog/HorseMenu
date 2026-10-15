@@ -2,7 +2,7 @@
 #include "game/commands/PlayerCommand.hpp"
 #include "game/rdr/Network.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class DeleteHorse : public PlayerCommand
 	{

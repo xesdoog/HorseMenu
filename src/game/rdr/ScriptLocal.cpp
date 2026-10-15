@@ -1,6 +1,6 @@
 #include "ScriptLocal.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	void* ScriptLocal::Get() const
 	{

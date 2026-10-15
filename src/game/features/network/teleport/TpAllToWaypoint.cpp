@@ -4,7 +4,7 @@
 #include "game/backend/Players.hpp"
 #include "util/teleport.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class TpAllToWaypoint : public Command
 	{

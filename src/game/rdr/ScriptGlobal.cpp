@@ -2,7 +2,7 @@
 #include "ScriptGlobal.hpp"
 #include "game/rdr/Scripts.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
     void* ScriptGlobal::Get() const
     {

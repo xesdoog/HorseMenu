@@ -4,7 +4,7 @@
 #include <mutex>
 
 
-namespace YimMenu
+namespace Teminus
 {
 	struct Message
 	{

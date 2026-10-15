@@ -1,7 +1,7 @@
 #include "MapEditorSelection.hpp"
 #include "MapEditor.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	float MapEditorSelection::GetGroundOffset(rage::fvector3& rotation, MapEntity::ModelDimensions& dimensions)
 	{

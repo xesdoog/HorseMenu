@@ -17,7 +17,7 @@
 
 // TODO: remove this file!!!
 
-namespace YimMenu::Teleport
+namespace Teminus::Teleport
 {
 	inline bool LoadGroundAtCoords(rage::fvector3& location)
 	{

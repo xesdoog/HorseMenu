@@ -3,7 +3,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/Entity.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class VoiceChatOverride : public LoopedCommand
 	{

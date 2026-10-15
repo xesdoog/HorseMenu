@@ -1,6 +1,6 @@
 #include "Joaat.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	constexpr joaat_t Joaat(const std::string_view str)
 	{

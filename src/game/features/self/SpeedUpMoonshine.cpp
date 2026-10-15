@@ -5,7 +5,7 @@
 #include "game/rdr/ScriptGlobal.hpp"
 
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class FastMoonshine : public LoopedCommand
 	{

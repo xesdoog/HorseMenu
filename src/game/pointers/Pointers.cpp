@@ -10,7 +10,7 @@
 #include "util/Joaat.hpp"
 
 
-namespace YimMenu
+namespace Teminus
 {
 	bool Pointers::Init()
 	{

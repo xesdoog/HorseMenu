@@ -1,7 +1,7 @@
 #include "File.hpp"
 #include "FileMgr.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
     File::File(const std::filesystem::path& path) :
         BaseObj(path)

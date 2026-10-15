@@ -4,7 +4,7 @@
 #include "game/rdr/ScriptGlobal.hpp"
 #include "util/teleport.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 
 	class TpToCamp : public Command
@@ -29,7 +29,7 @@ namespace YimMenu::Features
 					Vector3 CampCoords = *Camp.As<Vector3*>();
 					if (CampCoords != Vector3(0.f, 0.f, 0.f))
 					{
-						YimMenu::Teleport::TeleportEntity(Self::GetPed().GetHandle(), CampCoords + Vector3(1, 0, 0), true);
+						Teminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), CampCoords + Vector3(1, 0, 0), true);
 					}
 					else
 					{

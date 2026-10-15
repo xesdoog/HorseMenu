@@ -2,7 +2,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/pointers/Pointers.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	Self::Self() :
 	    m_SelfPed(nullptr),

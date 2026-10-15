@@ -7,7 +7,7 @@
 
 // TODO: serialization isn't stable
 
-namespace YimMenu
+namespace Teminus
 {
 	HotkeySystem::HotkeySystem() : 
 		IStateSerializer("hotkeys")

@@ -5,7 +5,7 @@
 
 #include <future>
 
-namespace YimMenu
+namespace Teminus
 {
 	PatternScanner::PatternScanner(const Module* module) :
 	    m_Module(module),

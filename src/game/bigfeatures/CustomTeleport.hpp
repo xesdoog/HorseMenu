@@ -1,7 +1,7 @@
 #pragma once
 #include "util/teleport.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	struct Telelocation
 	{

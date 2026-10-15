@@ -2,7 +2,7 @@
 #include <string_view>
 #include "BaseHook.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class VtableHook : public BaseHook
 	{

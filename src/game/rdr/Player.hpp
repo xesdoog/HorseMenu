@@ -15,7 +15,7 @@ namespace rage
 	class netPeerAddress;
 }
 
-namespace YimMenu
+namespace Teminus
 {
 	class PlayerData;
 

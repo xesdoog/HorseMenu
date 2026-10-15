@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace YimMenu::Rewards
+namespace Teminus::Rewards
 {
 	struct RewardInfo
 	{

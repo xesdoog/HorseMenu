@@ -9,7 +9,7 @@
 #include <network/rlGamerInfo.hpp>
 
 
-namespace YimMenu
+namespace Teminus
 {
 	Players::Players()
 	{

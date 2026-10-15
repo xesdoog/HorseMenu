@@ -2,7 +2,7 @@
 #include "game/frontend/items/Items.hpp"
 #include "core/frontend/manager/Category.hpp"
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	std::shared_ptr<Category> BuildGlobalsMenu();
 }

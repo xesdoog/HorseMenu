@@ -1,6 +1,6 @@
 #include "Voice.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	Voice::Voice() :
 	    IStateSerializer("voice"),
@@ -76,7 +76,7 @@ namespace YimMenu
 			std::thread thread([this] {
 				m_LastReadTime = std::chrono::high_resolution_clock::now();
 
-				while (YimMenu::g_Running && m_Running && m_AudioBuffer)
+				while (Teminus::g_Running && m_Running && m_AudioBuffer)
 				{
 					{
 						std::lock_guard lock(m_BufferModifyMutex);

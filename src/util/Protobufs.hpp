@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu
+namespace Teminus
 {
 	void PrintProtoBuffer(void* buffer, int size, void* def);
 }

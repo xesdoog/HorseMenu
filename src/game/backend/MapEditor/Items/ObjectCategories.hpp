@@ -2,7 +2,7 @@
 #include "util/Joaat.hpp"
 #include "CategoryUtils.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	struct ObjectModelDefinition : public ModelDefinition
 	{

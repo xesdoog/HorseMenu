@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace YimMenu::Data
+namespace Teminus::Data
 {
 	struct TrainData
 	{

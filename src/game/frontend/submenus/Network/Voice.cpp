@@ -9,7 +9,7 @@
 
 #include <network/rlGamerInfo.hpp>
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	static std::optional<std::vector<std::string>> g_AudioFiles;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "game/rdr/Player.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class Protections
 	{

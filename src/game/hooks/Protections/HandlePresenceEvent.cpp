@@ -9,13 +9,13 @@
 #include <nlohmann/json.hpp>
 
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	BoolCommand _LogPresenceEvents{"logpresenceevents", "Log Presence Events", "Logs Presence Events"};
 }
 
 
-namespace YimMenu::Hooks
+namespace Teminus::Hooks
 {
 	void Protections::HandlePresenceEvent(int localGamerIndex, __int64 data, __int64 source)
 	{

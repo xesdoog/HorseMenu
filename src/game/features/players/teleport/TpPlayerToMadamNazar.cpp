@@ -5,7 +5,7 @@
 #include "game/rdr/ScriptGlobal.hpp"
 #include "util/Teleport.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class TpPlayerToMadamNazar : public PlayerCommand
 	{

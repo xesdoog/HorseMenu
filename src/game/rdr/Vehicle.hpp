@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class Vehicle : public Entity
 	{

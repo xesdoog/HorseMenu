@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu::Data
+namespace Teminus::Data
 {
 	static std::vector<std::pair<int, const char*>> g_TickerEvents = 
 	{

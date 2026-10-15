@@ -3,7 +3,7 @@
 #include "Enums.hpp"
 #include "Vehicle.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class Ped : public Entity
 	{
@@ -46,6 +46,9 @@ namespace YimMenu
 
 		// scale
 		void SetScale(float scale);
+
+		// money
+		void SetPedMoney(int amount);
 
 		//quality
 		void SetQuality(int quality);

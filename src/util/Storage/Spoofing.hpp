@@ -6,13 +6,13 @@
 #include <unordered_map>
 #include <network/rlGamerHandle.hpp>
 
-namespace YimMenu
+namespace Teminus
 {
 	struct Spoofing
 	{
 		// TODO: Move this stuff
 		bool spoofName;
-		std::string spoofedName = "Terminus";
+		std::string spoofedName = "Teminus";
 		bool spoofIP;
 		std::array<int, 4> spoofedIP = {127, 0, 0, 1};
 		bool spoofRID;
@@ -26,5 +26,5 @@ namespace YimMenu
 
 		std::unordered_map<uint16_t, RemotePlayerTeleport> m_RemotePlayerTeleports;
 	};
-	inline YimMenu::Spoofing g_SpoofingStorage;
+	inline Teminus::Spoofing g_SpoofingStorage;
 }

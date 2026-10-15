@@ -7,7 +7,7 @@ namespace rage
 	class scrProgram;
 }
 
-namespace YimMenu
+namespace Teminus
 {
 	// internal struct to track SP/MP status along with script hash
 	struct ScriptIdentifier
@@ -53,7 +53,7 @@ namespace YimMenu
 	};
 }
 
-namespace YimMenu::Scripts
+namespace Teminus::Scripts
 {
 	extern rage::scrThread* FindScriptThread(joaat_t hash);
 	extern rage::scrProgram* FindScriptProgram(joaat_t hash);

@@ -3,7 +3,7 @@
 #include "game/rdr/Natives.hpp"
 
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class NPCIgnore : public LoopedCommand
 	{

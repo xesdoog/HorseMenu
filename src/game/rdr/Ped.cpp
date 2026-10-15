@@ -4,7 +4,7 @@
 #include "game/backend/ScriptMgr.hpp"
 
 
-namespace YimMenu
+namespace Teminus
 {
 	Ped Ped::Create(uint32_t model, rage::fvector3 coords, float heading)
 	{
@@ -173,6 +173,13 @@ namespace YimMenu
 		ENTITY_ASSERT_CONTROL();
 		PED::_SET_PED_SCALE(GetHandle(), scale);
 		PED::_UPDATE_PED_VARIATION(GetHandle(), 0, 1, 1, 1, 0);
+	}
+
+	void Ped::SetPedMoney(int amount)
+	{
+		ENTITY_ASSERT_VALID();
+		ENTITY_ASSERT_CONTROL();
+		PED::SET_PED_MONEY(GetHandle(), amount);
 	}
 
 	void Ped::SetQuality(int quality)

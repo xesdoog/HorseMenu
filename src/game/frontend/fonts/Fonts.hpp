@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu::Fonts
+namespace Teminus::Fonts
 {
 	extern const uint8_t MainFont[78948];
 }

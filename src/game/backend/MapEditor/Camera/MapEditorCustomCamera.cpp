@@ -2,7 +2,7 @@
 #include "util/Math.hpp"
 #include "game/backend/Self.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	std::optional<MapEditorCamera::RaycastResult> MapEditorCustomCamera::Raycast(Entity ignoreEntity)
 	{

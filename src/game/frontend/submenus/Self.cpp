@@ -16,12 +16,12 @@
 #include <map>
 
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	BoolCommand _RecoveryEnabled("recoveryenabled", "Recovery Enabled", "Is the recovery feature enabled");
 }
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	void RenderAnimationsCategory()
 	{
@@ -44,7 +44,7 @@ namespace YimMenu::Submenus
 					ScriptMgr::Yield();
 				}
 
-				TASK::TASK_PLAY_ANIM(YimMenu::Self::GetPed().GetHandle(), dict.c_str(), anim.c_str(), 8.0f, -8.0f, -1, 0, 0, false, false, false, "", 0);
+				TASK::TASK_PLAY_ANIM(Teminus::Self::GetPed().GetHandle(), dict.c_str(), anim.c_str(), 8.0f, -8.0f, -1, 0, 0, false, false, false, "", 0);
 			});
 		}
 
@@ -100,7 +100,7 @@ namespace YimMenu::Submenus
 					int selectedEmoteIndex    = Emote::selectedEmoteMemberIndex;
 					const Emote::EmoteItemData& selectedEmote = Emote::emoteCategoryMembers[selectedCategoryIndex][selectedEmoteIndex];
 
-					TASK::TASK_PLAY_EMOTE_WITH_HASH(YimMenu::Self::GetPed().GetHandle(),
+					TASK::TASK_PLAY_EMOTE_WITH_HASH(Teminus::Self::GetPed().GetHandle(),
 					    static_cast<int>(selectedEmote.type),
 					    EMOTE_PM_FULLBODY,
 					    static_cast<Hash>(selectedEmote.hash),
@@ -116,7 +116,7 @@ namespace YimMenu::Submenus
 		if (ImGui::Button("Stop Animation"))
 		{
 			FiberPool::Push([=] {
-				TASK::CLEAR_PED_TASKS(YimMenu::Self::GetPed().GetHandle(), true, false);
+				TASK::CLEAR_PED_TASKS(Teminus::Self::GetPed().GetHandle(), true, false);
 			});
 		}
 	}
@@ -168,7 +168,7 @@ namespace YimMenu::Submenus
 			ImGui::SetNextItemWidth(100.0f);
 			if (ImGui::InputFloat(" ", &playerScale))
 				FiberPool::Push([] {
-					YimMenu::Self::GetPed().SetScale(playerScale);
+					Teminus::Self::GetPed().SetScale(playerScale);
 				});
 		}));
 
@@ -187,14 +187,27 @@ namespace YimMenu::Submenus
 
 		auto weapons             = std::make_shared<Category>("Weapons");
 		auto weaponsGlobalsGroup = std::make_shared<Group>("Globals");
+		auto aimbotGroup = std::make_shared<Group>("Aimbot");
 
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("infiniteammo"_J));
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("infiniteclip"_J));
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("nospread"_J));
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("autocock"_J));
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("keepgunsclean"_J));
+		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("forcechoke"_J));
+
+		aimbotGroup->AddItem(std::make_shared<BoolCommandItem>("aimbot"_J));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotsmoothing"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotnpc"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotenemies"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotplayers"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotanimals"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<FloatCommandItem>("aimbotdistance"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<FloatCommandItem>("aimbotfov"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbotsmoothing"_J, std::make_shared<FloatCommandItem>("aimbotsmoothingspd"_J)));
 
 		weapons->AddItem(weaponsGlobalsGroup);
+		weapons->AddItem(aimbotGroup);
 		AddCategory(std::move(weapons));
 
 		auto horse             = std::make_shared<Category>("Horse");
@@ -209,13 +222,14 @@ namespace YimMenu::Submenus
 		horseGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("keephorseagitationlow"_J));
 		horseGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("flaminghooves"_J));
 		horseGlobalsGroup->AddItem(std::make_shared<CommandItem>("tpmounttoself"_J));
+
 		static float horseScale = 1;
 		horseGlobalsGroup->AddItem(std::make_shared<ImGuiItem>([] {
 			ImGui::Text("Horse Scale");
 			ImGui::SetNextItemWidth(100.0f);
 			if (ImGui::InputFloat(" ", &horseScale))
 				FiberPool::Push([] {
-					YimMenu::Self::GetMount().SetScale(horseScale);
+					Teminus::Self::GetMount().SetScale(horseScale);
 				});
 		}));
 		horse->AddItem(horseGlobalsGroup);

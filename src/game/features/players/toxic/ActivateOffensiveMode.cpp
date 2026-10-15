@@ -4,7 +4,7 @@
 #include "game/rdr/Enums.hpp"
 #include "game/backend/Self.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	void Offensive(Player player)
 	{

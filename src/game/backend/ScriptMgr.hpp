@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu
+namespace Teminus
 {
 	class Script
 	{

@@ -2,7 +2,7 @@
 #include "util/Joaat.hpp"
 #include "core/settings/IStateSerializer.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class Command;
 	class LoopedCommand;

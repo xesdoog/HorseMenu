@@ -1,6 +1,6 @@
 #include "Category.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	void Category::Draw()
 	{

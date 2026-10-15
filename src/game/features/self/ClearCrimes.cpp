@@ -1,7 +1,7 @@
 #include "core/commands/Command.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class ClearCrimes : public Command
 	{

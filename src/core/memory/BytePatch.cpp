@@ -1,6 +1,6 @@
 #include "BytePatch.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	BytePatch::~BytePatch()
 	{
@@ -20,10 +20,5 @@ namespace YimMenu
 	bool operator==(const std::unique_ptr<BytePatch>& a, const BytePatch* b)
 	{
 		return a->m_Address == b->m_Address;
-	}
-
-	BytePatch::operator bool()
-	{
-		return m_Active;
 	}
 }

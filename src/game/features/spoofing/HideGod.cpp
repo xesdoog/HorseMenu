@@ -4,7 +4,7 @@
 
 #include <network/sync/player/CPlayerHealthData.hpp>
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class HideGod : public BoolCommand
 	{

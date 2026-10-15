@@ -2,7 +2,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/rdr/invoker/Invoker.hpp"
 
-namespace YimMenu::Hooks
+namespace Teminus::Hooks
 {
 	void Script::RegisterCompappNatives()
 	{

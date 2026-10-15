@@ -3,7 +3,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/rdr/Nodes.hpp"
 
-namespace YimMenu::Hooks
+namespace Teminus::Hooks
 {
 	void Protections::ResetSyncNodes()
 	{

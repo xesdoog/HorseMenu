@@ -3,7 +3,7 @@
 #include "game/commands/PlayerCommand.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	static void ClearPedTasks(int ped)
 	{

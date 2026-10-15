@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 
-namespace YimMenu
+namespace Teminus
 {
 	class RateLimiter
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu::Submenus
+namespace Teminus::Submenus
 {
 	void RenderVehicleSpawnerMenu();
 }

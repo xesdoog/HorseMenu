@@ -2,7 +2,7 @@
 #include "game/pointers/Pointers.hpp"
 #include "game/rdr/Natives.hpp" 
 
-namespace YimMenu::Math
+namespace Teminus::Math
 {
 	inline float DegToRad(float deg)
 	{

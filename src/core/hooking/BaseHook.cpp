@@ -2,7 +2,7 @@
 
 #include <MinHook.h>
 
-namespace YimMenu
+namespace Teminus
 {
 	BaseHook::BaseHook(const std::string_view name) :
 	    m_Name(name),

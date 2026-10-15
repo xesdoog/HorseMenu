@@ -7,33 +7,33 @@ jobs:
     runs-on: [ self-hosted, Windows ]
     name: CI
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
-      - name: Check CMake version
+      - name: Check CMake Version
         run: cmake --version
 
-      - name: Setup MSVC environment
+      - name: Setup MSVC Environment
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
 
-      - name: Generate CMake project
+      - name: Generate CMake Project
         run: cmake -D CMAKE_BUILD_TYPE=Release -S. -Bbuild -G Ninja
 
-      - name: Build 64bit release DLL
+      - name: Build 64bit Release DLL
         run: cmake --build ./build --config Release --target Terminus --
 
-      - name: Check if DLL got built
+      - name: Check Build Status
         run: if (-Not (Test-Path -path "build/Terminus.dll")) {throw 1}
 
-      - name: Rename DLL to Terminus-dev-{GITHUB_SHA}.dll
+      - name: Rename DLL to Teminus-dev-{GITHUB_SHA}.dll
         run: |
-          del Terminus-dev-*.dll
-          ren Terminus.dll Terminus-dev-${{github.sha}}.dll
+          del Teminus-dev-*.dll
+          ren Teminus.dll Teminus-dev-${{github.sha}}.dll
         working-directory: build/
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: binary
-          path: build/Terminus-dev-*.dll
+          path: build/Teminus-dev-*.dll

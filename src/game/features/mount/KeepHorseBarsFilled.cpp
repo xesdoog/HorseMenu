@@ -1,7 +1,7 @@
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class KeepHorseBarsFilled : public LoopedCommand
 	{

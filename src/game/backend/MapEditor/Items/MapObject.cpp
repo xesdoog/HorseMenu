@@ -2,7 +2,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/Object.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	bool MapObject::CreateGameObjectImpl()
 	{

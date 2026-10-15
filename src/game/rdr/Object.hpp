@@ -1,7 +1,8 @@
 #pragma once
 #include "Entity.hpp"
+#include "game/rdr/Natives.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class Object : public Entity
 	{

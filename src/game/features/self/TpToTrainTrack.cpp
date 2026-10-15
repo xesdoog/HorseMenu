@@ -3,7 +3,7 @@
 #include "game/backend/Self.hpp"
 #include "util/teleport.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 
 	class TpToTrainTrack : public Command

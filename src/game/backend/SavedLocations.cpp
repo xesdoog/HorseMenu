@@ -2,7 +2,7 @@
 #include "core/filemgr/FileMgr.hpp"
 #include "core/frontend/Notifications.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	std::filesystem::path SavedLocations::GetSavedLocationsFilePath()
 	{

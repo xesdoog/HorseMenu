@@ -2,9 +2,10 @@
 
 #include <memory>
 #include <span>
-#include <vector>
+#include <cstddef>
+#include <type_traits>
 
-namespace YimMenu
+namespace Teminus
 {
 	template<typename T>
 	concept SpanCompatibleType = requires(T a) { std::span{a}; };
@@ -24,7 +25,11 @@ namespace YimMenu
 		void Apply() const;
 		void Restore() const;
 
-	private:
+		explicit operator bool()
+		{
+			return m_Active;
+		}
+
 		template<typename TAddr>
 		BytePatch(TAddr addr, std::remove_pointer_t<std::remove_reference_t<TAddr>> value);
 
@@ -32,7 +37,6 @@ namespace YimMenu
 		BytePatch(TAddr addr, std::span<T, N> span);
 
 		friend bool operator==(const std::unique_ptr<BytePatch>& a, const BytePatch* b);
-		inline operator bool();
 	};
 
 	template<typename TAddr>

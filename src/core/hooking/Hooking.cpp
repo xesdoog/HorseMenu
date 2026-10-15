@@ -13,7 +13,7 @@
 
 #include <network/rlGamerInfoBase.hpp>
 
-namespace YimMenu
+namespace Teminus
 {
 	Hooking::Hooking()
 	{

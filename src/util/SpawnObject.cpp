@@ -1,7 +1,7 @@
 #include "SpawnObject.hpp"
 
 
-namespace YimMenu
+namespace Teminus
 {
 	void SpawnObject(uint32_t hash, Vector3 coords)
 	{

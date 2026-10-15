@@ -5,7 +5,7 @@
 
 #include <unordered_set>
 
-namespace YimMenu::Hooks
+namespace Teminus::Hooks
 {
 	const std::unordered_set<std::uint32_t> g_NetPedPools = {"CAnimalSyncData"_J, "CNetObjPedBase"_J, "CPedSyncData"_J};
 	const std::unordered_set<std::uint32_t> g_NetPedPlusPlayerPools = {"CNetBlenderPed"_J, "CNetworkDamageTracker"_J};

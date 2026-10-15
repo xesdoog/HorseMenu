@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu
+namespace Teminus
 {
 	void SendChatMessage(const std::string& message);
 	void RenderChatMessage(const std::string& message, const std::string& sender, ImColor color);

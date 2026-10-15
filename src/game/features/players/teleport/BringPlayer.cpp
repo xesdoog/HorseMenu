@@ -4,7 +4,7 @@
 #include "game/rdr/Natives.hpp"
 #include "util/teleport.hpp"
 
-namespace YimMenu::Features
+namespace Teminus::Features
 {
 	class BringPlayer : public PlayerCommand
 	{

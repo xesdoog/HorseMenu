@@ -15,7 +15,7 @@
 #include <player/CPlayerInfo.hpp>
 
 
-namespace YimMenu
+namespace Teminus
 {
 	Player::Player(uint8_t id)
 	{

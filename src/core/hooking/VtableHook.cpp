@@ -1,7 +1,7 @@
 #include "VtableHook.hpp"
 
 
-namespace YimMenu
+namespace Teminus
 {
 	VtableHook::VtableHook(const std::string_view name, void** vft, std::size_t numFuncs) :
 	    BaseHook::BaseHook(name),

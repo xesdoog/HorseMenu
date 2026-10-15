@@ -1,6 +1,6 @@
 #pragma once
 
-namespace YimMenu::Data
+namespace Teminus::Data
 {
 	const char* g_AmmoTypes[] = {
 	"AMMO_22",

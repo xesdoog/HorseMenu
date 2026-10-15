@@ -13,7 +13,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/backend/Self.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	void SpectateTick()
 	{

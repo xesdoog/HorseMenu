@@ -1,7 +1,7 @@
 #pragma once
 #include "Command.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	class FloatCommand : public Command
 	{

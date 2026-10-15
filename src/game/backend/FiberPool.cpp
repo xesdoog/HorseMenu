@@ -1,7 +1,7 @@
 #include "FiberPool.hpp"
 #include "ScriptMgr.hpp"
 
-namespace YimMenu
+namespace Teminus
 {
 	void FiberPool::InitImpl(int num_fibers)
 	{

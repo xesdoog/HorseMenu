@@ -14,7 +14,7 @@
 #include <rage/datBitBuffer.hpp>
 #include <network/rlGamerInfo.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	void SendChatMessage(const std::string& message)
 	{

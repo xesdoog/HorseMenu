@@ -5,7 +5,7 @@
 #include <rage/pools.hpp>
 
 
-namespace Teminus
+namespace Terminus
 {
 	rage::fwBasePool* GetPedPool()
 	{

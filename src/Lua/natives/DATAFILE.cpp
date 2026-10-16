@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_DATAFILE_DATAFILE_WATCH_REQUEST_ID(int nCloudRequestID)
 	{

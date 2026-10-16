@@ -12,7 +12,7 @@
 #include "game/rdr/data/PedModels.hpp"
 
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	static rage::fvector3 GetForwardOffset(float headingDegrees, float distance)
 	{
@@ -85,7 +85,7 @@ namespace Teminus::Submenus
 		static float scale = 1;
 		static bool dead, invis, godmode, freeze, companion, sedated;
 		static int formation;
-		static std::vector<Teminus::Ped> spawnedPeds;
+		static std::vector<Terminus::Ped> spawnedPeds;
 		InputTextWithHint("##pedmodel", "Ped Model", &pedModelBuffer, ImGuiInputTextFlags_CallbackCompletion, nullptr, PedSpawnerInputCallback)
 		    .Draw();
 		if (ImGui::IsItemHovered())
@@ -175,18 +175,18 @@ namespace Teminus::Submenus
 
 				if (companion)
 				{
-					int group = PED::GET_PED_GROUP_INDEX(Teminus::Self::GetPed().GetHandle());
+					int group = PED::GET_PED_GROUP_INDEX(Terminus::Self::GetPed().GetHandle());
 					if (!PED::DOES_GROUP_EXIST(group))
 					{
 						group = PED::CREATE_GROUP(0);
-						PED::SET_PED_AS_GROUP_LEADER(Teminus::Self::GetPed().GetHandle(), group, true);
+						PED::SET_PED_AS_GROUP_LEADER(Terminus::Self::GetPed().GetHandle(), group, true);
 					}
 
 					ENTITY::SET_ENTITY_AS_MISSION_ENTITY(ped.GetHandle(), false, false);
 					PED::SET_PED_AS_GROUP_MEMBER(ped.GetHandle(), group);
-					PED::SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped.GetHandle(), Teminus::Self::GetPlayer().GetId(), false);
+					PED::SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped.GetHandle(), Terminus::Self::GetPlayer().GetId(), false);
 					PED::SET_PED_RELATIONSHIP_GROUP_HASH(
-					    ped.GetHandle(), PED::GET_PED_RELATIONSHIP_GROUP_HASH(Teminus::Self::GetPed().GetHandle()));
+					    ped.GetHandle(), PED::GET_PED_RELATIONSHIP_GROUP_HASH(Terminus::Self::GetPed().GetHandle()));
 
 					PED::SET_GROUP_FORMATION(PED::GET_PED_GROUP_INDEX(ped.GetHandle()), formation);
 

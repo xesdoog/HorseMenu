@@ -5,7 +5,7 @@
 #include "../LuaModule.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaMenuLib : public LuaLibrary
 	{
@@ -17,7 +17,7 @@ namespace Teminus::LuaJIT
 			// clang-format off
 
 
-			/*@teminus.enum eMenuEvent
+			/*@terminus.enum eMenuEvent
 			* field ScriptsReloaded<0> Event that triggers when all Lua scripts are reloaded.
 			* field HwndProc<1> Event that triggers when a window procedure is called. Refer to [WNDPROC Win32 Apps](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nc-winuser-wndproc) for more information.
 			* field PlayerJoin<2> Event that triggers when a player joins the session.
@@ -37,7 +37,7 @@ namespace Teminus::LuaJIT
 			);
 
 
-			/*@teminus.table Menu
+			/*@terminus.table Menu
 			* description
 				The main bridge between Lua and the menu.
 
@@ -45,32 +45,32 @@ namespace Teminus::LuaJIT
 			@*/
 			auto menu = L["Menu"].get_or_create<sol::table>();
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent> The event to handle.
 			* param callback<function> The function to execute.		
 			@*/
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent.HwndProc> The event to handle.
 			* param callback<fun(hWnd: integer, uMsg: integer, wParam: integer, lParam: integer)> The function to execute.		
 			@*/
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent.PlayerJoin> The event to handle.
 			* param callback<fun(playerName: string, playerId: integer)> The function to execute.		
 			@*/
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent.PlayerLeave> The event to handle.
 			* param callback<fun(playerName: string)> The function to execute.		
 			@*/
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent.ScriptedGameEventReceived> The event to handle.
 			* param callback<fun(playerId: integer, eventArgs: { [integer]: integer }): boolean> The function to execute.		
 			@*/
 
-			/*@teminus.function Menu.RegisterEventHandler
+			/*@terminus.function Menu.RegisterEventHandler
 			* param event<eMenuEvent.ChatMessageReceived> The event to handle.
 			* param callback<fun(playerId: integer, chatMsg: string)> The function to execute.		
 			@*/
@@ -79,7 +79,7 @@ namespace Teminus::LuaJIT
 					mod->m_MenuEventCallbacks[static_cast<eMenuEvent>(evnt)].push_back(fun);
 			};
 
-			/*@teminus.function Menu.RegisterImGui Registers an ImGui function to be drawn in the menu.~~NOTE: This is currently a work in progress and each script is only allowed one callback registration.
+			/*@terminus.function Menu.RegisterImGui Registers an ImGui function to be drawn in the menu.~~NOTE: This is currently a work in progress and each script is only allowed one callback registration.
 			* param callback<function>
 			@*/
 			menu["RegisterImGui"] = [&](sol::protected_function func) {
@@ -96,7 +96,7 @@ namespace Teminus::LuaJIT
 				mod->m_GuiCallback = std::move(func);
 			};
 
-			/*@teminus.function Menu.UnloadThisModule Unloads the caller script.
+			/*@terminus.function Menu.UnloadThisModule Unloads the caller script.
 			* 
 			@*/
 			menu["UnloadThisModule"] = [&]() {

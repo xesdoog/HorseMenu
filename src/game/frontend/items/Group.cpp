@@ -4,7 +4,7 @@
 #include "game/backend/FiberPool.hpp"
 #include "game/frontend/Menu.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	Group::Group(const std::string& name, int items_per_row) :
 	    m_Name(name),

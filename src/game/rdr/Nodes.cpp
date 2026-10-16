@@ -4,7 +4,7 @@
 #include <network/sync/CProjectBaseSyncDataNode.hpp>
 #include <unordered_set>
 
-namespace Teminus
+namespace Terminus
 {
 	SyncNodeId& Nodes::FindImpl(uintptr_t addr)
 	{

@@ -16,12 +16,12 @@
 #include <map>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _RecoveryEnabled("recoveryenabled", "Recovery Enabled", "Is the recovery feature enabled");
 }
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	void RenderAnimationsCategory()
 	{
@@ -44,7 +44,7 @@ namespace Teminus::Submenus
 					ScriptMgr::Yield();
 				}
 
-				TASK::TASK_PLAY_ANIM(Teminus::Self::GetPed().GetHandle(), dict.c_str(), anim.c_str(), 8.0f, -8.0f, -1, 0, 0, false, false, false, "", 0);
+				TASK::TASK_PLAY_ANIM(Terminus::Self::GetPed().GetHandle(), dict.c_str(), anim.c_str(), 8.0f, -8.0f, -1, 0, 0, false, false, false, "", 0);
 			});
 		}
 
@@ -100,7 +100,7 @@ namespace Teminus::Submenus
 					int selectedEmoteIndex    = Emote::selectedEmoteMemberIndex;
 					const Emote::EmoteItemData& selectedEmote = Emote::emoteCategoryMembers[selectedCategoryIndex][selectedEmoteIndex];
 
-					TASK::TASK_PLAY_EMOTE_WITH_HASH(Teminus::Self::GetPed().GetHandle(),
+					TASK::TASK_PLAY_EMOTE_WITH_HASH(Terminus::Self::GetPed().GetHandle(),
 					    static_cast<int>(selectedEmote.type),
 					    EMOTE_PM_FULLBODY,
 					    static_cast<Hash>(selectedEmote.hash),
@@ -116,7 +116,7 @@ namespace Teminus::Submenus
 		if (ImGui::Button("Stop Animation"))
 		{
 			FiberPool::Push([=] {
-				TASK::CLEAR_PED_TASKS(Teminus::Self::GetPed().GetHandle(), true, false);
+				TASK::CLEAR_PED_TASKS(Terminus::Self::GetPed().GetHandle(), true, false);
 			});
 		}
 	}
@@ -168,7 +168,7 @@ namespace Teminus::Submenus
 			ImGui::SetNextItemWidth(100.0f);
 			if (ImGui::InputFloat(" ", &playerScale))
 				FiberPool::Push([] {
-					Teminus::Self::GetPed().SetScale(playerScale);
+					Terminus::Self::GetPed().SetScale(playerScale);
 				});
 		}));
 
@@ -229,7 +229,7 @@ namespace Teminus::Submenus
 			ImGui::SetNextItemWidth(100.0f);
 			if (ImGui::InputFloat(" ", &horseScale))
 				FiberPool::Push([] {
-					Teminus::Self::GetMount().SetScale(horseScale);
+					Terminus::Self::GetMount().SetScale(horseScale);
 				});
 		}));
 		horse->AddItem(horseGlobalsGroup);

@@ -2,7 +2,7 @@
 #include "util/Joaat.hpp"
 #include "CategoryUtils.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	struct VehicleModelDefinition : public ModelDefinition
 	{

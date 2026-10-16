@@ -3,7 +3,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/rdr/Nodes.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Protections::ResetSyncNodes()
 	{

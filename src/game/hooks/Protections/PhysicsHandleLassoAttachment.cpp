@@ -3,7 +3,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/pointers/Pointers.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Protections::PhysicsHandleLassoAttachment(void* inst, void* attachment)
 	{

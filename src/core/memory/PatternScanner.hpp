@@ -5,7 +5,7 @@
 #include <functional>
 #include <vector>
 
-namespace Teminus
+namespace Terminus
 {
 	class Module;
 	using PatternFunc = std::function<void(PointerCalculator)>;

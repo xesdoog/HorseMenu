@@ -2,7 +2,7 @@
 
 #include <sol/sol.hpp>
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	void RegisterNatives(sol::state& L);
 

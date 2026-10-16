@@ -3,7 +3,7 @@
 #include "File.hpp"
 #include "Folder.hpp"
 
-namespace Teminus
+namespace Terminus
 {
     class FileMgr final
     {

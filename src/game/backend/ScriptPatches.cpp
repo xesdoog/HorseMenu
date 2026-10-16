@@ -2,7 +2,7 @@
 #include "game/pointers/Pointers.hpp"
 #include <script/scrProgram.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	static uint8_t* GetCodeLocation(ScriptPatches::Data* data, int idx)
 	{

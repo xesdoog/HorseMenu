@@ -28,7 +28,7 @@ namespace nlohmann
 	};
 }
 
-namespace Teminus
+namespace Terminus
 {
 	enum class Detection : uint32_t;
 	struct persistent_player;

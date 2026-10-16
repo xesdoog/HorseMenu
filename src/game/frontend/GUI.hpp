@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 
-namespace Teminus
+namespace Terminus
 {
 	class GUI final
 	{

@@ -1,7 +1,7 @@
 #include "Items.hpp"
 #include "game/backend/FiberPool.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	ImGuiItem::ImGuiItem(std::function<void()> callback) :
 	    m_Callback(callback)

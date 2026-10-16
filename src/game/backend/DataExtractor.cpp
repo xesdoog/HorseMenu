@@ -8,7 +8,7 @@
 
 #pragma comment(lib, "urlmon.lib")
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	const char* MODELS_URL = "https://raw.githubusercontent.com/Deadlineem/HorseMenu/refs/heads/master/src/game/rdr/data/models.json";
 
@@ -18,7 +18,7 @@ namespace Teminus::Data
 		if (SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, path) == S_OK)
 		{
 			std::string result = path;
-			result += "\\Teminus";
+			result += "\\Terminus";
 			CreateDirectoryA(result.c_str(), NULL);
 			return result + "\\";
 		}

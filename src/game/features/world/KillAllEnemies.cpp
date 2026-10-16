@@ -1,7 +1,7 @@
 #include "core/commands/Command.hpp"
 #include "game/rdr/Pools.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class KillAllEnemies : public Command
 	{

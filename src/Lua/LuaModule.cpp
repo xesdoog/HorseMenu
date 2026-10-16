@@ -2,7 +2,7 @@
 #include "LuaMgr.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	// https://sol2.readthedocs.io/en/latest/exceptions.html
 	static int ExceptionHandler(lua_State* L, sol::optional<const std::exception&> maybe_exception, sol::string_view description)

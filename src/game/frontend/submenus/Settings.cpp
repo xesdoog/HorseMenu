@@ -11,7 +11,7 @@
 
 namespace
 {
-	using namespace Teminus::LuaJIT;
+	using namespace Terminus::LuaJIT;
 
 	static std::shared_ptr<LuaModule> selectedModule{nullptr};
 	static std::shared_ptr<LuaModule> dragSourcePtr{nullptr};
@@ -157,7 +157,7 @@ namespace
 	}
 }
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	// TODO: refactor this
 	static void Hotkeys()

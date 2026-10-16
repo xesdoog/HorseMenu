@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_MINIGAME__0x6480723D3BE535B6(Any p0)
 	{

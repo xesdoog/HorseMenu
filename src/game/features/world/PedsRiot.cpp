@@ -6,7 +6,7 @@
 #include "game/rdr/Pools.hpp"
 #include "game/rdr/data/WeaponTypes.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	static BoolCommand _PlayersFriendly{"pedsriotfriendly", "Friendly", "Makes peds treat players as respected", false};
 	static BoolCommand _UseWeapons{"pedsriotweapons", "Weapons", "Give all peds a random weapon", false};

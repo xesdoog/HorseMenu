@@ -1,7 +1,7 @@
 #include "ListCommand.hpp" 
 #include "game/backend/FiberPool.hpp" // TODO: game import in core
 
-namespace Teminus
+namespace Terminus
 {
 	void ListCommand::OnCall()
 	{

@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static std::tuple<bool, int, int> LUA_NATIVE_NETSHOPPING_CASHINVENTORY_INIT_SESSION_STATUS(int p0, int p1)
 	{

@@ -2,7 +2,7 @@
 #include <string>
 
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	struct VehicleModelInfo
 	{

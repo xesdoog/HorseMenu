@@ -1,6 +1,6 @@
 #include "UIManager.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void UIManager::AddSubmenuImpl(std::shared_ptr<Submenu>&& submenu)
 	{
@@ -31,7 +31,7 @@ namespace Teminus
 		}
 		ImGui::EndChild();
 		
-		ImGui::Text("Teminus");
+		ImGui::Text("Terminus");
 
 		pos.y -= 28;
 		ImGui::SetCursorPos(ImVec2(pos.x + 130, pos.y));

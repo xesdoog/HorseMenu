@@ -15,7 +15,7 @@
 #include <network/CNetGamePlayer.hpp>
 #include <network/CScriptedGameEvent.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogScriptEvents("logtses", "Log Script Events", "Log script events");
 	BoolCommand _BlockHonorEvent("blockhonormanipulation", "Block Honor Event", "Blocks all honor manipulation events", true);
@@ -29,7 +29,7 @@ namespace Teminus::Features
 	BoolCommand _BlockKickFromMissionLobby("blockkickfrommissionlobby", "Block Kick From Mission Lobby", "Blocks players from kicking you from mission lobbies", true);
 }
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	bool Protections::HandleScriptedGameEvent(CScriptedGameEvent* event, CNetGamePlayer* src, CNetGamePlayer* dst)
 	{

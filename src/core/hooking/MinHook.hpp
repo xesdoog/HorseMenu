@@ -1,7 +1,7 @@
 #pragma once
 #include <MinHook.h>
 
-namespace Teminus
+namespace Terminus
 {
 	class MinHook
 	{

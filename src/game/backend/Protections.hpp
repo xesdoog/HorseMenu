@@ -1,7 +1,7 @@
 #pragma once
 #include "game/rdr/Player.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Protections
 	{

@@ -20,7 +20,7 @@
 #include <rage/pools.hpp>
 
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	void DisplayCurrentDate()
 	{

@@ -1,7 +1,7 @@
 #include "FiberPool.hpp"
 #include "ScriptMgr.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void FiberPool::InitImpl(int num_fibers)
 	{

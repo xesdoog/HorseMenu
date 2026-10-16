@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Any LUA_NATIVE_DATABINDING__DATABINDING_GET_DATA_CONTAINER_FROM_PATH(sol::stack_object p0)
 	{

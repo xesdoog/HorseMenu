@@ -3,7 +3,7 @@
 #include <sol/sol.hpp>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaImDrawList final
 	{

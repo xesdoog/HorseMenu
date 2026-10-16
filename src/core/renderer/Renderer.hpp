@@ -70,7 +70,7 @@ struct SrvHeapAllocator
 	std::vector<int> FreeIndices             = {};
 };
 
-namespace Teminus
+namespace Terminus
 {
 	using namespace Microsoft::WRL;
 	using RendererCallBack        = std::function<void()>;

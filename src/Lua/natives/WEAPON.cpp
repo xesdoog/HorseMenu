@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Hash LUA_NATIVE_WEAPON__GET_WEAPON_UNLOCK(Hash weaponHash)
 	{

@@ -1,7 +1,7 @@
 #include "core/hooking/DetourHook.hpp"
 #include "game/hooks/Hooks.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 #pragma pack(push, 8)
 	class HttpRequest

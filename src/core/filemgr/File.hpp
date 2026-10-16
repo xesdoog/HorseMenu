@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseObj.hpp"
 
-namespace Teminus
+namespace Terminus
 {
     class File final : public BaseObj
     {

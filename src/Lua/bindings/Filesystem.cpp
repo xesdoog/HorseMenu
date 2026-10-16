@@ -5,7 +5,7 @@
 #include "../LuaPath.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaFsLib : public LuaLibrary
 	{
@@ -47,7 +47,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.table Filesystem
+			/*@terminus.table Filesystem
 			* description
 				Provides file system functions. Paths are limited to the `scripts/` folder only.
 			
@@ -129,7 +129,7 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(success, success ? "" : "An error has occured.");
 			};
 
-			/*@teminus.class Path
+			/*@terminus.class Path
 			* description
 				A path object limited to the `scripts/` folder
 

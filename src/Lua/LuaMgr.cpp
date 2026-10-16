@@ -2,9 +2,9 @@
 #include "LuaModule.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
-	using FileMgr = Teminus::FileMgr;
+	using FileMgr = Terminus::FileMgr;
 	void LuaManager::InitImpl()
 	{
 		if (m_Initialized)

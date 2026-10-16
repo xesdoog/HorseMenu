@@ -1,7 +1,7 @@
 #pragma once
 #include "core/settings/IStateSerializer.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	struct CommandLink
 	{

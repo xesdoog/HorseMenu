@@ -2,7 +2,7 @@
 #include "game/backend/Self.hpp"
 #include "core/frontend/Notifications.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class TpToMount : public Command
 	{

@@ -4,7 +4,7 @@
 #include <mutex>
 
 
-namespace Teminus
+namespace Terminus
 {
 	struct Message
 	{

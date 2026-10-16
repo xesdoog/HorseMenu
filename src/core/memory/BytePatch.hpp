@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace Teminus
+namespace Terminus
 {
 	template<typename T>
 	concept SpanCompatibleType = requires(T a) { std::span{a}; };

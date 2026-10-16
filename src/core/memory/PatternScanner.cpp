@@ -5,7 +5,7 @@
 
 #include <future>
 
-namespace Teminus
+namespace Terminus
 {
 	PatternScanner::PatternScanner(const Module* module) :
 	    m_Module(module),

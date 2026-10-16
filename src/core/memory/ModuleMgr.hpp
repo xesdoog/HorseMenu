@@ -2,7 +2,7 @@
 #include "Module.hpp"
 #include "common.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	using joaat_t = std::uint32_t;
 
@@ -31,5 +31,5 @@ namespace Teminus
 		std::unordered_map<std::uint32_t, std::unique_ptr<Module>> m_CachedModules;
 	};
 
-	inline Teminus::ModuleMgr ModuleMgr;
+	inline Terminus::ModuleMgr ModuleMgr;
 }

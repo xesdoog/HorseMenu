@@ -9,13 +9,13 @@
 #include <network/sync/CProjectBaseSyncDataNode.hpp>
 #include <rage/datBitBuffer.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogOutgoingClones("logoutgoingclones", "Log Outgoing Clones", "Log clone creates and clone syncs");
 
 }
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Spoofing::WriteNodeData(CProjectBaseSyncDataNode* node, rage::netObject* object, rage::datBitBuffer* buffer, void* logger, bool update)
 	{
@@ -29,7 +29,7 @@ namespace Teminus::Hooks
 		if (update && Features::_LogOutgoingClones.GetState())
 		{
 			auto player = Self::GetPlayer();
-			Teminus::Hooks::Protections::LogSyncNode(node, id, static_cast<NetObjType>(object->m_ObjectType), object, player);
+			Terminus::Hooks::Protections::LogSyncNode(node, id, static_cast<NetObjType>(object->m_ObjectType), object, player);
 		}
 
 		if (NodeHooks::ModifyNodeData(node, object))

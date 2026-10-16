@@ -8,7 +8,7 @@
 // TODO: This is just a test UI. Eventually we will expose a high level API (submenus, categories, commands, items, etc.)
 // For now, modules can register a single draw function and that's it.
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	static std::shared_ptr<LuaJIT::LuaModule> selectedModule;
 

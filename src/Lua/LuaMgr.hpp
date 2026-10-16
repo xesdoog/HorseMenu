@@ -9,7 +9,7 @@
 #include "LuaMenuEvent.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaManager : public Singleton<LuaManager>
 	{

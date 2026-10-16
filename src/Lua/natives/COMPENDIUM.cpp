@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static float LUA_NATIVE_COMPENDIUM__0x725D52F21A5E9E22(Hash category)
 	{

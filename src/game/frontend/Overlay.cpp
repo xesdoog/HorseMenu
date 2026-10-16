@@ -6,13 +6,13 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/invoker/Invoker.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _OverlayEnabled("overlay", "Overlay Enabled", "Show an info overlay at the top left corner of the screen");
 	BoolCommand _OverlayShowFPS("overlayfps", "Overlay Show FPS", "Show frame rate in the info overlay");
 }
 
-namespace Teminus
+namespace Terminus
 {
 	void Overlay::Draw()
 	{

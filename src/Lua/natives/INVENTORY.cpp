@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_INVENTORY__INVENTORY_GET_INVENTORY_ID_FROM_PED(Ped ped)
 	{

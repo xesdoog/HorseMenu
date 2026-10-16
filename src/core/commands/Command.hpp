@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 
-namespace Teminus
+namespace Terminus
 {
 	class Command
 	{

@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_BRAIN_REGISTER_OBJECT_SCRIPT_BRAIN(sol::stack_object pScriptName, Hash ObjectModelHashKey, int PercentageChance, float fActivationRange, int ObjectGroupingID, int SetToWhichThisBrainBelongs)
 	{

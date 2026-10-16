@@ -3,7 +3,7 @@
 #include "game/rdr/Enums.hpp"
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
     //Needs testing
 	class AntiHogtie : public LoopedCommand

@@ -1,6 +1,6 @@
 #include "BytePatch.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	BytePatch::~BytePatch()
 	{

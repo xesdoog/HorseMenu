@@ -1,7 +1,7 @@
 #pragma once
 #include "game/frontend/GUI.hpp"
 
-namespace Teminus::Menu
+namespace Terminus::Menu
 {
 	extern void Init();
 	extern void SetupStyle();

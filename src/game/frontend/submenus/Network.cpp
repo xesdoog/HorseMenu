@@ -53,7 +53,7 @@ namespace rage
 	};
 }
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	std::shared_ptr<persistent_player> current_player;
 	static char search[64];

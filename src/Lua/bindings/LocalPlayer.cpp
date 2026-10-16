@@ -6,7 +6,7 @@
 #include "util/teleport.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaSelfLib : public LuaLibrary
 	{
@@ -15,7 +15,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.class LocalPlayer
+			/*@terminus.class LocalPlayer
 			* description
 				Provides functions to output text to console and log file.
 

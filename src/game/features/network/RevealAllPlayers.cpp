@@ -1,7 +1,7 @@
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/ScriptPatches.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class RevealAllPlayers : public LoopedCommand
 	{

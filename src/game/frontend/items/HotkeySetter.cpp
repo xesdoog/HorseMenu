@@ -3,7 +3,7 @@
 #include "core/commands/Commands.hpp"
 #include "core/commands/HotkeySystem.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	HotkeySetter::HotkeySetter(joaat_t command_id) :
 	    m_Id(command_id)

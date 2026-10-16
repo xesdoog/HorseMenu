@@ -1,6 +1,6 @@
 #include "StringCommand.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void StringCommand::OnCall()
 	{

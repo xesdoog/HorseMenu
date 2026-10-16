@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_UITUTORIAL__UITUTORIAL_GET_IS_THREAT_INDICATOR_CAPABLE_RADAR_SHOWN()
 	{

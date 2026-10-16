@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_ENTITY_DOES_ENTITY_EXIST(Entity EntityIndex)
 	{

@@ -12,12 +12,12 @@
 #include "game/rdr/Object.hpp"
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogScriptLaunches("logscriptlaunches", "Log Script Launches", "Log script launches");
 }
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	Debug::Debug() :
 	    Submenu::Submenu("Debug")

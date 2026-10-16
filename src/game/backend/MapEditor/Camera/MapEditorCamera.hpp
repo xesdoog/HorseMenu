@@ -3,7 +3,7 @@
 #include "game/rdr/Entity.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class MapEditorCamera
 	{

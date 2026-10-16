@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static ScrHandle LUA_NATIVE_SHAPETEST_START_SHAPE_TEST_LOS_PROBE(float VecStartPosX, float VecStartPosY, float VecStartPosZ, float VecEndPosX, float VecEndPosY, float VecEndPosZ, int LOSFlags, Entity ExcludeEntityIndex, int Options)
 	{

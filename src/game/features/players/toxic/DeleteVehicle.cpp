@@ -2,7 +2,7 @@
 #include "game/commands/PlayerCommand.hpp"
 #include "game/rdr/Network.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class DeleteVehicle : public PlayerCommand
 	{

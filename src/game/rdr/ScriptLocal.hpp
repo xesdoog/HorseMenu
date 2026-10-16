@@ -5,7 +5,7 @@
 #include "Scripts.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	class ScriptLocal
 	{

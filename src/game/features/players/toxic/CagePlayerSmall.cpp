@@ -3,7 +3,7 @@
 #include "game/rdr/Object.hpp"
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class CagePlayerSmall : public PlayerCommand
 	{

@@ -5,7 +5,7 @@
 #include "game/rdr/Ped.hpp"
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 
 	class RemoteBolas : public PlayerCommand

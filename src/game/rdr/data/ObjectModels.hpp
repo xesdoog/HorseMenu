@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	struct ObjectModel
 	{

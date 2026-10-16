@@ -5,7 +5,7 @@
 #include <network/sync/player/CPlayerCameraUncommonData.hpp>
 #include <network/sync/player/CPlayerGameStateUncommonData.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class HideSpectate : public BoolCommand
 	{

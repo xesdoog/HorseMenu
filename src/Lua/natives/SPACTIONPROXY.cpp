@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_SPACTIONPROXY__SPACTIONPROXY_START_MANAGER()
 	{

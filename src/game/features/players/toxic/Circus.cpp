@@ -3,7 +3,7 @@
 #include "game/rdr/Vehicle.hpp"
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class Circus : public PlayerCommand
 	{

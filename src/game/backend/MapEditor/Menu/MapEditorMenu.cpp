@@ -10,7 +10,7 @@
 #include "../Items/MapObject.hpp"
 #include "../Items/MapVehicle.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	std::unordered_map<MapEntity::Type, std::vector<NativeMenu::Submenu>> MapEditorMenu::sm_SubmenusByType = {
 	    {MapEntity::Type::PED, {

@@ -28,13 +28,13 @@
 #include <rage/datBitBuffer.hpp>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogPackets("logpackets", "Log Packets", "Log Packets");
 	BoolCommand _LockLobby("locklobby", "Lock Lobby", "Allows no one to enter your session");
 }
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	static bool GetMessageType(NetMessageType& type, rage::datBitBuffer& buffer)
 	{

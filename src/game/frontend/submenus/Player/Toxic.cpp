@@ -1,6 +1,6 @@
 #include "Toxic.hpp"
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	std::shared_ptr<Category> BuildToxicMenu()
 	{

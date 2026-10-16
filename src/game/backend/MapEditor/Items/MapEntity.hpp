@@ -1,7 +1,7 @@
 #pragma once
 #include "game/rdr/Entity.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class MapEntity
 	{

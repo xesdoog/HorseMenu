@@ -3,7 +3,7 @@
 #include "Crossmap.hpp"
 #include "game/pointers/Pointers.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void NativeInvoker::DefaultHandler(rage::scrNativeCallContext* ctx)
 	{

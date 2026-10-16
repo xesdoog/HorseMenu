@@ -1,7 +1,7 @@
 #include "LuaImDrawList.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 
 	LuaImDrawList::LuaImDrawList(ImDrawList* ptr) :

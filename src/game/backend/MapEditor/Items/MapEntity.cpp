@@ -2,7 +2,7 @@
 #include "../MapEditor.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void MapEntity::AddToGlobalStore()
 	{

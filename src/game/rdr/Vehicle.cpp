@@ -2,7 +2,7 @@
 #include "game/backend/ScriptMgr.hpp"
 #include "Natives.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	Vehicle Vehicle::Create(std::uint32_t model, rage::fvector3 coords, float heading)
 	{

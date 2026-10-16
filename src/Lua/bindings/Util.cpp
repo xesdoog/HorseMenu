@@ -7,7 +7,7 @@
 #include "game/pointers/Pointers.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaUtilLib : public LuaLibrary
 	{
@@ -17,7 +17,7 @@ namespace Teminus::LuaJIT
 		void Register(sol::state& L) override
 		{
 
-			/*@teminus.table Util
+			/*@terminus.table Util
 			* description
 				Provides general utility functions.
 

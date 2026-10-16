@@ -4,7 +4,7 @@
 #include "Settings.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	Settings::Settings() :
 	    m_SettingsFile(),

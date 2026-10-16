@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Object LUA_NATIVE_OBJECT_CREATE_OBJECT(Hash ModelIndex, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, bool RegisterAsNetworkObject, bool ScriptHostObject, bool ForceToBeObject, bool p7, bool p8)
 	{

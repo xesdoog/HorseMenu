@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Hash LUA_NATIVE_COLLECTION__COLLECTABLE_GET_CATEGORY(Hash collectableItem)
 	{

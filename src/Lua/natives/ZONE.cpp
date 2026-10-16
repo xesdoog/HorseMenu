@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Hash LUA_NATIVE_ZONE__GET_MAP_ZONE_AT_COORDS(float x, float y, float z, int type)
 	{

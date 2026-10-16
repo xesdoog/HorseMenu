@@ -4,7 +4,7 @@
 #include "game/backend/Players.hpp"
 #include "util/teleport.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class TpAllToWaypoint : public Command
 	{

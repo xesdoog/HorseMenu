@@ -8,7 +8,7 @@
 
 #include <network/rlScSession.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	static Vector3Command _MatchmakingPosition{"newsessionpos", "Matchmaking Position", "Game position to matchmake around"};
 	static BoolCommand _JoinRandomPosse{"newsessionposse", "Join Random Posse", "Automatically join a random open posse when entering a new session"};

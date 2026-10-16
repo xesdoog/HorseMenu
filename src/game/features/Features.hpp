@@ -1,7 +1,7 @@
 #pragma once
 #include <script/types.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	// TODO: move these out
 	inline bool g_Spectating    = false;

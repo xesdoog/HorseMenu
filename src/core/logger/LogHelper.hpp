@@ -5,7 +5,7 @@
 
 #include "core/filemgr/File.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 #define ADD_COLOR_TO_STREAM(color) "\x1b[" << int(color) << "m"
 #define RESET_STREAM_COLOR "\x1b[0m"

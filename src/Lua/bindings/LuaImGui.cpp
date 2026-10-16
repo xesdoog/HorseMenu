@@ -9,7 +9,7 @@
 #include <imgui_internal.h>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaImGuiLib : public LuaLibrary
 	{
@@ -104,34 +104,34 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.table ImGui
+			/*@terminus.table ImGui
 			* description: 
 				A basic API that exposes a few ImGui widgets.
 			@*/
 			auto imguiTable = L["ImGui"].get_or_create<sol::table>();
 
-			/*@teminus.function ImGui.PushID
+			/*@terminus.function ImGui.PushID
 			* param id<integer>
 			@*/
 			imguiTable["PushID"] = [](int id) {
 				ImGui::PushID(id);
 			};
 
-			/*@teminus.function ImGui.PopID
+			/*@terminus.function ImGui.PopID
 			*
 			@*/
 			imguiTable["PopID"] = []() {
 				ImGui::PopID();
 			};
 
-			/*@teminus.function ImGui.Bullet
+			/*@terminus.function ImGui.Bullet
 			* 
 			@*/
 			imguiTable["Bullet"] = []() {
 				ImGui::Bullet();
 			};
 
-			/*@teminus.function ImGui.Text
+			/*@terminus.function ImGui.Text
 			* param text<string> 
 			* param ...<any> Optional string format arguments
 			@*/
@@ -139,7 +139,7 @@ namespace Teminus::LuaJIT
 				ImGui::Text(LuaStringFormat(L, fmt, args).c_str());
 			};
 
-			/*@teminus.function ImGui.TextDisabled
+			/*@terminus.function ImGui.TextDisabled
 			* param text<string>
 			* param ...<any> Optional string format arguments
 			@*/
@@ -147,7 +147,7 @@ namespace Teminus::LuaJIT
 				ImGui::TextDisabled(LuaStringFormat(L, fmt, args).c_str());
 			};
 
-			/*@teminus.function ImGui.TextWrapped
+			/*@terminus.function ImGui.TextWrapped
 			* param text<string>
 			* param ...<any> Optional string format arguments
 			@*/
@@ -155,14 +155,14 @@ namespace Teminus::LuaJIT
 				ImGui::TextWrapped(LuaStringFormat(L, fmt, args).c_str());
 			};
 
-			/*@teminus.function ImGui.TextUnformatted
+			/*@terminus.function ImGui.TextUnformatted
 			* param text<string> 
 			@*/
 			imguiTable["TextUnformatted"] = [](const std::string& text) {
 				ImGui::TextUnformatted(text.c_str());
 			};
 
-			/*@teminus.function ImGui.TextColored
+			/*@terminus.function ImGui.TextColored
 			* param col<Vector4>
 			* param text<string>
 			* param ...<any> Optional string format arguments
@@ -171,7 +171,7 @@ namespace Teminus::LuaJIT
 				ImGui::TextColored(col, LuaStringFormat(L, fmt, args).c_str());
 			};
 
-			/*@teminus.function ImGui.BulletText
+			/*@terminus.function ImGui.BulletText
 			* param text<string>
 			* param ...<any> Optional string format arguments
 			@*/
@@ -179,7 +179,7 @@ namespace Teminus::LuaJIT
 				ImGui::BulletText(LuaStringFormat(L, fmt, args).c_str());
 			};
 
-			/*@teminus.function ImGui.Button
+			/*@terminus.function ImGui.Button
 			* param label<string> 
 			* param size<Vector2?> Optional button size
 			* return boolean clicked
@@ -188,7 +188,7 @@ namespace Teminus::LuaJIT
 				return ImGui::Button(label.c_str(), size.value_or(ImVec2()));
 			};
 
-			/*@teminus.function ImGui.SmallButton
+			/*@terminus.function ImGui.SmallButton
 			* param label<string>
 			* return boolean clicked
 			@*/
@@ -196,7 +196,7 @@ namespace Teminus::LuaJIT
 				return ImGui::SmallButton(label.c_str());
 			};
 
-			/*@teminus.function ImGui.ArrowButton
+			/*@terminus.function ImGui.ArrowButton
 			* param label<string> 
 			* param direction<integer> [ImGuiDir](lua://ImGuiDir)
 			* return boolean clicked
@@ -205,7 +205,7 @@ namespace Teminus::LuaJIT
 				return ImGui::ArrowButton(label.c_str(), static_cast<ImGuiDir>(direction));
 			};
 
-			/*@teminus.function ImGui.InvisibleButton
+			/*@terminus.function ImGui.InvisibleButton
 			* param label<string> 
 			* param sizeX<number> Button width
 			* param sizeY<number> Button height
@@ -215,7 +215,7 @@ namespace Teminus::LuaJIT
 				return ImGui::InvisibleButton(label.c_str(), ImVec2(sizeX, sizeY));
 			};
 
-			/*@teminus.function ImGui.Checkbox
+			/*@terminus.function ImGui.Checkbox
 			* param label<string> 
 			* param v<boolean>
 			* return boolean value
@@ -227,13 +227,13 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(value, clicked);
 			};
 
-			/*@teminus.function ImGui.RadioButton
+			/*@terminus.function ImGui.RadioButton
 			* param label<string> 
 			* param active<boolean>
 			* return boolean clicked
 			@*/
 
-			/*@teminus.function ImGui.RadioButton
+			/*@terminus.function ImGui.RadioButton
 			* param label<string> 
 			* param v<integer> Current index
 			* param vButton<integer> Index to change to
@@ -249,7 +249,7 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, ret);
 			    });
 
-			/*@teminus.function ImGui.ProgressBar
+			/*@terminus.function ImGui.ProgressBar
 			* param fraction<number> 
 			* param size<Vector2?> Optional frame size
 			* param overlayText<string?> Optional overlay text. Defaults to precentage.
@@ -265,12 +265,12 @@ namespace Teminus::LuaJIT
 
 			///////////////////////////////////////////// windows /////////////////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.Begin
+			/*@terminus.function ImGui.Begin
 			* param name<string>
 			* return boolean visible
 			@*/
 
-			/*@teminus.function ImGui.Begin
+			/*@terminus.function ImGui.Begin
 			* param name<string>
 			* param open<boolean>
 			* param windowFlags<integer?> Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)
@@ -278,14 +278,14 @@ namespace Teminus::LuaJIT
 			@*/
 			imguiTable["Begin"] = sol::overload(&Begin, &Begin1, &Begin2);
 
-			/*@teminus.function ImGui.End
+			/*@terminus.function ImGui.End
 			* 
 			@*/
 			imguiTable["End"] = []() {
 				ImGui::End();
 			};
 
-			/*@teminus.function ImGui.BeginChild
+			/*@terminus.function ImGui.BeginChild
 			* param name<string>
 			* param size<Vector2> child size.
 			* param childFlags<integer> [ImGuiChildFlags](lua://ImGuiChildFlags)
@@ -294,14 +294,14 @@ namespace Teminus::LuaJIT
 			@*/
 			imguiTable["BeginChild"] = sol::overload(&BeginChild, &BeginChild1, &BeginChild2);
 
-			/*@teminus.function ImGui.EndChild
+			/*@terminus.function ImGui.EndChild
 			* 
 			@*/
 			imguiTable["EndChild"] = []() {
 				ImGui::EndChild();
 			};
 
-			/*@teminus.function ImGui.OpenPopup
+			/*@terminus.function ImGui.OpenPopup
 			* param name<string> Popup name
 			* param flags<integer?> Optional [ImGuiPopupFlags](lua://ImGuiPopupFlags)
 			@*/
@@ -310,7 +310,7 @@ namespace Teminus::LuaJIT
 			};
 
 
-			/*@teminus.function ImGui.IsPopupOpen
+			/*@terminus.function ImGui.IsPopupOpen
 			* param name<string> Popup name
 			* param flags<integer?> Optional [ImGuiPopupFlags](lua://ImGuiPopupFlags)
 			* return boolean
@@ -319,14 +319,14 @@ namespace Teminus::LuaJIT
 				return ImGui::IsPopupOpen(name.c_str(), static_cast<ImGuiPopupFlags>(popupFlags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.CloseCurrentPopup
+			/*@terminus.function ImGui.CloseCurrentPopup
 			* 
 			@*/
 			imguiTable["CloseCurrentPopup"] = []() {
 				ImGui::CloseCurrentPopup();
 			};
 
-			/*@teminus.function ImGui.BeginPopup
+			/*@terminus.function ImGui.BeginPopup
 			* param name<string>
 			* param windowFlags<integer?> Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)
 			* return boolean isOpen
@@ -335,13 +335,13 @@ namespace Teminus::LuaJIT
 				return ImGui::BeginPopup(name.c_str(), static_cast<ImGuiWindowFlags>(windowFlags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.BeginPopupModal
+			/*@terminus.function ImGui.BeginPopupModal
 			* param name<string>
 			* param windowFlags<integer?> Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)
 			* return boolean visible
 			@*/
 
-			/*@teminus.function ImGui.BeginPopupModal
+			/*@terminus.function ImGui.BeginPopupModal
 			* param name<string>
 			* param open<boolean> When true, the popup will have a `(x)` close button in the title bar.
 			* param windowFlags<integer?> Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)
@@ -359,14 +359,14 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(visible, pOpen);
 			    });
 
-			/*@teminus.function ImGui.EndPopup
+			/*@terminus.function ImGui.EndPopup
 			* 
 			@*/
 			imguiTable["EndPopup"] = []() {
 				ImGui::EndPopup();
 			};
 
-			/*@teminus.function ImGui.BeginTabBar
+			/*@terminus.function ImGui.BeginTabBar
 			* param strID<string>
 			* param flags<integer?> Optional [ImGuiTabBarFlags](lua://ImGuiTabBarFlags)
 			* return boolean
@@ -375,19 +375,19 @@ namespace Teminus::LuaJIT
 				return ImGui::BeginTabBar(strID.c_str(), static_cast<ImGuiTabBarFlags>(flags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.EndTabBar
+			/*@terminus.function ImGui.EndTabBar
 			* 
 			@*/
 			imguiTable["EndTabBar"] = []() {
 				ImGui::EndTabBar();
 			};
 
-			/*@teminus.function ImGui.BeginTabItem
+			/*@terminus.function ImGui.BeginTabItem
 			* param strID<string>
 			* return boolean
 			@*/
 
-			/*@teminus.function ImGui.BeginTabItem
+			/*@terminus.function ImGui.BeginTabItem
 			* param strID<string>
 			* param open<boolean>
 			* param flags<integer?> Optional [ImGuiTabItemFlags](lua://ImGuiTabItemFlags)
@@ -402,14 +402,14 @@ namespace Teminus::LuaJIT
 				}
 			);
 
-			/*@teminus.function ImGui.EndTabItem
+			/*@terminus.function ImGui.EndTabItem
 			* 
 			@*/
 			imguiTable["EndTabItem"] = []() {
 				ImGui::EndTabItem();
 			};
 
-			/*@teminus.function ImGui.TabItemButton Creates a Tab behaving like a button. Returns true when clicked and cannot be selected in the tab bar.
+			/*@terminus.function ImGui.TabItemButton Creates a Tab behaving like a button. Returns true when clicked and cannot be selected in the tab bar.
 			* param strID<string>
 			* param flags<integer?> Optional [ImGuiTabItemFlags](lua://ImGuiTabItemFlags)
 			* return boolean
@@ -418,7 +418,7 @@ namespace Teminus::LuaJIT
 				return ImGui::TabItemButton(strID.c_str(), static_cast<ImGuiTabItemFlags>(flags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.Combo
+			/*@terminus.function ImGui.Combo
 			* param label<string>
 			* param currentItem<integer>
 			* param itemsSeparatedByZeros<string> A string with items separated by null terminators. Ex: `"Item1\0Item2\0Item3"`
@@ -426,7 +426,7 @@ namespace Teminus::LuaJIT
 			* return boolean opened
 			@*/
 
-			/*@teminus.function ImGui.Combo
+			/*@terminus.function ImGui.Combo
 			* param label<string>
 			* param currentItem<integer>
 			* param items<{[integer]: string}> A table of strings. Must be a contiguous string array, anything else will be ignored.
@@ -447,14 +447,14 @@ namespace Teminus::LuaJIT
 
 			///////////////////////////////////////////// containers /////////////////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.BeginTable
+			/*@terminus.function ImGui.BeginTable
 			* param label<string>
 			* param columnCount<integer> child size.
 			* param tableFlags<integer?> Optional [ImGuiTableFlags](lua://ImGuiTableFlags)
 			* return boolean visible
 			@*/
 
-			/*@teminus.function ImGui.BeginTable
+			/*@terminus.function ImGui.BeginTable
 			* param label<string>
 			* param columnCount<integer> child size.
 			* param tableFlags<integer> [ImGuiTableFlags](lua://ImGuiTableFlags)
@@ -464,12 +464,12 @@ namespace Teminus::LuaJIT
 			@*/
 			imguiTable["BeginTable"] = sol::overload(&BeginTable, &BeginTable1);
 
-			/*@teminus.function ImGui.TableSetupColumn
+			/*@terminus.function ImGui.TableSetupColumn
 			* param label<string>
 			* param flags<integer?> Optional [ImGuiTableColumnFlags](lua://ImGuiTableColumnFlags)
 			@*/
 
-			/*@teminus.function ImGui.TableSetupColumn
+			/*@terminus.function ImGui.TableSetupColumn
 			* param label<string>
 			* param flags<integer> [ImGuiTableColumnFlags](lua://ImGuiTableColumnFlags)
 			* param initWidthOrWeight<number?> Optional initial column width or weight
@@ -483,7 +483,7 @@ namespace Teminus::LuaJIT
 			    }
 			);
 
-			/*@teminus.function ImGui.TableSetupScrollFreeze
+			/*@terminus.function ImGui.TableSetupScrollFreeze
 			* param columns<integer>
 			* param rows<integer>
 			@*/
@@ -491,21 +491,21 @@ namespace Teminus::LuaJIT
 				ImGui::TableSetupScrollFreeze(columns, rows);
 			};
 
-			/*@teminus.function ImGui.TableHeadersRow
+			/*@terminus.function ImGui.TableHeadersRow
 			*
 			@*/
 			imguiTable["TableHeadersRow"] = []() {
 				ImGui::TableHeadersRow();
 			};
 
-			/*@teminus.function ImGui.TableAngledHeadersRow Submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.
+			/*@terminus.function ImGui.TableAngledHeadersRow Submit a row with angled headers for every column with the ImGuiTableColumnFlags_AngledHeader flag. MUST BE FIRST ROW.
 			*
 			@*/
 			imguiTable["TableAngledHeadersRow"] = []() {
 				ImGui::TableAngledHeadersRow();
 			};
 
-			/*@teminus.function ImGui.TableNextRow
+			/*@terminus.function ImGui.TableNextRow
 			* param flags<integer?> Optional [ImGuiTableRowFlags](lua://ImGuiTableRowFlags)
 			@*/
 			imguiTable["TableNextRow"] = sol::overload(
@@ -517,42 +517,42 @@ namespace Teminus::LuaJIT
 				}
 			);
 
-			/*@teminus.function ImGui.TableNextColumn
+			/*@terminus.function ImGui.TableNextColumn
 			* return boolean
 			@*/
 			imguiTable["TableNextColumn"] = []() {
 				return ImGui::TableNextColumn();
 			};
 
-			/*@teminus.function ImGui.TableSetColumnIndex
+			/*@terminus.function ImGui.TableSetColumnIndex
 			* return boolean
 			@*/
 			imguiTable["TableSetColumnIndex"] = [](int index) {
 				return ImGui::TableSetColumnIndex(index);
 			};
 
-			/*@teminus.function ImGui.TableGetRowIndex
+			/*@terminus.function ImGui.TableGetRowIndex
 			* return integer
 			@*/
 			imguiTable["TableGetRowIndex"] = []() {
 				return ImGui::TableGetRowIndex();
 			};
 
-			/*@teminus.function ImGui.TableGetColumnIndex
+			/*@terminus.function ImGui.TableGetColumnIndex
 			* return integer
 			@*/
 			imguiTable["TableGetColumnIndex"] = []() {
 				return ImGui::TableGetColumnIndex();
 			};
 
-			/*@teminus.function ImGui.TableGetColumnCount
+			/*@terminus.function ImGui.TableGetColumnCount
 			* return integer
 			@*/
 			imguiTable["TableGetColumnCount"] = []() {
 				return ImGui::TableGetColumnCount();
 			};
 
-			/*@teminus.function ImGui.TableGetColumnName Returns an empty string if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.
+			/*@terminus.function ImGui.TableGetColumnName Returns an empty string if column didn't have a name declared by TableSetupColumn(). Pass -1 to use current column.
 			* param columnNumber<integer?>
 			* return string
 			@*/
@@ -560,7 +560,7 @@ namespace Teminus::LuaJIT
 				return std::string(ImGui::TableGetColumnName(columnNumber.value_or(-1)));
 			};
 
-			/*@teminus.function ImGui.TableGetColumnFlags
+			/*@terminus.function ImGui.TableGetColumnFlags
 			* param columnNumber<integer?>
 			* return integer
 			@*/
@@ -568,7 +568,7 @@ namespace Teminus::LuaJIT
 				return ImGui::TableGetColumnFlags(columnNumber.value_or(-1));
 			};
 
-			/*@teminus.function ImGui.TableSetColumnEnabled
+			/*@terminus.function ImGui.TableSetColumnEnabled
 			* param columnNumber<integer>
 			* param enabled<boolean>
 			@*/
@@ -576,7 +576,7 @@ namespace Teminus::LuaJIT
 				ImGui::TableSetColumnEnabled(columnNumber, v);
 			};
 
-			/*@teminus.function ImGui.TableSetBgColor
+			/*@terminus.function ImGui.TableSetBgColor
 			* param target<integer> [ImGuiTableBgTarget](ImGuiTableBgTarget)
 			* param color<integer>
 			* param columnNumber<integer?>
@@ -585,14 +585,14 @@ namespace Teminus::LuaJIT
 				ImGui::TableSetBgColor(static_cast<ImGuiTableBgTarget>(target), static_cast<ImU32>(color), columnNumber.value_or(-1));
 			};
 
-			/*@teminus.function ImGui.EndTable
+			/*@terminus.function ImGui.EndTable
 			* 
 			@*/
 			imguiTable["EndTable"] = []() {
 				ImGui::EndTable();
 			};
 
-			/*@teminus.function ImGui.BeginCombo
+			/*@terminus.function ImGui.BeginCombo
 			* param label<string> 
 			* param preview<string> 
 			* param flags<integer?> Optional [ImGuiComboFlags](lua://ImGuiComboFlags)
@@ -602,14 +602,14 @@ namespace Teminus::LuaJIT
 				return ImGui::BeginCombo(label.c_str(), previewValue.c_str(), static_cast<ImGuiComboFlags>(flags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.EndCombo
+			/*@terminus.function ImGui.EndCombo
 			* 
 			@*/
 			imguiTable["EndCombo"] = []() {
 				ImGui::EndCombo();
 			};
 
-			/*@teminus.function ImGui.ListBox
+			/*@terminus.function ImGui.ListBox
 			* param label<string>
 			* param currentItem<integer>
 			* param items<{[integer]: string}> A table of strings. Must be a contiguous string array, anything else will be ignored.
@@ -628,7 +628,7 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(currentItem, visible);
 			};
 
-			/*@teminus.function ImGui.BeginListBox
+			/*@terminus.function ImGui.BeginListBox
 			* param label<string> 
 			* param size<Vector2?> Optional listbox size
 			* return boolean visible
@@ -637,14 +637,14 @@ namespace Teminus::LuaJIT
 				return ImGui::BeginListBox(label.c_str(), size.value_or(ImVec2()));
 			};
 
-			/*@teminus.function ImGui.EndListBox
+			/*@terminus.function ImGui.EndListBox
 			* 
 			@*/
 			imguiTable["EndListBox"] = []() {
 				ImGui::EndListBox();
 			};
 
-			/*@teminus.function ImGui.Selectable
+			/*@terminus.function ImGui.Selectable
 			* param label<string> 
 			* param selected<boolean>
 			* param flags<integer?> Optional [ImGuiSelectableFlags](lua://ImGuiSelectableFlags)
@@ -660,7 +660,7 @@ namespace Teminus::LuaJIT
 				    return ImGui::Selectable(label.c_str(), selected, selectableFlags, size.value_or(ImVec2()));
 			    });
 
-			/*@teminus.function ImGui.MenuItem
+			/*@terminus.function ImGui.MenuItem
 			* param label<string> 
 			* param selected<boolean>
 			* return boolean selected
@@ -674,7 +674,7 @@ namespace Teminus::LuaJIT
 
 			///////////////////////////////////////////// input /////////////////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.SliderInt
+			/*@terminus.function ImGui.SliderInt
 			* param label<string>
 			* param v<integer>
 			* param vMin<integer> Minimum value
@@ -683,7 +683,7 @@ namespace Teminus::LuaJIT
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.SliderInt
+			/*@terminus.function ImGui.SliderInt
 			* param label<string>
 			* param v<integer>
 			* param vMin<integer> Minimum value
@@ -704,7 +704,7 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, changed);
 			    });
 
-			/*@teminus.function ImGui.SliderFloat
+			/*@terminus.function ImGui.SliderFloat
 			* param label<string>
 			* param v<number>
 			* param vMin<number> Minimum value
@@ -713,7 +713,7 @@ namespace Teminus::LuaJIT
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.SliderFloat
+			/*@terminus.function ImGui.SliderFloat
 			* param label<string>
 			* param v<number>
 			* param vMin<number> Minimum value
@@ -734,14 +734,14 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, changed);
 			    });
 
-			/*@teminus.function ImGui.InputInt
+			/*@terminus.function ImGui.InputInt
 			* param label<string>
 			* param v<integer>
 			* return integer v
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputInt
+			/*@terminus.function ImGui.InputInt
 			* param label<string>
 			* param v<integer>
 			* param step<integer> step
@@ -760,14 +760,14 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, changed);
 			    });
 
-			/*@teminus.function ImGui.InputFloat
+			/*@terminus.function ImGui.InputFloat
 			* param label<string>
 			* param v<number>
 			* return number v
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputFloat
+			/*@terminus.function ImGui.InputFloat
 			* param label<string>
 			* param v<number>
 			* param step<number> step
@@ -777,7 +777,7 @@ namespace Teminus::LuaJIT
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputFloat
+			/*@terminus.function ImGui.InputFloat
 			* param label<string>
 			* param v<number>
 			* param step<number> step
@@ -802,14 +802,14 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, changed);
 			    });
 
-			/*@teminus.function ImGui.InputDouble
+			/*@terminus.function ImGui.InputDouble
 			* param label<string>
 			* param v<number>
 			* return number v
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputDouble
+			/*@terminus.function ImGui.InputDouble
 			* param label<string>
 			* param v<number>
 			* param step<number> step
@@ -819,7 +819,7 @@ namespace Teminus::LuaJIT
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputDouble
+			/*@terminus.function ImGui.InputDouble
 			* param label<string>
 			* param v<number>
 			* param step<number> step
@@ -844,7 +844,7 @@ namespace Teminus::LuaJIT
 				    return std::make_tuple(v, changed);
 			    });
 
-			/*@teminus.function ImGui.InputText
+			/*@terminus.function ImGui.InputText
 			* param label<string>
 			* param text<string>
 			* param bufferSize<integer>
@@ -858,7 +858,7 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(text.c_str(), changed);
 			};
 
-			/*@teminus.function ImGui.InputTextWithHint
+			/*@terminus.function ImGui.InputTextWithHint
 			* param label<string>
 			* param hint<string>
 			* param text<string>
@@ -878,7 +878,7 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(text.c_str(), changed);
 			};
 
-			/*@teminus.function ImGui.InputTextMultiline
+			/*@terminus.function ImGui.InputTextMultiline
 			* param label<string>
 			* param text<string>
 			* param bufferSize<integer>
@@ -886,7 +886,7 @@ namespace Teminus::LuaJIT
 			* return boolean changed
 			@*/
 
-			/*@teminus.function ImGui.InputTextMultiline
+			/*@terminus.function ImGui.InputTextMultiline
 			* param label<string>
 			* param text<string>
 			* param bufferSize<integer>
@@ -897,20 +897,20 @@ namespace Teminus::LuaJIT
 			@*/
 			imguiTable["InputTextMultiline"] = sol::overload(&InputTextMultiline, &InputTextMultiline1);
 			
-			/*@teminus.function ImGui.ColorButton
+			/*@terminus.function ImGui.ColorButton
 			* param label<string> 
 			* param color<Vector4>
 			* return boolean clicked
 			@*/
 
-			/*@teminus.function ImGui.ColorButton
+			/*@terminus.function ImGui.ColorButton
 			* param label<string> 
 			* param color<Vector4>
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiColorEditFlags)
 			* return boolean clicked
 			@*/
 
-			/*@teminus.function ImGui.ColorButton
+			/*@terminus.function ImGui.ColorButton
 			* param label<string> 
 			* param color<Vector4>
 			* param flags<integer> [ImGuiColorEditFlags](lua://ImGuiColorEditFlags)
@@ -925,7 +925,7 @@ namespace Teminus::LuaJIT
 				    return ImGui::ColorButton(label.c_str(), col, static_cast<ImGuiColorEditFlags>(flags), size.value_or(ImVec2()));
 			    });
 
-			/*@teminus.function ImGui.ColorEdit3
+			/*@terminus.function ImGui.ColorEdit3
 			* param label<string>
 			* param outCol<Vector3>
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
@@ -947,7 +947,7 @@ namespace Teminus::LuaJIT
 				return changed;
 			};
 
-			/*@teminus.function ImGui.ColorPicker3
+			/*@terminus.function ImGui.ColorPicker3
 			* param label<string>
 			* param outCol<Vector3>
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
@@ -969,7 +969,7 @@ namespace Teminus::LuaJIT
 				return changed;
 			};
 
-			/*@teminus.function ImGui.ColorEdit4
+			/*@terminus.function ImGui.ColorEdit4
 			* param label<string>
 			* param outCol<Vector4>
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
@@ -993,7 +993,7 @@ namespace Teminus::LuaJIT
 				return changed;
 			};
 
-			/*@teminus.function ImGui.ColorPicker4
+			/*@terminus.function ImGui.ColorPicker4
 			* param label<string>
 			* param outCol<Vector4>
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
@@ -1018,25 +1018,25 @@ namespace Teminus::LuaJIT
 
 			//////////////////////////////////////////////// layout ////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.BeginDisabled Disables all ImGui widgets created between this call and EndDisabled
+			/*@terminus.function ImGui.BeginDisabled Disables all ImGui widgets created between this call and EndDisabled
 			* param cond<boolean?> Optional condition
 			@*/
 			imguiTable["BeginDisabled"] = [](sol::optional<bool> bCond) {
 				ImGui::BeginDisabled(bCond.value_or(true));
 			};
 
-			/*@teminus.function ImGui.EndDisabled
+			/*@terminus.function ImGui.EndDisabled
 			*
 			@*/
 			imguiTable["EndDisabled"] = []() {
 				ImGui::EndDisabled();
 			};
 
-			/*@teminus.function ImGui.SameLine
+			/*@terminus.function ImGui.SameLine
 			*
 			@*/
 
-			/*@teminus.function ImGui.SameLine
+			/*@terminus.function ImGui.SameLine
 			* param offsetX<number> X position to start at. Defaults to `0`.
 			* param spacing<number?> Optional spacing after the previous item. Defaults to the current item spacing.
 			@*/
@@ -1049,28 +1049,28 @@ namespace Teminus::LuaJIT
 				    ImGui::SameLine(offsetX, spacing);
 			    });
 
-			/*@teminus.function ImGui.NewLine
+			/*@terminus.function ImGui.NewLine
 			* 
 			@*/
 			imguiTable["NewLine"] = []() {
 				ImGui::NewLine();
 			};
 
-			/*@teminus.function ImGui.Spacing
+			/*@terminus.function ImGui.Spacing
 			* 
 			@*/
 			imguiTable["Spacing"] = []() {
 				ImGui::Spacing();
 			};
 
-			/*@teminus.function ImGui.Separator
+			/*@terminus.function ImGui.Separator
 			* 
 			@*/
 			imguiTable["Separator"] = []() {
 				ImGui::Separator();
 			};
 
-			/*@teminus.function ImGui.SeparatorEx
+			/*@terminus.function ImGui.SeparatorEx
 			* param flags<integer> [ImGuiSeparatorFlags](lua://ImGuiSeparatorFlags)
 			* param thickness<number?> Optional separator thickness. Defaults to 1.0
 			@*/
@@ -1078,153 +1078,153 @@ namespace Teminus::LuaJIT
 				ImGui::SeparatorEx(static_cast<ImGuiSeparatorFlags>(flags), thickness.value_or(1.0f));
 			};
 
-			/*@teminus.function ImGui.SeparatorText
+			/*@terminus.function ImGui.SeparatorText
 			* param text<string>
 			@*/
 			imguiTable["SeparatorText"] = [](const std::string& text) {
 				ImGui::SeparatorText(text.c_str());
 			};
 
-			/*@teminus.function ImGui.Indent
+			/*@terminus.function ImGui.Indent
 			* param indentX<number?> Optional indentation width. Defaults to the current item spacing.
 			@*/
 			imguiTable["Indent"] = [](sol::optional<float> indentX) {
 				ImGui::Indent(indentX.value_or(0.f));
 			};
 
-			/*@teminus.function ImGui.Unindent
+			/*@terminus.function ImGui.Unindent
 			* param indentX<number?> Optional indentation width. Defaults to the current item spacing.
 			@*/
 			imguiTable["Unindent"] = [](sol::optional<float> indentX) {
 				ImGui::Unindent(indentX.value_or(0.f));
 			};
 
-			/*@teminus.function ImGui.Dummy
+			/*@terminus.function ImGui.Dummy
 			* param size<Vector2>
 			@*/
 			imguiTable["Dummy"] = [](const ImVec2& size) {
 				ImGui::Dummy(size);
 			};
 
-			/*@teminus.function ImGui.SetCursorPos
+			/*@terminus.function ImGui.SetCursorPos
 			* param pos<Vector2>
 			@*/
 			imguiTable["SetCursorPos"] = [](const ImVec2& pos) {
 				ImGui::SetCursorPos(pos);
 			};
 
-			/*@teminus.function ImGui.SetCursorPosX
+			/*@terminus.function ImGui.SetCursorPosX
 			* param x<number> X position relative to the current window.
 			@*/
 			imguiTable["SetCursorPosX"] = [](float x) {
 				ImGui::SetCursorPosX(x);
 			};
 
-			/*@teminus.function ImGui.SetCursorPosY
+			/*@terminus.function ImGui.SetCursorPosY
 			* param y<number> Y position relative to the current window.
 			@*/
 			imguiTable["SetCursorPosY"] = [](float y) {
 				ImGui::SetCursorPosY(y);
 			};
 
-			/*@teminus.function ImGui.GetCursorPos
+			/*@terminus.function ImGui.GetCursorPos
 			* return Vector2 cursorPos
 			@*/
 			imguiTable["GetCursorPos"] = []() {
 				return ImGui::GetCursorPos();
 			};
 
-			/*@teminus.function ImGui.GetCursorPosX
+			/*@terminus.function ImGui.GetCursorPosX
 			* return number x Current X position relative to the current window.
 			@*/
 			imguiTable["GetCursorPosX"] = []() {
 				return ImGui::GetCursorPosX();
 			};
 
-			/*@teminus.function ImGui.GetCursorPosY
+			/*@terminus.function ImGui.GetCursorPosY
 			* return number y Current Y position relative to the current window.
 			@*/
 			imguiTable["GetCursorPosY"] = []() {
 				return ImGui::GetCursorPosY();
 			};
 
-			/*@teminus.function ImGui.GetContentRegionAvail
+			/*@terminus.function ImGui.GetContentRegionAvail
 			* return Vector2 avail Available content region.
 			@*/
 			imguiTable["GetContentRegionAvail"] = []() {
 				return ImGui::GetContentRegionAvail();
 			};
 
-			/*@teminus.function ImGui.GetWindowWidth
+			/*@terminus.function ImGui.GetWindowWidth
 			* return number width
 			@*/
 			imguiTable["GetWindowWidth"] = []() {
 				return ImGui::GetWindowWidth();
 			};
 
-			/*@teminus.function ImGui.GetWindowHeight
+			/*@terminus.function ImGui.GetWindowHeight
 			* return number height
 			@*/
 			imguiTable["GetWindowHeight"] = []() {
 				return ImGui::GetWindowHeight();
 			};
 
-			/*@teminus.function ImGui.GetWindowSize
+			/*@terminus.function ImGui.GetWindowSize
 			* return Vector2 windowSize
 			@*/
 			imguiTable["GetWindowSize"] = []() {
 				return ImGui::GetWindowSize();
 			};
 
-			/*@teminus.function ImGui.GetWindowPos
+			/*@terminus.function ImGui.GetWindowPos
 			* return Vector2 windowPos Current window position.
 			@*/
 			imguiTable["GetWindowPos"] = []() {
 				return ImGui::GetWindowPos();
 			};
 
-			/*@teminus.function ImGui.GetFrameHeight
+			/*@terminus.function ImGui.GetFrameHeight
 			* return number frameHeight
 			@*/
 			imguiTable["GetFrameHeight"] = []() {
 				return ImGui::GetFrameHeight();
 			};
 
-			/*@teminus.function ImGui.GetFrameHeightWithSpacing
+			/*@terminus.function ImGui.GetFrameHeightWithSpacing
 			* return number frameHeight Frame height with spacing.
 			@*/
 			imguiTable["GetFrameHeightWithSpacing"] = []() {
 				return ImGui::GetFrameHeightWithSpacing();
 			};
 
-			/*@teminus.function ImGui.SetNextItemWidth
+			/*@terminus.function ImGui.SetNextItemWidth
 			* param width<number> Width of the next item.
 			@*/
 			imguiTable["SetNextItemWidth"] = [](float width) {
 				ImGui::SetNextItemWidth(width);
 			};
 
-			/*@teminus.function ImGui.PushItemWidth
+			/*@terminus.function ImGui.PushItemWidth
 			* param width<number> Width of subsequent items.
 			@*/
 			imguiTable["PushItemWidth"] = [](float width) {
 				ImGui::PushItemWidth(width);
 			};
 
-			/*@teminus.function ImGui.PopItemWidth
+			/*@terminus.function ImGui.PopItemWidth
 			* 
 			@*/
 			imguiTable["PopItemWidth"] = []() {
 				ImGui::PopItemWidth();
 			};
 
-			/*@teminus.function ImGui.CalcTextSize
+			/*@terminus.function ImGui.CalcTextSize
 			* param text<string>
 			* param wrapWidth<number?>
 			* return Vector2 size
 			@*/
 
-			/*@teminus.function ImGui.CalcTextSize
+			/*@terminus.function ImGui.CalcTextSize
 			* param text<string>
 			* param hideTextAfterDoubleHash<boolean>
 			* param wrapWidth<number?>
@@ -1239,35 +1239,35 @@ namespace Teminus::LuaJIT
 				}
 			);
 
-			/*@teminus.function ImGui.GetItemRectMin
+			/*@terminus.function ImGui.GetItemRectMin
 			* return Vector2 rectMin
 			@*/
 			imguiTable["GetItemRectMin"] = []() {
 				return ImGui::GetItemRectMin();
 			};
 
-			/*@teminus.function ImGui.GetItemRectMax
+			/*@terminus.function ImGui.GetItemRectMax
 			* return Vector2 rectMax
 			@*/
 			imguiTable["GetItemRectMax"] = []() {
 				return ImGui::GetItemRectMax();
 			};
 
-			/*@teminus.function ImGui.GetItemRectSize
+			/*@terminus.function ImGui.GetItemRectSize
 			* return Vector2 size
 			@*/
 			imguiTable["GetItemRectSize"] = []() {
 				return ImGui::GetItemRectSize();
 			};
 
-			/*@teminus.function ImGui.GetItemID
+			/*@terminus.function ImGui.GetItemID
 			* return integer itemID
 			@*/
 			imguiTable["GetItemID"] = []() {
 				return static_cast<int>(ImGui::GetItemID());
 			};
 
-			/*@teminus.function ImGui.IsItemHovered
+			/*@terminus.function ImGui.IsItemHovered
 			* param flags<integer?> Optional [ImGuiHoveredFlags](ImGuiHoveredFlags)
 			* return boolean
 			@*/
@@ -1275,84 +1275,84 @@ namespace Teminus::LuaJIT
 				return ImGui::IsItemHovered(static_cast<ImGuiHoveredFlags>(flags.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.IsItemActive
+			/*@terminus.function ImGui.IsItemActive
 			* return boolean
 			@*/
 			imguiTable["IsItemActive"] = []() {
 				return ImGui::IsItemActive();
 			};
 
-			/*@teminus.function ImGui.IsItemFocused
+			/*@terminus.function ImGui.IsItemFocused
 			* return boolean
 			@*/
 			imguiTable["IsItemFocused"] = []() {
 				return ImGui::IsItemActive();
 			};
 
-			/*@teminus.function ImGui.IsItemVisible
+			/*@terminus.function ImGui.IsItemVisible
 			* return boolean
 			@*/
 			imguiTable["IsItemVisible"] = []() {
 				return ImGui::IsItemVisible();
 			};
 
-			/*@teminus.function ImGui.IsItemEdited
+			/*@terminus.function ImGui.IsItemEdited
 			* return boolean
 			@*/
 			imguiTable["IsItemEdited"] = []() {
 				return ImGui::IsItemEdited();
 			};
 
-			/*@teminus.function ImGui.IsItemActivated
+			/*@terminus.function ImGui.IsItemActivated
 			* return boolean
 			@*/
 			imguiTable["IsItemActivated"] = []() {
 				return ImGui::IsItemActivated();
 			};
 
-			/*@teminus.function ImGui.IsItemDeactivated
+			/*@terminus.function ImGui.IsItemDeactivated
 			* return boolean
 			@*/
 			imguiTable["IsItemDeactivated"] = []() {
 				return ImGui::IsItemDeactivated();
 			};
 
-			/*@teminus.function ImGui.IsItemDeactivatedAfterEdit
+			/*@terminus.function ImGui.IsItemDeactivatedAfterEdit
 			* return boolean
 			@*/
 			imguiTable["IsItemDeactivatedAfterEdit"] = []() {
 				return ImGui::IsItemDeactivatedAfterEdit();
 			};
 
-			/*@teminus.function ImGui.IsItemToggledOpen
+			/*@terminus.function ImGui.IsItemToggledOpen
 			* return boolean
 			@*/
 			imguiTable["IsItemToggledOpen"] = []() {
 				return ImGui::IsItemToggledOpen();
 			};
 
-			/*@teminus.function ImGui.IsAnyItemHovered
+			/*@terminus.function ImGui.IsAnyItemHovered
 			* return boolean
 			@*/
 			imguiTable["IsAnyItemHovered"] = []() {
 				return ImGui::IsAnyItemHovered();
 			};
 
-			/*@teminus.function ImGui.IsAnyItemActive
+			/*@terminus.function ImGui.IsAnyItemActive
 			* return boolean
 			@*/
 			imguiTable["IsAnyItemActive"] = []() {
 				return ImGui::IsAnyItemActive();
 			};
 
-			/*@teminus.function ImGui.IsAnyItemFocused
+			/*@terminus.function ImGui.IsAnyItemFocused
 			* return boolean
 			@*/
 			imguiTable["IsAnyItemFocused"] = []() {
 				return ImGui::IsAnyItemFocused();
 			};
 
-			/*@teminus.function ImGui.IsItemClicked
+			/*@terminus.function ImGui.IsItemClicked
 			* param mouseBtn<integer?> 0: "left" | 1: "right" | 2: "middle"
 			* return boolean
 			@*/
@@ -1360,7 +1360,7 @@ namespace Teminus::LuaJIT
 				return ImGui::IsItemClicked(static_cast<ImGuiMouseButton>(mouseBtn.value_or(0)));
 			};
 
-			/*@teminus.function ImGui.IsAnyItemHovered
+			/*@terminus.function ImGui.IsAnyItemHovered
 			* return boolean
 			@*/
 			imguiTable["IsAnyItemHovered"] = []() {
@@ -1370,12 +1370,12 @@ namespace Teminus::LuaJIT
 
 			//////////////////////////////////////////////// style ////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.PushStyleVar
+			/*@terminus.function ImGui.PushStyleVar
 			* param styleVar<integer> [ImGuiStyleVar](lua://ImGuiStyleVar) index
 			* param v<number> style value
 			@*/
 
-			/*@teminus.function ImGui.PushStyleVar
+			/*@terminus.function ImGui.PushStyleVar
 			* param styleVar<integer> [ImGuiStyleVar](lua://ImGuiStyleVar) index
 			* param v<Vector2>
 			@*/
@@ -1387,14 +1387,14 @@ namespace Teminus::LuaJIT
 				    ImGui::PushStyleVar(static_cast<ImGuiStyleVar>(styleVar), v);
 			    });
 
-			/*@teminus.function ImGui.PopStyleVar
+			/*@terminus.function ImGui.PopStyleVar
 			* param count<integer?> Count of pushed style variables to pop. Defaults to 1; Must match the number of pushed style vars.
 			@*/
 			imguiTable["PopStyleVar"] = [](sol::optional<int> count) {
 				ImGui::PopStyleVar(std::max(count.value_or(1), 1));
 			};
 
-			/*@teminus.function ImGui.PushStyleColor
+			/*@terminus.function ImGui.PushStyleColor
 			* param colIdx<integer> [ImGuiCol](lua://ImGuiCol) index
 			* param color<Vector4>
 			@*/
@@ -1402,14 +1402,14 @@ namespace Teminus::LuaJIT
 				ImGui::PushStyleColor(static_cast<ImGuiCol>(colIdx), col);
 			};
 
-			/*@teminus.function ImGui.PopStyleColor
+			/*@terminus.function ImGui.PopStyleColor
 			* param count<integer?> Count of pushed style colors to pop. Defaults to 1; Must match the number of pushed style cols.
 			@*/
 			imguiTable["PopStyleColor"] = [](sol::optional<int> count) {
 				ImGui::PopStyleColor(std::max(count.value_or(1), 1));
 			};
 
-			/*@teminus.function ImGui.SetMouseCursor
+			/*@terminus.function ImGui.SetMouseCursor
 			* param cursorIdx<integer> [ImGuiMouseCursor](lua://ImGuiMouseCursor) index
 			@*/
 			imguiTable["SetMouseCursor"] = [](int cursorIdx) {
@@ -1419,12 +1419,12 @@ namespace Teminus::LuaJIT
 
 			//////////////////////////////////////////////// custom widgets ////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.Toggle Draws a toggle widget that can be used instead of a regular ImGui checkbox.
+			/*@terminus.function ImGui.Toggle Draws a toggle widget that can be used instead of a regular ImGui checkbox.
 			* param label<string> Tooltip text
 			* param v<boolean> Tooltip text
 			@*/
 
-			/*@teminus.function ImGui.Toggle Draws a toggle widget that can be used instead of a regular ImGui checkbox.
+			/*@terminus.function ImGui.Toggle Draws a toggle widget that can be used instead of a regular ImGui checkbox.
 			* param label<string>
 			* param v<boolean> 
 			* param size<Vector2>
@@ -1445,42 +1445,42 @@ namespace Teminus::LuaJIT
 
 			//////////////////////////////////////////////// misc ////////////////////////////////////////////////
 
-			/*@teminus.function ImGui.GetWindowDrawList
+			/*@terminus.function ImGui.GetWindowDrawList
 			* return ImDrawList
 			@*/
 			imguiTable["GetWindowDrawList"] = []() {
 				return LuaImDrawList(ImGui::GetWindowDrawList());
 			};
 
-			/*@teminus.function ImGui.GetBackgroundDrawList
+			/*@terminus.function ImGui.GetBackgroundDrawList
 			* return ImDrawList
 			@*/
 			imguiTable["GetBackgroundDrawList"] = []() {
 				return LuaImDrawList(ImGui::GetBackgroundDrawList());
 			};
 
-			/*@teminus.function ImGui.GetForegroundDrawList
+			/*@terminus.function ImGui.GetForegroundDrawList
 			* return ImDrawList
 			@*/
 			imguiTable["GetForegroundDrawList"] = []() {
 				return LuaImDrawList(ImGui::GetForegroundDrawList());
 			};
 
-			/*@teminus.function ImGui.GetTime
+			/*@terminus.function ImGui.GetTime
 			* return number
 			@*/
 			imguiTable["GetTime"] = []() {
 				return ImGui::GetTime();
 			};
 
-			/*@teminus.function ImGui.GetFrameCount
+			/*@terminus.function ImGui.GetFrameCount
 			* return integer
 			@*/
 			imguiTable["GetFrameCount"] = []() {
 				return ImGui::GetFrameCount();
 			};
 
-			/*@teminus.function ImGui.ColorConvertU32ToFloat4
+			/*@terminus.function ImGui.ColorConvertU32ToFloat4
 			* param col<integer> Packed 32bit integer
 			* return Vector4 rgba Normalised RGBA
 			@*/
@@ -1488,7 +1488,7 @@ namespace Teminus::LuaJIT
 				return ImGui::ColorConvertU32ToFloat4(static_cast<ImU32>(col));
 			};
 
-			/*@teminus.function ImGui.ColorConvertFloat4ToU32
+			/*@terminus.function ImGui.ColorConvertFloat4ToU32
 			* param col<Vector4> Normalised RGBA
 			* return integer u32 Packed 32bit integer
 			@*/
@@ -1496,7 +1496,7 @@ namespace Teminus::LuaJIT
 				return ImGui::ColorConvertFloat4ToU32(col);
 			};
 
-			/*@teminus.function ImGui.ColorConvertHSVtoRGB
+			/*@terminus.function ImGui.ColorConvertHSVtoRGB
 			* param h<number>
 			* param s<number>
 			* param v<number>
@@ -1510,7 +1510,7 @@ namespace Teminus::LuaJIT
 				return std::make_tuple(r, g, b);
 			};
 
-			/*@teminus.function ImGui.ColorConvertRGBtoHSV
+			/*@terminus.function ImGui.ColorConvertRGBtoHSV
 			* param r<number>
 			* param g<number>
 			* param b<number>

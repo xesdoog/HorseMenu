@@ -9,7 +9,7 @@
 #include "util/teleport.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	inline ContextOperationsMenu ContextMenuDefault = ContextOperationsMenu("Default", {ContextMenuOperation{"Error", [&](Entity) {
 	                                                                                                         }}});
@@ -18,7 +18,7 @@ namespace Teminus
 	    {
 	        ContextMenuOperation{"Set Selected",
 	            [&](Entity entity) {
-		            Teminus::Players::SetSelected(Ped(entity.GetHandle()).GetPlayer());
+		            Terminus::Players::SetSelected(Ped(entity.GetHandle()).GetPlayer());
 	            }},
 	        {"Teleport to",
 	            [&](Entity entity) {

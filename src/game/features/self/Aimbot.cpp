@@ -13,7 +13,7 @@
 #include <numbers>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	static FloatCommand _AimbotDistance{"aimbotdistance", "Distance", "Aimbot Maximum Distance", 50.0f, 500.0f, 50.0f};
 	static FloatCommand _AimbotFOV{"aimbotfov", "FOV", "Field Of View", 10.0f, 200.0f, 10.0f};

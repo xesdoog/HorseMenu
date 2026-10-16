@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_PHYSICS_ADD_ROPE(float posX, float posY, float posZ, float rotX, float rotY, float rotZ, float len, int ropeType, float maxLength, float minLength, float p10, bool p11, bool p12, bool rigid, float p14, bool breakWhenShot, uintptr_t unkPtr, bool p17)
 	{

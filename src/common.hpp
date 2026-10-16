@@ -28,7 +28,7 @@ using namespace al;
 
 #undef Yield
 
-namespace Teminus
+namespace Terminus
 {
 	const inline auto SYNC = std::make_shared<al::LogStream>("SYNC");
 	const inline auto NET_EVENT = std::make_shared<al::LogStream>("NET_EVENT");

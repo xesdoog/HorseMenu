@@ -10,7 +10,7 @@
 #include "util/Joaat.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	bool Pointers::Init()
 	{

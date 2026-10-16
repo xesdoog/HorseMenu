@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_UISTICKYFEED__UI_STICKY_FEED_CREATE_ERROR_MESSAGE(uintptr_t p0, uintptr_t p1, bool p2)
 	{

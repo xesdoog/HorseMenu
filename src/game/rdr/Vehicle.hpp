@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Vehicle : public Entity
 	{

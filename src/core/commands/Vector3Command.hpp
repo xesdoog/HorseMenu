@@ -2,7 +2,7 @@
 #include "Command.hpp"
 #include <rage/vector.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	class Vector3Command : public Command
 	{

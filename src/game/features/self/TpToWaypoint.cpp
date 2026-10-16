@@ -3,7 +3,7 @@
 #include "util/teleport.hpp"
 #include "core/frontend/Notifications.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 
 	class TpToWaypoint : public Command
@@ -15,8 +15,8 @@ namespace Teminus::Features
 			if (MAP::IS_WAYPOINT_ACTIVE())
 			{
 				// TODO!!!
-				auto waypointCoords = Teminus::Teleport::GetWaypointCoords();
-				Teminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), {waypointCoords.x, waypointCoords.y, 0.0f}, true);
+				auto waypointCoords = Terminus::Teleport::GetWaypointCoords();
+				Terminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), {waypointCoords.x, waypointCoords.y, 0.0f}, true);
 			}
 			else
 			{

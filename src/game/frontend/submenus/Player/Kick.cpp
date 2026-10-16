@@ -4,7 +4,7 @@
 #include "game/backend/Players.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	std::shared_ptr<Category> BuildKickMenu()
 	{ 

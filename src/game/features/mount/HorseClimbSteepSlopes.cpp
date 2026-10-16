@@ -2,7 +2,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class HorseClimbSteepSlopes : public LoopedCommand
 	{

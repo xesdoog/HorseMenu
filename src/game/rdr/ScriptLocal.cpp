@@ -1,6 +1,6 @@
 #include "ScriptLocal.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void* ScriptLocal::Get() const
 	{

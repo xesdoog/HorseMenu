@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Ped LUA_NATIVE_PLAYER_GET_PLAYER_PED(Player PlayerIndex)
 	{

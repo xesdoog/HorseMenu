@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE__NAMESPACE4__REPORT_PLAYER_BAD_SPORT_BEHAVIOR(uintptr_t gamerHandle, int badSportBehaviorType)
 	{

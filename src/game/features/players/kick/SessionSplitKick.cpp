@@ -7,7 +7,7 @@
 
 #include <script/globals/ACEHostData.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class SessionSplitKick : public PlayerCommand
 	{

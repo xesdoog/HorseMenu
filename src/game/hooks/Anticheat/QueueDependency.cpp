@@ -2,7 +2,7 @@
 #include "game/hooks/Hooks.hpp"
 #include <Psapi.h>
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	static bool IsAddressInGameRegion(uint64_t address)
 	{

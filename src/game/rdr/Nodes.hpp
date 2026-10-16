@@ -7,7 +7,7 @@
 // Taken from https://github.com/YimMenu/YimMenu/blob/207e5457f9fca9e638168b1f26ec210116d7ad7d/src/util/sync_trees.hpp
 // Credits to Aure7138
 
-namespace Teminus
+namespace Terminus
 {
 	struct SyncNodeId
 	{
@@ -103,9 +103,9 @@ namespace Teminus
 namespace std
 {
 	template<>
-	struct hash<Teminus::SyncNodeId>
+	struct hash<Terminus::SyncNodeId>
 	{
-		size_t operator()(const Teminus::SyncNodeId& x) const
+		size_t operator()(const Terminus::SyncNodeId& x) const
 		{
 			return x.id;
 		}

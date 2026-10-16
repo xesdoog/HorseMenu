@@ -3,7 +3,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "core/hooking/DetourHook.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	HRESULT SwapChain::Present(IDXGISwapChain1* that, UINT syncInterval, UINT flags)
 	{

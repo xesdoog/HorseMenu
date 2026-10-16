@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_POPULATION_GET_NUM_MODELS_IN_POPULATION_SET(Hash popSetHash)
 	{

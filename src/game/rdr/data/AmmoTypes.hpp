@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	const char* g_AmmoTypes[] = {
 	"AMMO_22",

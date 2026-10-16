@@ -9,7 +9,7 @@
 #include "Lua/LuaMenuEvent.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	Renderer::Renderer() :
 	    m_Resizing(false),

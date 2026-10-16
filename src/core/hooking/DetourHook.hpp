@@ -5,7 +5,7 @@
 #include <MinHook.h>
 #include <string_view>
 
-namespace Teminus
+namespace Terminus
 {
 	template<typename T = int*>
 	class DetourHook : public BaseHook

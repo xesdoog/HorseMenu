@@ -1,7 +1,7 @@
 #pragma once
 #include "core/frontend/widgets/imgui_colors.h"
 
-namespace Teminus::NativeUI
+namespace Terminus::NativeUI
 {
 	enum class Font
 	{

@@ -1,7 +1,7 @@
 #include "SpawnObject.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	void SpawnObject(uint32_t hash, Vector3 coords)
 	{

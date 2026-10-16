@@ -5,7 +5,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	const std::vector<ObjectModel>& GetObjectModels()
 	{
@@ -14,7 +14,7 @@ namespace Teminus::Data
 
 			DownloadModelsJson();
 
-			// Load from %APPDATA%\Teminus\models.json
+			// Load from %APPDATA%\Terminus\models.json
 			std::string appDataPath = GetAppDataPath();
 			std::string filePath = appDataPath + "models.json";
 

@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_DECORATOR_DECOR_SET_BOOL(ScrHandle guid, sol::stack_object decoratorName, bool value)
 	{

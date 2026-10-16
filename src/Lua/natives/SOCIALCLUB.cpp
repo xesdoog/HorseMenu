@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_SOCIALCLUB_SC_INBOX_GET_TOTAL_NUM_MESSAGES()
 	{

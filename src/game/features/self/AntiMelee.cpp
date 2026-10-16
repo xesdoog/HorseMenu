@@ -3,7 +3,7 @@
 #include "game/rdr/Natives.hpp"
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 
 	class AntiMelee : public LoopedCommand

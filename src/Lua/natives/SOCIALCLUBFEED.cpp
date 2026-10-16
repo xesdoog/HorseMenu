@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_SOCIALCLUBFEED__SC_FEED_SUBMIT_PRESET_MESSAGE(int type, int subType)
 	{

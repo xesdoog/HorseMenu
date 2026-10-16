@@ -6,7 +6,7 @@ namespace rage
 	class scrThread;
 }
 
-namespace Teminus
+namespace Terminus
 {
 	enum class VariableType
 	{

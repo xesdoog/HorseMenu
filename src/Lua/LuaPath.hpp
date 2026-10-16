@@ -2,7 +2,7 @@
 #include "core/filemgr/FileMgr.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaPathError : public std::runtime_error
 	{

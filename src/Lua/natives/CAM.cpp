@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_CAM_RENDER_SCRIPT_CAMS(bool bSetActive, bool DoGameCamInterp, int Duration, bool bShouldLockInterpolationSourceFrame, bool bShouldApplyAcrossAllThreads, int RenderingOptions)
 	{

@@ -8,7 +8,7 @@
 #include "game/rdr/Scripts.hpp"
 #include "core/frontend/Notifications.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	// TODO: Refactor sender
 	void MinHonor(int bits)

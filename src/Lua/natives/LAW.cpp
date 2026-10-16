@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_LAW__REPORT_CRIME(Player player, Hash crimeType, int bounty, Entity entity, bool isKnownSuspect)
 	{

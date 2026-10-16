@@ -2,7 +2,7 @@
 #include "Natives.hpp"
 #include "game/backend/ScriptMgr.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	Object Object::Create(uint32_t model, rage::fvector3 coords)
 	{

@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static ItemSet LUA_NATIVE_ITEMSET_CREATE_ITEMSET(bool autoClean)
 	{

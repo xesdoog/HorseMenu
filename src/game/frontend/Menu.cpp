@@ -20,7 +20,7 @@
 #include "Lua/LuaMgr.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	void Menu::Init()
 	{
@@ -47,7 +47,7 @@ namespace Teminus
 			    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImU32(ImColor(25, 25, 35)));
 
 			    ImGui::SetNextWindowSize(ImVec2((*Pointers.ScreenResX / 3.1), (*Pointers.ScreenResY / 1.5)), ImGuiCond_Once);
-			    if (ImGui::Begin("Teminus", nullptr, ImGuiWindowFlags_NoDecoration))
+			    if (ImGui::Begin("Terminus", nullptr, ImGuiWindowFlags_NoDecoration))
 			    {
 				    if (ImGui::Button("Unload", ImVec2(120, 0)))
 				    {
@@ -119,7 +119,7 @@ namespace Teminus
 	void Menu::SetupFonts()
 	{
 		auto& IO         = ImGui::GetIO();
-		auto file_path   = std::filesystem::path(std::getenv("appdata")) / "Teminus" / "imgui.ini";
+		auto file_path   = std::filesystem::path(std::getenv("appdata")) / "Terminus" / "imgui.ini";
 		static auto path = file_path.string();
 		IO.IniFilename   = path.c_str();
 		IO.LogFilename   = NULL;

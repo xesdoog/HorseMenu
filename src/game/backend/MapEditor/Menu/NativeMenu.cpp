@@ -1,7 +1,7 @@
 #include "NativeMenu.hpp"
 #include "NativeDrawing.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	constexpr float HEADER_WIDTH  = 0.225f;
 	constexpr float HEADER_HEIGHT = 0.105f;

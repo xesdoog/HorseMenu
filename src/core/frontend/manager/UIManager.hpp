@@ -2,7 +2,7 @@
 #include "Category.hpp"
 #include "Submenu.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class UIManager
 	{

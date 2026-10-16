@@ -2,7 +2,7 @@
 #include "ScriptGlobal.hpp"
 #include "game/rdr/Scripts.hpp"
 
-namespace Teminus
+namespace Terminus
 {
     void* ScriptGlobal::Get() const
     {

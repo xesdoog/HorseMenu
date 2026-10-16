@@ -45,7 +45,7 @@ with TXT.open(encoding="utf-8", mode="r") as f:
 # TODO: directly append to bindings/ImGuiEnums.hpp
 try:
 	with OUT.open("w", encoding="utf-8", newline="\n") as f:
-		f.write(f"/*@teminus.enum {enum_name}")
+		f.write(f"/*@terminus.enum {enum_name}")
 		f.write("\n* " + "\n* ".join(f"field {field}<integer> {comment}" for field, comment in members.items()))
 		f.write("\n@*/\n")
 		f.write(f'L.new_enum("{enum_name}",\n\t')

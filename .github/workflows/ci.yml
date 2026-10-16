@@ -26,14 +26,14 @@ jobs:
       - name: Check Build Status
         run: if (-Not (Test-Path -path "build/Terminus.dll")) {throw 1}
 
-      - name: Rename DLL to Teminus-dev-{GITHUB_SHA}.dll
+      - name: Rename DLL to Terminus-dev-{GITHUB_SHA}.dll
         run: |
-          del Teminus-dev-*.dll
-          ren Teminus.dll Teminus-dev-${{github.sha}}.dll
+          del Terminus-dev-*.dll
+          ren Terminus.dll Terminus-dev-${{github.sha}}.dll
         working-directory: build/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: binary
-          path: build/Teminus-dev-*.dll
+          path: build/Terminus-dev-*.dll

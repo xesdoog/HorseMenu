@@ -3,7 +3,7 @@
 
 #include "core/filemgr/FileMgr.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	template<typename TP>
 	static std::time_t to_time_t(TP tp)

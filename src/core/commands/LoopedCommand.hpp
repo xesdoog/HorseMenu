@@ -2,7 +2,7 @@
 #include "BoolCommand.hpp"
 #include "game/rdr/Player.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class LoopedCommand : public BoolCommand
 	{

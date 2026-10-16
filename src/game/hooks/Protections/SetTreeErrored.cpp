@@ -1,7 +1,7 @@
 #pragma once
 #include "game/hooks/Hooks.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Protections::SetTreeErrored(rage::netSyncTree* tree, bool errored)
 	{

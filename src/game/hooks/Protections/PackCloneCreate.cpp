@@ -7,7 +7,7 @@
 #include <network/netObject.hpp>
 #include <player/CPlayerInfo.hpp>
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	bool Protections::PackCloneCreate(void* mgr, rage::netObject* object, CNetGamePlayer* dst, rage::datBitBuffer* buffer)
 	{

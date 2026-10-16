@@ -6,7 +6,7 @@
 #include <event/CEventInventoryItemPickedUp.hpp>
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Rewards
+namespace Terminus::Rewards
 {
 	void GiveReward(const RewardInfo& info)
 	{

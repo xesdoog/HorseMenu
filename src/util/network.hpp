@@ -7,7 +7,7 @@
 
 // TODO: remove this file
 
-namespace Teminus::Network
+namespace Terminus::Network
 {
 	inline bool NetWorkHasControlEntity(int ent)
 	{

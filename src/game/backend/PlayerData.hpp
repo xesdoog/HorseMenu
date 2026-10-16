@@ -5,7 +5,7 @@
 #include <unordered_set>
 #include <chrono>
 
-namespace Teminus
+namespace Terminus
 {
 	class PlayerData
 	{

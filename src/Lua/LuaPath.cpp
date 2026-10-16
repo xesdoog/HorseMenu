@@ -1,7 +1,7 @@
 #include "LuaPath.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	LuaPath::LuaPath(const fs::path& sandboxRoot, const fs::path& other) :
 	    m_SandboxRoot(sandboxRoot)

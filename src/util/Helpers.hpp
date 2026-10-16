@@ -8,7 +8,7 @@
 
 
 // TODO: remove this file
-namespace Teminus::Helpers
+namespace Terminus::Helpers
 {
 	inline bool WriteArray(void* array, int size, rage::datBitBuffer* buffer)
 	{

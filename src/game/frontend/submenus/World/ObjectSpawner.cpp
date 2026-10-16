@@ -10,7 +10,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/data/VehicleModels.hpp"
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	static rage::fvector3 GetForwardOffset(float headingDegrees, float distance)
 	{

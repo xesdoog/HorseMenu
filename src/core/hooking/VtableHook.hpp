@@ -2,7 +2,7 @@
 #include <string_view>
 #include "BaseHook.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class VtableHook : public BaseHook
 	{

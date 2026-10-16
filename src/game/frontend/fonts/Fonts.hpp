@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Teminus::Fonts
+namespace Terminus::Fonts
 {
 	extern const uint8_t MainFont[78948];
 }

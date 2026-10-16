@@ -6,7 +6,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/backend/ScriptMgr.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class ExplodePlayer : public PlayerCommand
 	{

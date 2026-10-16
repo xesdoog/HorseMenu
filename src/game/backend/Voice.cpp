@@ -1,6 +1,6 @@
 #include "Voice.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	Voice::Voice() :
 	    IStateSerializer("voice"),
@@ -76,7 +76,7 @@ namespace Teminus
 			std::thread thread([this] {
 				m_LastReadTime = std::chrono::high_resolution_clock::now();
 
-				while (Teminus::g_Running && m_Running && m_AudioBuffer)
+				while (Terminus::g_Running && m_Running && m_AudioBuffer)
 				{
 					{
 						std::lock_guard lock(m_BufferModifyMutex);

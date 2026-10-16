@@ -1,6 +1,6 @@
 #include "Category.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void Category::Draw()
 	{

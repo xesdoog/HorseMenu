@@ -1,7 +1,7 @@
 #pragma once
 #include "core/filemgr/File.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class IStateSerializer;
 

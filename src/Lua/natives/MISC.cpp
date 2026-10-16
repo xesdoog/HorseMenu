@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_MISC_GET_NUMBER_OF_FREE_STACKS_OF_THIS_SIZE(int stackSize)
 	{

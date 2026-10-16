@@ -6,7 +6,7 @@
 #include <unordered_set>
 
 
-namespace Teminus
+namespace Terminus
 {
 	inline auto HashStackTrace(std::vector<uint64_t> stack_trace)
 	{
@@ -121,4 +121,4 @@ namespace Teminus
 	}
 }
 
-static Teminus::ExceptionHandler _ExceptionHandler{};
+static Terminus::ExceptionHandler _ExceptionHandler{};

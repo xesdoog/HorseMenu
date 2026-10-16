@@ -5,7 +5,7 @@
 #include "game/rdr/ScriptGlobal.hpp"
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class FastMoonshine : public LoopedCommand
 	{

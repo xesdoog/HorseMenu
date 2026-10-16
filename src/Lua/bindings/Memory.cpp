@@ -10,7 +10,7 @@
 #include <util/Joaat.hpp>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaMemLib : public LuaLibrary
 	{
@@ -79,7 +79,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{	
-			/* @teminus.class BytePatch
+			/* @terminus.class BytePatch
 			
 			* method Apply Applies the patch bytes
 			* 
@@ -99,7 +99,7 @@ namespace Teminus::LuaJIT
 			);
 
 
-			/* @teminus.class Pointer
+			/* @terminus.class Pointer
 			* description
 				Provides memory read/write functions.
 
@@ -442,7 +442,7 @@ namespace Teminus::LuaJIT
 				return sol::make_object(L, patch);
 			};
 
-			/*@teminus.table Memory
+			/*@terminus.table Memory
 			* description
 				Provides memory utilities.
 			

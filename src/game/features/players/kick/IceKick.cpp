@@ -12,7 +12,7 @@
 #include <network/rlScPeerConnection.hpp>
 #include <script/scrThread.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class IceKick : public PlayerCommand
 	{
@@ -29,7 +29,7 @@ namespace Teminus::Features
 				return;
 			}
 
-			for (auto& [_, player] : Teminus::Players::GetPlayers())
+			for (auto& [_, player] : Terminus::Players::GetPlayers())
 			{
 				if (player == Self::GetPlayer() || player == target)
 					continue;

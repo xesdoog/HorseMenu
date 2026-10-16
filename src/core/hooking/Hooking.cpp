@@ -13,7 +13,7 @@
 
 #include <network/rlGamerInfoBase.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	Hooking::Hooking()
 	{

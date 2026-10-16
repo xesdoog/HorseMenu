@@ -1,6 +1,6 @@
 #include "Submenu.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void Submenu::SetActiveCategory(const std::shared_ptr<Category> category)
 	{

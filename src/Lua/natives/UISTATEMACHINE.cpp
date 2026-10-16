@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Any LUA_NATIVE_UISTATEMACHINE__UIFLOWBLOCK_REQUEST(Any p0)
 	{

@@ -6,7 +6,7 @@
 #include "game/backend/ScriptMgr.hpp"
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class LightningStrike : public PlayerCommand
 	{

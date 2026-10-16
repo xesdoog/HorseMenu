@@ -1,7 +1,7 @@
 #include "game/backend/Self.hpp"
 #include "game/commands/PlayerCommand.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class KickFromMount : public PlayerCommand
 	{

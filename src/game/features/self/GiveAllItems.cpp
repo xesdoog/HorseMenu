@@ -10,7 +10,7 @@
 typedef unsigned int u32;
 #endif
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	// Structures required for inventory operations
 	struct sGuid

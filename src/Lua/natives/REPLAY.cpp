@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_REPLAY_REPLAY_SYSTEM_HAS_REQUESTED_A_SCRIPT_CLEANUP()
 	{

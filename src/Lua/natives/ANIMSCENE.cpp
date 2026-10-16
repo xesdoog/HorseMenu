@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static AnimScene LUA_NATIVE_ANIMSCENE__CREATE_ANIM_SCENE(sol::stack_object animDict, int flags, sol::stack_object playbackListName, bool p3, bool p4)
 	{

@@ -4,7 +4,7 @@
 #include "game/backend/ScriptMgr.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	Ped Ped::Create(uint32_t model, rage::fvector3 coords, float heading)
 	{

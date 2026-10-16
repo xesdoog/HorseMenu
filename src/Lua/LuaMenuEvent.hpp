@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace Teminus
+namespace Terminus
 {
 	enum eMenuEvent : uint8_t
 	{

@@ -12,7 +12,7 @@
 #include "util/Rewards.hpp"
 
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 
 	static bool loopReward;

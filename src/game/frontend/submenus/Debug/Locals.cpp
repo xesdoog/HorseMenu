@@ -8,7 +8,7 @@
 
 #include <script/scrThread.hpp>
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	static void SaveLocal(SavedLocal& local_obj)
 	{

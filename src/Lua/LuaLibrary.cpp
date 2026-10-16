@@ -2,7 +2,7 @@
 #include "LuaMgr.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	LuaLibrary::LuaLibrary()
 	{

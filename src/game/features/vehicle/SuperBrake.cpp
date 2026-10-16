@@ -3,7 +3,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/Ped.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class SuperBrake : public LoopedCommand
 	{
@@ -11,16 +11,16 @@ namespace Teminus::Features
 
 		virtual void OnTick() override
 		{
-			if (!Teminus::Self::GetVehicle().IsValid()
-			    || ENTITY::GET_ENTITY_SPEED_VECTOR(Teminus::Self::GetVehicle().GetHandle(), true).y < 1.f
-			    || !VEHICLE::IS_VEHICLE_ON_ALL_WHEELS(Teminus::Self::GetVehicle().GetHandle()))
+			if (!Terminus::Self::GetVehicle().IsValid()
+			    || ENTITY::GET_ENTITY_SPEED_VECTOR(Terminus::Self::GetVehicle().GetHandle(), true).y < 1.f
+			    || !VEHICLE::IS_VEHICLE_ON_ALL_WHEELS(Terminus::Self::GetVehicle().GetHandle()))
 			{
 				return;
 			}
 
 			if (PAD::IS_CONTROL_PRESSED(0, (int)NativeInputs::INPUT_VEH_BRAKE) || PAD::IS_CONTROL_PRESSED(0, (int)NativeInputs::INPUT_VEH_HANDBRAKE))
 			{
-				VEHICLE::SET_VEHICLE_FORWARD_SPEED(Teminus::Self::GetVehicle().GetHandle(), 0);
+				VEHICLE::SET_VEHICLE_FORWARD_SPEED(Terminus::Self::GetVehicle().GetHandle(), 0);
 			}
 		}
 	};

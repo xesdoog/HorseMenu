@@ -12,7 +12,7 @@
 
 #include <cmath>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class ForceChoke : public LoopedCommand
 	{

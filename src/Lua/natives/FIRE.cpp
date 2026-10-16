@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static FireId LUA_NATIVE_FIRE_START_SCRIPT_FIRE(float VecPosX, float VecPosY, float VecPosZ, int GenerationsAllowed, float p4, bool p5, sol::stack_object soundsetName, float p7, int p8)
 	{

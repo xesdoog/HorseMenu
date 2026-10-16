@@ -1,4 +1,4 @@
-# Teminus
+# Terminus
 
 A beta-stage mod menu for Red Dead Redemption 2 and Red Dead Online based on [TemplateHellBase](https://github.com/Yimura/TemplateHellBase).
 
@@ -8,7 +8,7 @@ A beta-stage mod menu for Red Dead Redemption 2 and Red Dead Online based on [Te
 ## Usage
 
 1. Launch RDR2 or Red Dead Online.
-2. Inject `Teminus.dll` using your preferred injector.
+2. Inject `Terminus.dll` using your preferred injector.
 3. Press **INSERT** to open/close the menu.
 
 ## Structure

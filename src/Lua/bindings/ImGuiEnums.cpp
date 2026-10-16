@@ -6,7 +6,7 @@
 #include <imgui_internal.h>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaImGuiEnumsLib : public LuaLibrary
 	{
@@ -17,7 +17,7 @@ namespace Teminus::LuaJIT
 		{
 			// clang-format off
 
-			/*@teminus.enum ImGuiSeparatorFlags
+			/*@terminus.enum ImGuiSeparatorFlags
 			* field None<integer>
 			* field Horizontal<integer> Axis default to current layout type, so generally Horizontal unless e.g. in a menu bar
 			* field Vertical<integer>
@@ -29,7 +29,7 @@ namespace Teminus::LuaJIT
 				"Vertical", ImGuiSeparatorFlags_Vertical,
 				"SpanAllColumns", ImGuiSeparatorFlags_SpanAllColumns);
 
-			/*@teminus.enum ImGuiMouseCursor
+			/*@terminus.enum ImGuiMouseCursor
 			* field None<integer>
 			* field Arrow<integer>
 			* field TextInput<integer> When hovering over InputText, etc.
@@ -57,7 +57,7 @@ namespace Teminus::LuaJIT
 				"Progress", ImGuiMouseCursor_Progress,
 				"NotAllowed", ImGuiMouseCursor_NotAllowed);
 
-			/*@teminus.enum ImGuiDir
+			/*@terminus.enum ImGuiDir
 			* field None<integer>
 			* field Left<integer>
 			* field Right<integer>
@@ -71,7 +71,7 @@ namespace Teminus::LuaJIT
 			    "Up", ImGuiDir_Up,
 			    "Down", ImGuiDir_Down);
 
-			/*@teminus.enum ImGuiComboFlags
+			/*@terminus.enum ImGuiComboFlags
 			* field None<integer>
 			* field PopupAlignLeft<integer> Align the popup toward the left by default
 			* field HeightSmall<integer> Max ~4 items visible. Tip: If you want your combo popup to be a specific size you can use SetNextWindowSizeConstraints() prior to calling BeginCombo()
@@ -95,7 +95,7 @@ namespace Teminus::LuaJIT
 				"WidthFitPreview", ImGuiComboFlags_WidthFitPreview,
 				"HeightMask_", ImGuiComboFlags_HeightMask_);
 
-			/*@teminus.enum ImGuiChildFlags
+			/*@terminus.enum ImGuiChildFlags
 			* field None<integer>
 			* field Borders<integer> Show an outer border and enable WindowPadding. (IMPORTANT: this is always == 1 == true for legacy reason)
 			* field AlwaysUseWindowPadding<integer> Pad with style.WindowPadding even if no border are drawn (no padding by default for non-bordered child windows because it makes more sense)
@@ -119,7 +119,7 @@ namespace Teminus::LuaJIT
 			    "FrameStyle", ImGuiChildFlags_FrameStyle,
 			    "NavFlattened", ImGuiChildFlags_NavFlattened);
 
-			/*@teminus.enum ImGuiWindowFlags
+			/*@terminus.enum ImGuiWindowFlags
 			* field None<integer>
 			* field NoTitleBar<integer> Disable title-bar
 			* field NoResize<integer> Disable user resizing with the lower-right grip
@@ -168,7 +168,7 @@ namespace Teminus::LuaJIT
 			    "NoDecoration", ImGuiWindowFlags_NoDecoration,
 			    "NoInputs", ImGuiWindowFlags_NoInputs);
 
-			/*@teminus.enum ImGuiStyleVar
+			/*@terminus.enum ImGuiStyleVar
 			* field Alpha<integer> float     Alpha
 			* field DisabledAlpha<integer> float     DisabledAlpha
 			* field WindowPadding<integer> ImVec2    WindowPadding
@@ -249,7 +249,7 @@ namespace Teminus::LuaJIT
 			    "SeparatorTextAlign", ImGuiStyleVar_SeparatorTextAlign,
 			    "SeparatorTextPadding", ImGuiStyleVar_SeparatorTextPadding);
 
-			/*@teminus.enum ImGuiCol
+			/*@terminus.enum ImGuiCol
 			* field Text<integer>
 			* field TextDisabled<integer>
 			* field WindowBg<integer> Background of normal windows
@@ -370,7 +370,7 @@ namespace Teminus::LuaJIT
 			    "NavWindowingDimBg", ImGuiCol_NavWindowingDimBg,
 			    "ModalWindowDimBg", ImGuiCol_ModalWindowDimBg);
 
-			/*@teminus.enum ImGuiPopupFlags
+			/*@terminus.enum ImGuiPopupFlags
 			* field None<integer>
 			* field MouseButtonLeft<integer> For BeginPopupContext*(): open on Left Mouse release. Guaranteed to always be == 0 (same as ImGuiMouseButton_Left)
 			* field MouseButtonRight<integer> For BeginPopupContext*(): open on Right Mouse release. Guaranteed to always be == 1 (same as ImGuiMouseButton_Right)
@@ -398,7 +398,7 @@ namespace Teminus::LuaJIT
 			    "AnyPopupLevel", ImGuiPopupFlags_AnyPopupLevel,
 			    "AnyPopup", ImGuiPopupFlags_AnyPopup);
 
-			/*@teminus.enum ImGuiSelectableFlags
+			/*@terminus.enum ImGuiSelectableFlags
 			* field None<integer>
 			* field NoAutoClosePopups<integer> Clicking this doesn't close parent popup window (overrides ImGuiItemFlags_AutoClosePopups)
 			* field SpanAllColumns<integer> Frame will span all columns of its container table (text will still fit in current column)
@@ -418,7 +418,7 @@ namespace Teminus::LuaJIT
 			    "Highlight", ImGuiSelectableFlags_Highlight,
 			    "SelectOnNav", ImGuiSelectableFlags_SelectOnNav);
 
-			/*@teminus.enum ImGuiInputTextFlags
+			/*@terminus.enum ImGuiInputTextFlags
 			* field None<integer>
 			* field CharsDecimal<integer> Allow 0123456789.+-* /
 			* field CharsHexadecimal<integer> Allow 0123456789ABCDEFabcdef
@@ -474,7 +474,7 @@ namespace Teminus::LuaJIT
 			    "CallbackEdit", ImGuiInputTextFlags_CallbackEdit,
 			    "WordWrap", ImGuiInputTextFlags_WordWrap);
 
-			/*@teminus.enum ImGuiSliderFlags
+			/*@terminus.enum ImGuiSliderFlags
 			* field None<integer>
 			* field Logarithmic<integer> Make the widget logarithmic (linear otherwise). Consider using ImGuiSliderFlags_NoRoundToFormat with this if using a format-string with small amount of digits.
 			* field NoRoundToFormat<integer> Disable rounding underlying value to match precision of the display format string (e.g. %.3f values are rounded to those 3 digits).
@@ -496,7 +496,7 @@ namespace Teminus::LuaJIT
 				"NoSpeedTweaks", ImGuiSliderFlags_NoSpeedTweaks,
 				"AlwaysClamp", ImGuiSliderFlags_AlwaysClamp);
 
-			/*@teminus.enum ImGuiTableFlags
+			/*@terminus.enum ImGuiTableFlags
 			* field None<integer> 
 			* field Resizable<integer> Enable resizing columns.
 			* field Reorderable<integer> Enable reordering columns in header row (need calling TableSetupColumn() + TableHeadersRow() to display headers)
@@ -574,7 +574,7 @@ namespace Teminus::LuaJIT
 				"HighlightHoveredColumn", ImGuiTableFlags_HighlightHoveredColumn,
 				"SizingMask_", ImGuiTableFlags_SizingMask_);
 
-			/*@teminus.enum ImGuiTableColumnFlags
+			/*@terminus.enum ImGuiTableColumnFlags
 			* field None<integer> 
 			* field Disabled<integer> Overriding/master disable flag: hide column, won't show in context menu (unlike calling TableSetColumnEnabled() which manipulates the user accessible state)
 			* field DefaultHide<integer> Default as a hidden/disabled column.
@@ -634,7 +634,7 @@ namespace Teminus::LuaJIT
 				"StatusMask_", ImGuiTableColumnFlags_StatusMask_,
 				"NoDirectResize_", ImGuiTableColumnFlags_NoDirectResize_);
 
-			/*@teminus.enum ImGuiColorEditFlags
+			/*@terminus.enum ImGuiColorEditFlags
 			* field None<integer> 
 			* field NoAlpha<integer> ColorEdit, ColorPicker, ColorButton: ignore Alpha component (will only read 3 components from the input pointer).
 			* field NoPicker<integer> ColorEdit: disable picker when clicking on color square.
@@ -700,7 +700,7 @@ namespace Teminus::LuaJIT
 				"PickerMask_", ImGuiColorEditFlags_PickerMask_,
 				"InputMask_", ImGuiColorEditFlags_InputMask_);
 
-			/*@teminus.enum ImGuiHoveredFlags
+			/*@terminus.enum ImGuiHoveredFlags
 			* field None<integer> Return true if directly over the item/window, not obstructed by another window, not obstructed by an active popup or modal blocking inputs under them.
 			* field ChildWindows<integer> IsWindowHovered() only: Return true if any children of the window is hovered
 			* field RootWindow<integer> IsWindowHovered() only: Test from root window (top most parent of the current hierarchy)
@@ -742,7 +742,7 @@ namespace Teminus::LuaJIT
 				"DelayNormal", ImGuiHoveredFlags_DelayNormal,
 				"NoSharedDelay", ImGuiHoveredFlags_NoSharedDelay);
 
-			/*@teminus.enum ImGuiTabBarFlags
+			/*@terminus.enum ImGuiTabBarFlags
 			* field None<integer> 
 			* field Reorderable<integer> Allow manually dragging tabs to re-order them + New tabs are appended at the end of list
 			* field AutoSelectNewTabs<integer> Automatically select new tabs when they appear
@@ -772,7 +772,7 @@ namespace Teminus::LuaJIT
 				"FittingPolicyMask_", ImGuiTabBarFlags_FittingPolicyMask_,
 				"FittingPolicyDefault_", ImGuiTabBarFlags_FittingPolicyDefault_);
 
-			/*@teminus.enum ImGuiTabItemFlags
+			/*@terminus.enum ImGuiTabItemFlags
 			* field None<integer> 
 			* field UnsavedDocument<integer> Display a dot next to the title + set ImGuiTabItemFlags_NoAssumedClosure.
 			* field SetSelected<integer> Trigger flag to programmatically make the tab selected when calling BeginTabItem()
@@ -796,7 +796,7 @@ namespace Teminus::LuaJIT
 				"Trailing", ImGuiTabItemFlags_Trailing,
 				"NoAssumedClosure", ImGuiTabItemFlags_NoAssumedClosure);
 
-			/*@teminus.enum ImGuiTableBgTarget
+			/*@terminus.enum ImGuiTableBgTarget
 			* field None<integer> 
 			* field RowBg0<integer> Set row background color 0 (generally used for background, automatically set when ImGuiTableFlags_RowBg is used)
 			* field RowBg1<integer> Set row background color 1 (generally used for selection marking)
@@ -808,7 +808,7 @@ namespace Teminus::LuaJIT
 				"RowBg1", ImGuiTableBgTarget_RowBg1,
 				"CellBg", ImGuiTableBgTarget_CellBg);
 
-			/*@teminus.enum ImGuiTableRowFlags
+			/*@terminus.enum ImGuiTableRowFlags
 			* field None<integer> 
 			* field Headers<integer> Identify header row (set default background color + width of its contents accounted differently for auto column width)
 			@*/

@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace Teminus
+namespace Terminus
 {
 	using namespace al;
 	enum class LogColor;

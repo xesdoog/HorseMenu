@@ -6,7 +6,7 @@
 #include <script/scrThread.hpp>
 
 
-namespace Teminus
+namespace Terminus
 {
 	NativeHooks::Program::Program(rage::scrProgram* program) :
 	    m_Program(program),

@@ -1,7 +1,7 @@
 #pragma once
 #include "Command.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class StringCommand : public Command
 	{

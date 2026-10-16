@@ -4,7 +4,7 @@
 #include "game/rdr/Entity.hpp"
 #include "game/rdr/Vehicle.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Self
 	{

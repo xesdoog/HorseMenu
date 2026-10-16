@@ -7,7 +7,7 @@
 #include "game/rdr/Enums.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _RainbowExplosionsActive{"rainbowactive", "Rainbow Explosions Enabled", "Turn off to stop rainbow explosions", false};
 	Player _RainbowExplosionsTarget;

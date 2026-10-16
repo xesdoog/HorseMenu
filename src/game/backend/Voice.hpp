@@ -3,7 +3,7 @@
 #include "core/settings/IStateSerializer.hpp"
 #include "core/filemgr/FileMgr.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Voice : IStateSerializer
 	{

@@ -1,7 +1,7 @@
 #pragma once
 #include "core/memory/PatternHash.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class PatternCache
 	{

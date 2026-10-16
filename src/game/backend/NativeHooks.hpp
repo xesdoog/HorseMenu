@@ -10,7 +10,7 @@ namespace rage
 	class scrProgram;
 }
 
-namespace Teminus
+namespace Terminus
 {
 	class NativeHooks
 	{

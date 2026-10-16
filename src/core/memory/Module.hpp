@@ -4,7 +4,7 @@
 
 #include <winternl.h>
 
-namespace Teminus
+namespace Terminus
 {
 	class Module
 	{

@@ -19,14 +19,14 @@
 #include "game/backend/DataExtractor.hpp"
 #include "Lua/LuaMgr.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	static DWORD Main(void*)
 	{
-		const auto documents = std::filesystem::path(std::getenv("appdata")) / "Teminus";
+		const auto documents = std::filesystem::path(std::getenv("appdata")) / "Terminus";
 		FileMgr::Init(documents);
 
-		LogHelper::Init("Teminus", FileMgr::GetProjectFile("./debug.log"));
+		LogHelper::Init("Terminus", FileMgr::GetProjectFile("./debug.log"));
 
 		Data::DownloadModelsJson();
 
@@ -66,7 +66,7 @@ namespace Teminus
 		ScriptMgr::AddScript(std::make_unique<Script>(&MapEditor::Update));
 		ScriptMgr::AddScript(std::make_unique<Script>(&LuaJIT::LuaManager::Update));
 
-		Notifications::Show("Teminus", "Loaded succesfully", NotificationType::Success);
+		Notifications::Show("Terminus", "Loaded succesfully", NotificationType::Success);
 
 #ifndef NDEBUG
 		LOG(WARNING) << "Debug Build. Switch to RelWithDebInfo or Release build configurations to have a more stable experience.";
@@ -110,7 +110,7 @@ namespace Teminus
 
 BOOL WINAPI DllMain(HINSTANCE dllInstance, DWORD reason, void*)
 {
-	using namespace Teminus;
+	using namespace Terminus;
 
 	DisableThreadLibraryCalls(dllInstance);
 

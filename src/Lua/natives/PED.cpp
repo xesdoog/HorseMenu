@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Ped LUA_NATIVE_PED_CREATE_PED(Hash PedModelHashKey, float VecNewCoorsX, float VecNewCoorsY, float VecNewCoorsZ, float fPedHeading, bool RegisterAsNetworkObject, bool ScriptHostObject, bool p7, bool p8)
 	{

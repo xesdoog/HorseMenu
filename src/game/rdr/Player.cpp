@@ -15,7 +15,7 @@
 #include <player/CPlayerInfo.hpp>
 
 
-namespace Teminus
+namespace Terminus
 {
 	Player::Player(uint8_t id)
 	{

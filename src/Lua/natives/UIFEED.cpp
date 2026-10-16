@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static int LUA_NATIVE_UIFEED__UI_FEED_POST_HELP_TEXT(uintptr_t p0, uintptr_t p1, bool p2)
 	{

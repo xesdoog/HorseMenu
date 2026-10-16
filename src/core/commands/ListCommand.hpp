@@ -1,7 +1,7 @@
 #pragma once
 #include "Command.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class ListCommand : public Command
 	{

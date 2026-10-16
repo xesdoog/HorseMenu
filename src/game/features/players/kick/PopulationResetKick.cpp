@@ -8,7 +8,7 @@
 #include <network/CNetworkScSessionPlayer.hpp>
 #include <network/CNetworkScSession.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class PopulationResetKick : public PlayerCommand
 	{

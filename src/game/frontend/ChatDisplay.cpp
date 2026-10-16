@@ -7,7 +7,7 @@
 #include "core/frontend/widgets/imgui_colors.h"
 
 
-namespace Teminus
+namespace Terminus
 {
 	void ChatDisplay::ShowImpl(std::string sender, std::string message, ImColor color)
 	{

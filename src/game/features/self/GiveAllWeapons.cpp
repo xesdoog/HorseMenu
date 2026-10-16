@@ -3,7 +3,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/data/WeaponTypes.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class GiveAllWeapons : public Command
 	{

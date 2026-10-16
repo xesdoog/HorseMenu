@@ -9,7 +9,7 @@
 #include <network/rlGamerInfo.hpp>
 
 
-namespace Teminus
+namespace Terminus
 {
 	Players::Players()
 	{

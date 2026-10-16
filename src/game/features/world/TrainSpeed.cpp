@@ -4,7 +4,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/Pools.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class FastTrain : public LoopedCommand
 	{

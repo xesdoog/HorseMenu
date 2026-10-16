@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace Teminus
+namespace Terminus
 {
     class ScriptGlobal
     {

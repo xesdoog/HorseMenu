@@ -8,13 +8,13 @@
 #include <network/netServerMessages.hpp>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _UnlimitedItems{"unlimiteditems", "Unlimited Items", "Never run out of items in your inventory!"};
 	BoolCommand _LogServerMessages{"logservermessages", "Log Server Messages", "Log Server Messages"};
 }
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	bool Protections::ReceiveServerMessage(void* a1, rage::netRpcReader* reader)
 	{

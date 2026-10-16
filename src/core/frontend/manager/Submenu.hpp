@@ -1,7 +1,7 @@
 #pragma once
 #include "Category.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Submenu
 	{

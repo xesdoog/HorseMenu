@@ -2,7 +2,7 @@
 #include "game/hooks/Hooks.hpp"
 #include "game/rdr/invoker/Invoker.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Script::RegisterCompappNatives()
 	{

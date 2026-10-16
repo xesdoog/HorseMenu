@@ -2,7 +2,7 @@
 #include "MapEntity.hpp"
 #include "util/Joaat.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class MapPed final : public MapEntity
 	{

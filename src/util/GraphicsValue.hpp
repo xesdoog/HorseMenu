@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace Teminus
+namespace Terminus
 {
 	inline const char* GetGraphicsValue(int value)
 	{

@@ -157,7 +157,7 @@ class ApiModel:
 NAMESPACES: list[str] = []
 UNRESOLVED_MEMBERS: list[ApiMember] = []
 GLOBAL_TABLE: ApiLibrary = ApiLibrary(name="Global Table", kind="table") # _G / _ENV we can define loose global functions in any file. see bindings/log.cpp for an example
-ANNOTATION_RE = re.compile(r"/\*\s?@teminus\.(?P<header>.+?)[\r\n](?P<body>.*?)[\r\n]\s*@\*/", re.DOTALL,)
+ANNOTATION_RE = re.compile(r"/\*\s?@terminus\.(?P<header>.+?)[\r\n](?P<body>.*?)[\r\n]\s*@\*/", re.DOTALL,)
 HEADER_RE = re.compile(r"^(?P<kind>\w+)\s+(?P<name>\S+)(?:\s+?\:\s+(?P<baseclass>\w+))?(?:\s+(?P<description>.*))?.*$")
 PARAM_RE = re.compile(r"^(?P<name>[^<\s]+)<(?P<type>[^>]+)>(?:\s+(?P<description>.*))?$")
 LUA_REF_RE = re.compile(r"(lua://(\w+))")

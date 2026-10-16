@@ -7,7 +7,7 @@
 #include "game/backend/Self.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaNetworkLib : public LuaLibrary
 	{
@@ -16,7 +16,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.table Network
+			/*@terminus.table Network
 			* description
 				Provides general network utilities.
 

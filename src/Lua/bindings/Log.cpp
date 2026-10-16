@@ -4,7 +4,7 @@
 #include "../LuaModule.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaLogLib : public LuaLibrary
 	{
@@ -40,7 +40,7 @@ namespace Teminus::LuaJIT
 				LOG(INFO) << LuaTostr(L, args);
 			};
 
-			/*@teminus.function printf Prints a formatted message. Formatting works the same as [string.format](lua://string.format)
+			/*@terminus.function printf Prints a formatted message. Formatting works the same as [string.format](lua://string.format)
 			* param msg<string> Message.
 			* param ...<any> Optional format arguments.
 			@*/
@@ -48,7 +48,7 @@ namespace Teminus::LuaJIT
 				LOG(INFO) << LuaFmt(L, fmt, args);
 			};
 
-			/*@teminus.table log
+			/*@terminus.table log
 			* description
 				Provides functions to output text to console and log file.
 

@@ -2,7 +2,7 @@
 #include "Command.hpp"
 #include "LoopedCommand.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	Commands::Commands() :
 	    IStateSerializer("commands")

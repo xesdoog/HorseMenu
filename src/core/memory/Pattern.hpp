@@ -5,7 +5,7 @@
 #include <string_view>
 #include <vector>
 
-namespace Teminus
+namespace Terminus
 {
 	template<std::size_t N>
 	struct Signature

@@ -1,7 +1,7 @@
 #pragma once
 #include "util/Joaat.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	enum class Detection : std::uint32_t
 	{

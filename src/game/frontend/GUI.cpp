@@ -7,7 +7,7 @@
 #include "core/frontend/Notifications.hpp"
 #include "game/frontend/ChatDisplay.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	GUI::GUI() :
 	    m_IsOpen(false)

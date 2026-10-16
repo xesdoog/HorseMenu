@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_ITEMDATABASE__ITEMDATABASE_CAN_EQUIP_ITEM_ON_CATEGORY(Any p0, Any p1, Hash slotId)
 	{

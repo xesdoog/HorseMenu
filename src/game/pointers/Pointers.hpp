@@ -49,7 +49,7 @@ class CNetworkScSession;
 class CNetworkScSessionMultiplayerImpl;
 class CTrainConfigs;
 
-namespace Teminus
+namespace Terminus
 {
 	namespace Functions
 	{
@@ -249,5 +249,5 @@ namespace Teminus
 		void Restore();
 	};
 
-	inline Teminus::Pointers Pointers;
+	inline Terminus::Pointers Pointers;
 }

@@ -1,7 +1,7 @@
 #include "VtableHook.hpp"
 
 
-namespace Teminus
+namespace Terminus
 {
 	VtableHook::VtableHook(const std::string_view name, void** vft, std::size_t numFuncs) :
 	    BaseHook::BaseHook(name),

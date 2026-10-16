@@ -4,7 +4,7 @@
 #include "game/rdr/Ped.hpp"
 #include "util/Joaat.hpp"
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Hooks::Toxic::SetTreeTargetObject(void* tree, rage::netObject* object)
 	{

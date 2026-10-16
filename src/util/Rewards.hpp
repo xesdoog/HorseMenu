@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace Teminus::Rewards
+namespace Terminus::Rewards
 {
 	struct RewardInfo
 	{

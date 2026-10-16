@@ -17,7 +17,7 @@
 
 // TODO: remove this file!!!
 
-namespace Teminus::Teleport
+namespace Terminus::Teleport
 {
 	inline bool LoadGroundAtCoords(rage::fvector3& location)
 	{

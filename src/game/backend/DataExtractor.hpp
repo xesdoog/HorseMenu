@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace Teminus::Data
+namespace Terminus::Data
 {
 	std::string GetAppDataPath();
 	bool DownloadModelsJson();

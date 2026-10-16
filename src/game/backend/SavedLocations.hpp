@@ -1,7 +1,7 @@
 #pragma once
 #include "util/teleport.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	struct SavedLocation
 	{

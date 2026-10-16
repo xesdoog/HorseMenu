@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static float LUA_NATIVE_FLOCK_GET_SPECIES_TUNING_FLOAT_PARAM(Hash p0, int p1, int p2)
 	{

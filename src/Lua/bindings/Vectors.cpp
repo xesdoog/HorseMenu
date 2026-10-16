@@ -5,7 +5,7 @@
 #include <rage/vector.hpp>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaVecLib : public LuaLibrary
 	{
@@ -16,7 +16,7 @@ namespace Teminus::LuaJIT
 		{
 			// clang-format off
 
-			/* @teminus.class Vector2
+			/* @terminus.class Vector2
 			* description
 				A 2D Vector class.
 
@@ -135,7 +135,7 @@ namespace Teminus::LuaJIT
 				}
 			);
 
-			/*@teminus.class Vector3
+			/*@terminus.class Vector3
 			* description
 				A 3D vector class.
 
@@ -246,7 +246,7 @@ namespace Teminus::LuaJIT
 				}
 			);
 
-			/*@teminus.class Vector4
+			/*@terminus.class Vector4
 			* description
 				A 4D vector class.
 

@@ -11,7 +11,7 @@
 #include "Items/MapObject.hpp"
 #include "Items/MapVehicle.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class MapEditorTest : public Command
 	{
@@ -26,7 +26,7 @@ namespace Teminus::Features
 	static MapEditorTest _MapEditor{"mapeditor", "Open Map Editor (BETA)", "This is still very much a work in progress"};
 }
 
-namespace Teminus
+namespace Terminus
 {
 	MapEditor::MapEditor() :
 	    m_Menu(&m_Info)

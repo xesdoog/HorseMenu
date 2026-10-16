@@ -3,7 +3,7 @@
 #include "../wrappers/LuaImDrawList.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaImDrawListLib : public LuaLibrary
 	{
@@ -14,7 +14,7 @@ namespace Teminus::LuaJIT
 		{
 			// clang-format off
 
-			/*@teminus.enum ImDrawFlags
+			/*@terminus.enum ImDrawFlags
 			* field None<integer> 
 			* field Closed<integer> PathStroke(), AddPolyline(): specify that shape should be closed (Important: this is always == 1 for legacy reason)
 			* field RoundCornersTopLeft<integer> AddRect(), AddRectFilled(), PathRect(): enable rounding top-left corner only (when rounding > 0.0f, we default to all corners). Was 0x01.
@@ -46,7 +46,7 @@ namespace Teminus::LuaJIT
 				"RoundCornersDefault_", ImDrawFlags_RoundCornersDefault_,
 				"RoundCornersMask_", ImDrawFlags_RoundCornersMask_);
 
-			/*@teminus.class ImDrawList
+			/*@terminus.class ImDrawList
 			* description
 				provides access to ImGui primitives.
 

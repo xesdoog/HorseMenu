@@ -1,7 +1,7 @@
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class HorseGodmode : public LoopedCommand
 	{

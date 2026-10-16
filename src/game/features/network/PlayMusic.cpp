@@ -6,7 +6,7 @@
 #include "core/commands/BoolCommand.hpp"
 #include "game/backend/Players.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class PlayMusic : public Command
 	{

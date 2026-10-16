@@ -5,7 +5,7 @@
 #include "LuaMenuEvent.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaModule
 	{

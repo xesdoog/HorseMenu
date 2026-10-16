@@ -1,6 +1,6 @@
 #include "MapInfo.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	void MapInfo::Setup()
 	{

@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_ATTRIBUTE_SET_ATTRIBUTE_BASE_RANK(Ped ped, int attributeIndex, int newValue)
 	{

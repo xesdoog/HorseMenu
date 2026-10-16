@@ -4,7 +4,7 @@
 #include "game/rdr/ScriptGlobal.hpp"
 #include "util/teleport.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 
 	class TpToMoonshineShack : public Command
@@ -27,7 +27,7 @@ namespace Teminus::Features
 				}
 				if (ShackCoords != Vector3(0.f, 0.f, 0.f))
 				{
-					Teminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), ShackCoords, false);
+					Terminus::Teleport::TeleportEntity(Self::GetPed().GetHandle(), ShackCoords, false);
 				}
 				else
 				{

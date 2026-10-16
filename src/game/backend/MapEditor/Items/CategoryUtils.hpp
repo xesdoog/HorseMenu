@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Teminus
+namespace Terminus
 {
 	struct ModelDefinition
 	{
@@ -9,7 +9,7 @@ namespace Teminus
 	};
 }
 
-namespace Teminus::CategoryUtils
+namespace Terminus::CategoryUtils
 {
 	// TODO: this can probably be improved
 

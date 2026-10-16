@@ -2,7 +2,7 @@
 #include "util/Joaat.hpp"
 #include "core/settings/IStateSerializer.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Command;
 	class LoopedCommand;

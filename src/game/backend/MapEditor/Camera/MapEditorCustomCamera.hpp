@@ -1,7 +1,7 @@
 #pragma once
 #include "MapEditorCamera.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class MapEditorCustomCamera final : public MapEditorCamera
 	{

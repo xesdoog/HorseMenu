@@ -5,7 +5,7 @@
 #include "../natives/NativeBinding.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaNativesLib : public LuaLibrary
 	{

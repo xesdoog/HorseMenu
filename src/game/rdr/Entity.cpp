@@ -13,7 +13,7 @@
 
 
 
-namespace Teminus
+namespace Terminus
 {
 	void Entity::PopulatePointer()
 	{

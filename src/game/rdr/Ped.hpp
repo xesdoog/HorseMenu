@@ -3,7 +3,7 @@
 #include "Enums.hpp"
 #include "Vehicle.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class Ped : public Entity
 	{

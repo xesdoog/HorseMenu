@@ -8,7 +8,7 @@
 #include "util/teleport.hpp"
 #include "game/backend/ScriptMgr.hpp"
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	auto fastTrain = false;
 	void RenderTrainsMenu()

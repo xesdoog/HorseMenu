@@ -2,7 +2,7 @@
 #include "game/backend/Self.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	class FlamingHooves : public LoopedCommand
 	{

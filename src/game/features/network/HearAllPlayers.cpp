@@ -4,7 +4,7 @@
 #include "game/rdr/Natives.hpp"
 #include "game/rdr/ScriptGlobal.hpp"
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	void _0x58125B691F6827D5(rage::scrNativeCallContext* ctx);
 	void _0x08797A8C03868CB8(rage::scrNativeCallContext* ctx);

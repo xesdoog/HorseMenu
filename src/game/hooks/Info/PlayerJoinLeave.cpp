@@ -12,11 +12,11 @@
 #include <player/CPlayerInfo.hpp>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _DetectSpoofedNames{"detectspoofednames", "Detect Spoofed Names", "Detects If a Player is Possibly Spoofing Their Name"};
 }
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Info::PlayerHasJoined(CNetGamePlayer* player)
 	{

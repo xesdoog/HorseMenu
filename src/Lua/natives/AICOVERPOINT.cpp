@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static Entity LUA_NATIVE_AICOVERPOINT__0x53E4D0C079CA6855(ScrHandle handle)
 	{

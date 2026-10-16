@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static void LUA_NATIVE_SCRIPTS__SET_PLAYER_BIT_AT_INDEX(uintptr_t value, int bitIndex)
 	{

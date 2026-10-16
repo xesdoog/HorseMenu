@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	void RenderTrainsMenu();
 }

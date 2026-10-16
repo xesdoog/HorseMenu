@@ -11,7 +11,7 @@
 #include "game/rdr/Natives.hpp"
 
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	static rage::fvector3 GetForwardOffset(float headingDegrees, float distance)
 	{

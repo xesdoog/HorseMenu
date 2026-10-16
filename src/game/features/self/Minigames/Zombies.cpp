@@ -10,7 +10,7 @@
 #include <random>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 
 	static BoolCommand _ZombiesLogging{"zombieslogging", "Zombies Logging", "Zombies Logging"};

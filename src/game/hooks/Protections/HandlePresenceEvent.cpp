@@ -9,13 +9,13 @@
 #include <nlohmann/json.hpp>
 
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogPresenceEvents{"logpresenceevents", "Log Presence Events", "Logs Presence Events"};
 }
 
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	void Protections::HandlePresenceEvent(int localGamerIndex, __int64 data, __int64 source)
 	{

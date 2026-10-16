@@ -10,7 +10,7 @@
 
 #include <unordered_set>
 
-namespace Teminus
+namespace Terminus
 {
 	class MapEditor
 	{

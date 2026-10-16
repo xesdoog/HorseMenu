@@ -3,7 +3,7 @@
 #include "LuaModule.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaLibrary
 	{

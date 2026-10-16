@@ -4,7 +4,7 @@
 
 #include <network/sync/player/CPlayerHealthData.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	class HideGod : public BoolCommand
 	{

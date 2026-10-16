@@ -6,7 +6,7 @@
 #include <network/netPlayerMgrBase.hpp>
 #include <network/rlGamerInfo.hpp>
 
-namespace Teminus
+namespace Terminus
 {
 	Packet::Packet() :
 	    m_Buffer(m_Data, sizeof(m_Data))

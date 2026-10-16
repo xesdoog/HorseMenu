@@ -1,7 +1,7 @@
 #include "NativeBinding.hpp"
 #include "game/rdr/Natives.hpp"
 
-namespace Teminus::LuaJIT::Natives
+namespace Terminus::LuaJIT::Natives
 {
 	static bool LUA_NATIVE_BOUNTY__BOUNTY_REQUEST_PAY_OFF_BOUNTY(uintptr_t outRpcGuid)
 	{

@@ -10,7 +10,7 @@
 #include <script/scrVector.hpp>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaScriptLocalLib : public LuaLibrary
 	{
@@ -19,7 +19,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.class ScriptLocal
+			/*@terminus.class ScriptLocal
 			* description
 				Reads / writes script locals
 

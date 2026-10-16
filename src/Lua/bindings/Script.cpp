@@ -5,7 +5,7 @@
 #include "game/rdr/Scripts.hpp"
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaScrLib : public LuaLibrary
 	{
@@ -24,7 +24,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.table Script
+			/*@terminus.table Script
 
 			* function RunInFiber Executes a callback in a fiber context
 			* param callback<function> The callback to execute

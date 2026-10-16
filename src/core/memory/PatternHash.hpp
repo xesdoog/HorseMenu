@@ -1,7 +1,7 @@
 #pragma once
 
 // TODO: use an actual hash function
-namespace Teminus
+namespace Terminus
 {
 	class PatternHash
 	{

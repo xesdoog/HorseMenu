@@ -1,7 +1,7 @@
 #pragma once
 #include "core/frontend/manager/UIManager.hpp"
 
-namespace Teminus::Submenus
+namespace Terminus::Submenus
 {
 	class Network : public Submenu
 	{

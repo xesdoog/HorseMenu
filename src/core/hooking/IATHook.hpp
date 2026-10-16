@@ -3,7 +3,7 @@
 #include "memory/Module.hpp"
 #include "memory/PointerCalculator.hpp"
 
-namespace Teminus
+namespace Terminus
 {
 	template<typename T = int*>
 	class IATHook : public BaseHook

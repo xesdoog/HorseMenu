@@ -9,7 +9,7 @@
 #include <script/globals/PlayerStatusSyncData.hpp>
 
 
-namespace Teminus::LuaJIT
+namespace Terminus::LuaJIT
 {
 	class LuaEntitiyLib : public LuaLibrary
 	{
@@ -18,7 +18,7 @@ namespace Teminus::LuaJIT
 	public:
 		void Register(sol::state& L) override
 		{
-			/*@teminus.class Entity
+			/*@terminus.class Entity
 			* description
 				A class representing a game entity.
 
@@ -179,7 +179,7 @@ namespace Teminus::LuaJIT
 				return self.SetRotation(rot, order.value_or(2));
 			};
 
-			/*@teminus.class Vehicle : Entity
+			/*@terminus.class Vehicle : Entity
 			* description
 				A class representing a game vehicle.
 
@@ -205,7 +205,7 @@ namespace Teminus::LuaJIT
 				"GetPedInHarness",    &Vehicle::GetPedInHarness
 			);
 
-			/*@teminus.class Ped : Entity
+			/*@terminus.class Ped : Entity
 			* description
 				A class representing a game ped.
 
@@ -264,7 +264,7 @@ namespace Teminus::LuaJIT
 				// clag-format on
 			);
 
-			/*@teminus.class Player
+			/*@terminus.class Player
 			* description
 				A class representing a network player.
 

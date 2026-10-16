@@ -10,7 +10,7 @@
 #include <array>
 #include <rage/datBitBuffer.hpp>
 
-namespace Teminus::Features
+namespace Terminus::Features
 {
 	BoolCommand _LogForwardPackets("logforwardpackets", "Log Forward Packets", "Log Forward Packets");
 	BoolCommand _LogTerminusPackets("logterminuspackets", "Log Terminus Packets", "Log Terminus Packets");
@@ -19,7 +19,7 @@ namespace Teminus::Features
 	BoolCommand _LogEndpointUpdates("logendpointupdates", "Log Endpoint Updates", "Log net connection endpoint address changes");
 }
 
-namespace Teminus::Hooks
+namespace Terminus::Hooks
 {
 	uint32_t GetFlags(void* buffer, int sz)
 	{
@@ -100,7 +100,7 @@ namespace Teminus::Hooks
 
 			Player pl = nullptr;
 
-			for (auto& [_, player] : Teminus::Players::GetPlayers())
+			for (auto& [_, player] : Terminus::Players::GetPlayers())
 				if (player.GetGamerInfo()->m_PeerId == *(uint64_t*)peerID)
 					pl = player;
 

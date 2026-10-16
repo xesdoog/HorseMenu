@@ -7,7 +7,7 @@
 
 // TODO: serialization isn't stable
 
-namespace Teminus
+namespace Terminus
 {
 	HotkeySystem::HotkeySystem() : 
 		IStateSerializer("hotkeys")

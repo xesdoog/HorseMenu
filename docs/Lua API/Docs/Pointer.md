@@ -455,7 +455,7 @@ function Pointer:WriteFloat(v) end
 function Pointer:AddBytePatch(byteArray) end
 ```
 
-Adds a `BytePatch` object, enables, and returns it.
+Adds a `BytePatch` object and returns it.
 
 ### Parameters
 

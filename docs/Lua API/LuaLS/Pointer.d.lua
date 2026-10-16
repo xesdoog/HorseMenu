@@ -115,7 +115,7 @@ function Pointer:WriteUint64(u64) end
 ---@param v number 
 function Pointer:WriteFloat(v) end
 
--- Adds a `BytePatch` object, enables, and returns it.
+-- Adds a `BytePatch` object and returns it.
 ---@param byteArray { [integer]: integer } An array of bytes. Example: `{ 0x90, 0x90, 0x90 }`. This **MUST** be a contiguous int array, otherwise the method will thorw.
 ---@return BytePatch? patch A `BytePatch` object or nil
 function Pointer:AddBytePatch(byteArray) end

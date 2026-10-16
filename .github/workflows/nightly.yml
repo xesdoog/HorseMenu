@@ -50,7 +50,7 @@ jobs:
           arch: amd64
 
       - name: Generate CMake Files
-        run: cmake -D CMAKE_BUILD_TYPE=Release -D OPTIMIZE=YES -S. -Bbuild -G Ninja
+        run: cmake -D CMAKE_BUILD_TYPE=Release -D OPTIMIZE=YES -D CMAKE_POLICY_VERSION_MINIMUM=3.5 -S. -Bbuild -G Ninja
 
       - name: Build x64 Release DLL
         run: cmake --build ./build --config RelWithDebInfo --target Terminus

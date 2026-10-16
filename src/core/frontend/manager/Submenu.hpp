@@ -22,6 +22,11 @@ namespace Terminus
 		void SetActiveCategory(const std::shared_ptr<Category> category);
 		void Draw();
 
+		const size_t GetCategoryCount() const
+		{
+			return m_Categories.size();
+		}
+
 	private:
 		std::shared_ptr<Category> m_ActiveCategory;
 

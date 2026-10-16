@@ -20,7 +20,7 @@ namespace Terminus::Submenus
 			auto& modules = LuaJIT::LuaManager::GetModules();
 
 			ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 0.f);
-			ImGui::BeginChild("##scriptLst", ImVec2(140.f, 0.f), ImGuiChildFlags_ResizeX, ImGuiWindowFlags_NoBackground);
+			ImGui::BeginChild("##scriptLst", ImVec2(100.f, 0.f), ImGuiChildFlags_ResizeX, ImGuiWindowFlags_NoBackground);
 			for (auto& m : LuaJIT::LuaManager::GetModules())
 			{
 				if (m->GetLoadState() != LuaJIT::LuaModule::RUNNING)

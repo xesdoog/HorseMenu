@@ -10,7 +10,7 @@ namespace Terminus::LuaJIT
 	class LuaModule
 	{
 	public:
-		LuaModule(fs::path root);
+		LuaModule(const fs::path& root);
 		~LuaModule();
 
 		enum eLuaLoadState : uint8_t
@@ -23,6 +23,24 @@ namespace Terminus::LuaJIT
 			WANTS_DISABLE, // WANTS_UNLOAD + move to the disabled folder
 		};
 
+	private:
+		struct LuaTask
+		{
+			sol::thread m_Thread{};
+			sol::coroutine m_Coroutine{};
+			std::chrono::steady_clock::time_point m_NextRun{};
+		};
+
+		struct LuaModuleMetadata
+		{
+			std::string m_Name{};
+			std::string m_Description{};
+
+			std::string m_Author  = "Unknown";
+			std::string m_Version = "1.0.0.0";
+		};
+
+	public:
 		bool Load();
 
 		void Reload();
@@ -31,7 +49,6 @@ namespace Terminus::LuaJIT
 		void Suspend(std::optional<std::string> errorMsg = std::nullopt);
 		void Tick();
 		void OnFileEdit();
-
 		void RegisterTask(sol::protected_function func, std::chrono::milliseconds delayMs = 0ms);
 		void SandboxAPI(const fs::path& pluginsPath);
 
@@ -50,6 +67,8 @@ namespace Terminus::LuaJIT
 
 		fs::path GetRoot() const noexcept;
 
+		LuaModuleMetadata GetMetadata();
+
 		sol::protected_function m_GuiCallback{};
 
 		bool m_UnloadFromCode{false}; // just for UnloadThisModule
@@ -59,14 +78,7 @@ namespace Terminus::LuaJIT
 		std::unordered_map<eMenuEvent, std::vector<sol::protected_function>> m_MenuEventCallbacks{};
 
 	private:
-		struct LuaTask
-		{
-			sol::thread m_Thread{};
-			sol::coroutine m_Coroutine{};
-			std::chrono::steady_clock::time_point m_NextRun{};
-		};
-
-		std::string m_Name{};
+		LuaModuleMetadata m_Metadata;
 		std::string m_LastError{};
 
 		fs::path m_Root{};
@@ -91,6 +103,8 @@ namespace Terminus::LuaJIT
 		void SetRequireFolder(const fs::path& pluginsPath);
 		void SandboxOsLib();
 		void SandboxIoLib();
+
+		static LuaModuleMetadata GetMetadata(const fs::path& root);
 	};
 
 	inline LuaModule* GetModuleFromLuaState(lua_State* L, std::optional<std::string_view> errorMsg = std::nullopt)

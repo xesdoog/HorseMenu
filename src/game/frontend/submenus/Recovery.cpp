@@ -10,11 +10,16 @@
 #include "game/rdr/ScriptFunction.hpp"
 #include "game/rdr/Scripts.hpp"
 #include "util/Rewards.hpp"
+#include "core/memory/BytePatch.hpp"
+#include "game/pointers/Pointers.hpp"
+#include "core/frontend/widgets/toggle/imgui_toggle.hpp"
 
 
 namespace Terminus::Submenus
 {
 
+	static std::unique_ptr<BytePatch> infiniteItemsPatch{nullptr};
+	static bool infiniteItems;
 	static bool loopReward;
 	static Rewards::eRewardType selectedReward{Rewards::eRewardType::HEIRLOOMS};
 	static std::string selectedHerb{"HERB_LOOT_ALASKAN_GINSENG"};
@@ -92,11 +97,11 @@ namespace Terminus::Submenus
 	    Submenu::Submenu("Recovery")
 	{
 		auto recovery               = std::make_shared<Category>("Recovery");
-		auto storyMode				= std::make_shared<Category>("Story");
+		auto storyMode              = std::make_shared<Category>("Story");
 		auto spawnCollectiblesGroup = std::make_shared<Group>("Spawn Collectibles");
-		auto spawnHerbsGroup		= std::make_shared<Group>("Spawn Herbs");
-		auto recoveryOptions = std::make_shared<Group>("Options");
-		auto storyRecoveryOptions = std::make_shared<Group>("Story Mode Options");
+		auto spawnHerbsGroup        = std::make_shared<Group>("Spawn Herbs");
+		auto recoveryOptions        = std::make_shared<Group>("Options");
+		auto storyRecoveryOptions   = std::make_shared<Group>("Story Mode Options");
 
 		static auto recoveryCommand = Commands::GetCommand<BoolCommand>("recoveryenabled"_J);
 
@@ -122,15 +127,16 @@ namespace Terminus::Submenus
 				ImGui::EndCombo();
 			}
 
+			ImGui::BeginDisabled(loopReward);
 			if (ImGui::Button("Add Selected"))
 			{
 				FiberPool::Push([] {
 					Rewards::GiveRequestedRewards({selectedReward});
 				});
 			}
-			ImGui::SameLine();
+			ImGui::EndDisabled();
 
-			// what in the fuck is this?
+			ImGui::SameLine();
 
 			static float rewardTimer          = 0.0f;
 			static const float rewardInterval = 0.2f;
@@ -179,7 +185,32 @@ namespace Terminus::Submenus
 			}
 		}));
 
-		recoveryOptions->AddItem(std::make_shared<BoolCommandItem>("unlimiteditems"_J)); // TODO
+		// recoveryOptions->AddItem(std::make_shared<BoolCommandItem>("unlimiteditems"_J)); // TODO
+		recoveryOptions->AddItem(std::make_shared<ImGuiItem>([] {
+			if (ImGui::Toggle("Infinite Items", &infiniteItems))
+			{
+				if (!Pointers.InfiniteItems)
+				{
+					infiniteItems = false;
+					return;
+				}
+
+				if (infiniteItems)
+				{
+					if (infiniteItemsPatch)
+						infiniteItemsPatch->Apply();
+					else
+					{
+						infiniteItemsPatch = std::make_unique<BytePatch>(Pointers.InfiniteItems, std::to_array<uint8_t>({0x90, 0x90, 0x90}));
+						infiniteItemsPatch->Apply();
+					}
+				}
+				else if (infiniteItemsPatch)
+					infiniteItemsPatch->Restore();
+			}
+			if (ImGui::IsItemHovered())
+				ImGui::SetTooltip("Items in your satchel become infinite, including treasure maps.\n\n[Note]:This toggle will not be saved because it can break missions.");
+		}));
 
 		storyRecoveryOptions->AddItem(std::make_shared<CommandItem>("givestorycash"_J));
 		storyRecoveryOptions->AddItem(std::make_shared<CommandItem>("giveallweapons"_J));

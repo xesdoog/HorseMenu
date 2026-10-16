@@ -4,6 +4,9 @@ namespace Terminus
 {
 	void Submenu::SetActiveCategory(const std::shared_ptr<Category> category)
 	{
+		if (m_ActiveCategory == category)
+			return;
+
 		m_ActiveCategory = category;
 	}
 

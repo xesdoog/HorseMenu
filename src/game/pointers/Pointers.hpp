@@ -240,6 +240,7 @@ namespace Terminus
 
 		//Patches
 		bool* ExplosionBypass;
+		void* InfiniteItems;
 	};
 
 	struct Pointers : PointerData

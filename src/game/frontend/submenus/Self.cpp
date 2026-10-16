@@ -198,7 +198,7 @@ namespace Terminus::Submenus
 
 		aimbotGroup->AddItem(std::make_shared<BoolCommandItem>("aimbot"_J));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotsmoothing"_J)));
-		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotnpc"_J)));
+		//aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotnpc"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotenemies"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotplayers"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotanimals"_J)));

@@ -660,14 +660,13 @@ if __name__ == "__main__":
 
 	if not md_root.exists() or not md_root.is_dir():
 		try:
-			os.mkdir(md_root)
+			md_root.mkdir(parents=True, exist_ok=True)
 		except Exception as e:
 			print(f"Failed to create markdown docs folder: {e}")
 			exit(1)
 
 	clear_dir(luals_root, ignoreNames=("Natives"))
 	clear_dir(md_root)
-
 
 	for p in headers.iterdir():
 		if not p.is_file() or p.suffix != ".cpp":
@@ -683,7 +682,6 @@ if __name__ == "__main__":
 		api = parse_source(p.read_text())
 		gen_luals_stubs(api, lua_out)
 		gen_markdown_docs(api, md_out)
-
 
 	_G = ApiModel()
 	_G.libraries.append(GLOBAL_TABLE)

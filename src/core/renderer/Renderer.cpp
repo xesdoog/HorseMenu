@@ -87,7 +87,7 @@ namespace Terminus
 			return false;
 		}
 
-		if (const auto hr = m_Device->CreateFence(0, D3D12_FENCE_FLAG_NONE, __uuidof(ID3D12Fence), (void**)m_Fence.GetAddressOf()); FAILED(hr))
+		if (const auto hr = m_Device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(m_Fence.GetAddressOf())); FAILED(hr))
 		{
 			LOG(WARNING) << "Failed to create Fence with result: [" << hr << "]";
 			return false;
@@ -102,8 +102,8 @@ namespace Terminus
 		m_FrameContext.resize(m_SwapChainDesc.BufferCount);
 
 		D3D12_DESCRIPTOR_HEAP_DESC DescriptorDesc{
-			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 
-			m_SwapChainDesc.BufferCount, 
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
+			m_SwapChainDesc.BufferCount,
 			D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE
 		};
 
@@ -168,7 +168,7 @@ namespace Terminus
 		{
 			ComPtr<ID3D12Resource> BackBuffer{};
 			m_FrameContext[i].Descriptor = RTVHandle;
-			m_SwapChain->GetBuffer(i, __uuidof(ID3D12Resource), (void**)BackBuffer.GetAddressOf());
+			m_SwapChain->GetBuffer(i, IID_PPV_ARGS(BackBuffer.GetAddressOf()));
 			m_Device->CreateRenderTargetView(BackBuffer.Get(), nullptr, RTVHandle);
 			m_FrameContext[i].Resource = BackBuffer.Get();
 			RTVHandle.ptr += RTVDescriptorSize;

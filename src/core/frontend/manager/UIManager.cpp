@@ -36,16 +36,22 @@ namespace Terminus
 		pos.y -= 28;
 		ImGui::SetCursorPos(ImVec2(pos.x + 130, pos.y));
 
-		ImGui::PushStyleVar(ImGuiStyleVar_ScrollbarSize, 5.5f);
-		if (ImGui::BeginChild("##minisubmenus", ImVec2(0, 60), ImGuiChildFlags_Borders, ImGuiWindowFlags_AlwaysHorizontalScrollbar))
+		if (m_ActiveSubmenu)
 		{
-			if (m_ActiveSubmenu)
+			if (m_ActiveSubmenu->GetCategoryCount() == 1)
 				m_ActiveSubmenu->DrawCategorySelectors();
+			else
+			{
+				ImGui::PushStyleVar(ImGuiStyleVar_ScrollbarSize, 5.5f);
+				ImGui::BeginChild("##minisubmenus", ImVec2(0, 60), ImGuiChildFlags_Borders, ImGuiWindowFlags_AlwaysHorizontalScrollbar);
+				m_ActiveSubmenu->DrawCategorySelectors();
+				ImGui::EndChild();
+				ImGui::PopStyleVar();
+				ImGui::SetCursorPosY(pos.y + 70);
+			}
 		}
-		ImGui::EndChild();
-		ImGui::PopStyleVar();
 
-		ImGui::SetCursorPos(ImVec2(pos.x + 130, pos.y + 70));
+		ImGui::SetCursorPosX(pos.x + 130);
 
 		if (ImGui::BeginChild("##options", ImVec2(0, 0), true))
 		{

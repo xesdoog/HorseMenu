@@ -6,6 +6,7 @@
 #include "game/backend/Self.hpp"
 #include "game/features/Features.hpp"
 #include "game/frontend/items/Items.hpp"
+#include "game/frontend/Menu.hpp"
 #include "Lua/LuaMgr.hpp"
 
 
@@ -17,6 +18,8 @@ namespace
 	static std::shared_ptr<LuaModule> dragSourcePtr{nullptr};
 	static std::string selectedDisabledPath{};
 	static std::string dragSourceStr{};
+
+	static bool shouldDrawProperties = false;
 
 	static void DrawLuaScripts()
 	{
@@ -86,10 +89,54 @@ namespace
 				if (ImGui::MenuItem("Disable"))
 					m->Disable();
 
+				if (ImGui::MenuItem("Properties"))
+					shouldDrawProperties = true;
+
 				ImGui::EndPopup();
 			}
 		}
 		ImGui::EndChild();
+
+		if (shouldDrawProperties && selectedModule)
+		{
+			shouldDrawProperties = false;
+			ImGui::OpenPopup(selectedModule->GetName().data());
+		}
+
+		bool isOpen = true;
+		ImGui::SetNextWindowSizeConstraints(ImVec2(200, 100), ImVec2(400, 800));
+		if (selectedModule && ImGui::BeginPopupModal(selectedModule->GetName().data(), &isOpen, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize))
+		{
+			if (ImGui::BeginTable("##scriptInfo", 2, ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersInner | ImGuiTableFlags_RowBg))
+			{
+				auto meta = selectedModule->GetMetadata();
+				ImGui::TableSetupColumn("#k", ImGuiTableColumnFlags_WidthFixed);
+				ImGui::TableSetupColumn("#v", ImGuiTableColumnFlags_WidthStretch);
+				ImGui::PushFont(Terminus::Menu::Font::g_OptionsFont);
+
+				ImGui::TableNextRow();
+				ImGui::TableSetColumnIndex(0);
+				ImGui::Text("Author");
+				ImGui::TableSetColumnIndex(1);
+				ImGui::TextWrapped(meta.m_Author.c_str());
+
+				ImGui::TableNextRow();
+				ImGui::TableSetColumnIndex(0);
+				ImGui::Text("Version");
+				ImGui::TableSetColumnIndex(1);
+				ImGui::TextWrapped(meta.m_Version.c_str());
+
+				ImGui::TableNextRow();
+				ImGui::TableSetColumnIndex(0);
+				ImGui::Text("Description");
+				ImGui::TableSetColumnIndex(1);
+				ImGui::TextWrapped(meta.m_Description.c_str());
+
+				ImGui::PopFont();
+				ImGui::EndTable();
+			}
+			ImGui::EndPopup();
+		}
 
 		if (ImGui::BeginDragDropTarget())
 		{

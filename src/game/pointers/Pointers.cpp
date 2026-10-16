@@ -577,6 +577,11 @@ namespace Terminus
 			RegisterCompappNatives = ptr.Sub(0x27).As<int*>();
 		});
 
+		constexpr auto infiniteItems = Pattern<"48 8B 07 49 2B D4 4D 8B C6 48 8B CF">("Infinite Items");
+		scanner.Add(infiniteItems, [this](PointerCalculator ptr) {
+			InfiniteItems = ptr.Add(0x3).As<void*>();
+		});
+
 		if (!scanner.Scan())
 		{
 			LOG(FATAL) << "Some game patterns could not be found, unloading.";

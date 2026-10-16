@@ -20,15 +20,14 @@ namespace Terminus::Features
 	static FloatCommand _AimbotSmoothingSpd{"aimbotsmoothingspd", "Smoothing ", "Smoothing Speed", 0.0f, 10.0f, 0.0f};
 
 	static BoolCommand _AimbotSmoothing{"aimbotsmoothing", "Smoothing", "Enable Aimbot Smoothing"};
-	static BoolCommand _AimbotNPC{"aimbotnpc", "NPC", "Aim At Human NPCs"};
+	//static BoolCommand _AimbotNPC{"aimbotnpc", "NPC", "Aim At Human NPCs"};
 	static BoolCommand _AimbotEnemies{"aimbotenemies", "Enemies", "Aim At Enemies"};
 	static BoolCommand _AimbotPlayers{"aimbotplayers", "Players", "Aim At Players"};
 	static BoolCommand _AimbotAnimals{"aimbotanimals", "Animals", "Aim At Animals"};
 
-	static float WrapDegrees(float angle)
+	static const bool IsZeroVector(const Vector3& vec)
 	{
-		angle = std::remainder(angle, 360.0f);
-		return angle;
+		return vec.x == 0.f && vec.y == 0.f && vec.z == 0.f;
 	}
 
 	class Aimbot : public LoopedCommand
@@ -40,29 +39,20 @@ namespace Terminus::Features
 		static inline Vector3 targetPos;
 		static inline Ped target{0};
 
-		static void Reset()
+		static void AcquireTarget()
 		{
-			target      = Ped(0);
-			initialized = false;
-		}
+			int playerHandle = Self::GetPed().GetHandle();
+			int playerIndex  = Self::GetPlayer().GetId();
 
-		virtual void OnTick() override
-		{
-			auto playerHandle = Self::GetPed().GetHandle();
-			auto playerIndex  = Self::GetPlayer().GetId();
 			if (!GetPedPool() || !WEAPON::IS_PED_ARMED(playerHandle, 4) || !PLAYER::IS_PLAYER_FREE_AIMING(playerIndex))
 			{
 				Reset();
 				return;
 			}
 
-			auto playerPos = Self::GetPed().GetPosition();
-			auto fov       = _AimbotFOV.GetState();
-			auto distance  = _AimbotDistance.GetState();
-
-			Vector3 camPos      = CAM::GET_GAMEPLAY_CAM_COORD();
-			Vector3 camRot      = CAM::GET_GAMEPLAY_CAM_ROT(0);
-			Vector3 camDir      = Math::RotationToDirection(camRot);
+			auto playerPos      = Self::GetPed().GetPosition();
+			float fov           = _AimbotFOV.GetState();
+			float distance      = _AimbotDistance.GetState();
 			const float fovRads = fov * std::numbers::pi_v<float> / 180.0f;
 			const float minDot  = std::cos(fovRads * 0.5f);
 
@@ -79,22 +69,25 @@ namespace Terminus::Features
 				if (BUILTIN::VDIST2(playerPos.x, playerPos.y, playerPos.z, pedCoords.x, pedCoords.y, pedCoords.z) > (distance * distance))
 					continue;
 
-				bool isEnemy = ped.IsEnemy();
-				if (isEnemy && !_AimbotEnemies.GetState())
-					continue;
-
-				bool isPlayer = ped.IsPlayer();
-				if (isPlayer && !_AimbotPlayers.GetState())
-					continue;
-
 				bool isAnimal = ped.IsAnimal();
+				bool isEnemy  = ped.IsEnemy();
+				bool isPlayer = ped.IsPlayer();
+				/*bool isNPC    = (!isAnimal && !isPlayer && !isEnemy);
+				if (isNPC && !_AimbotNPC.GetState())
+					continue;*/
+
 				if (isAnimal && !_AimbotAnimals.GetState())
 					continue;
 
-				bool isNPC = (!isAnimal && !isPlayer && !isEnemy);
-				if (isNPC && !_AimbotNPC.GetState())
+				if (isEnemy && !_AimbotEnemies.GetState())
 					continue;
 
+				if (isPlayer && _AimbotPlayers.GetState())
+					continue;
+
+				Vector3 camPos   = CAM::GET_GAMEPLAY_CAM_COORD();
+				Vector3 camRot   = CAM::GET_GAMEPLAY_CAM_ROT(0);
+				Vector3 camDir   = Math::RotationToDirection(camRot);
 				Vector3 toTarget = ped.GetBonePosition(21030) - camPos;
 				float magnitude  = std::hypot(toTarget.x, toTarget.y, toTarget.z);
 				if (magnitude < 0.001f)
@@ -107,100 +100,110 @@ namespace Terminus::Features
 
 				target = ped;
 			}
+		}
 
+		static void Reset()
+		{
+			target      = Ped(0);
+			targetPos   = {};
+			initialized = false;
+		}
+
+		virtual void OnTick() override
+		{
 			if (!target.IsValid() || target.IsDead())
+			{
+				AcquireTarget();
+				return;
+			}
+
+			if (!PLAYER::IS_PLAYER_FREE_AIMING(Self::GetPlayer().GetId()))
+			{
+				Reset();
+				return;	
+			}
+
+			targetPos = target.GetBonePosition(21030); // TODO: add bone list
+			if (IsZeroVector(targetPos))
 			{
 				Reset();
 				return;
 			}
 
-			if (PLAYER::IS_PLAYER_FREE_AIMING(playerIndex))
+			Vector3 targetDir = targetPos - CAM::GET_GAMEPLAY_CAM_COORD();
+			float magnitude   = std::hypot(targetDir.x, targetDir.y, targetDir.z);
+			if (magnitude < 0.001f)
 			{
-				targetPos = target.GetBonePosition(21030); // TODO: add bone list
+				Reset();
+				return;
+			}
 
-				Vector3 camTarget;
-				Vector3 targetDir = targetPos - camPos;
-				float magnitude   = std::hypot(targetDir.x, targetDir.y, targetDir.z);
+			targetDir.x /= magnitude;
+			targetDir.y /= magnitude;
+			targetDir.z /= magnitude;
+
+			Vector3 camTarget;
+
+			if (_AimbotSmoothing.GetState())
+			{
+				if (!initialized)
+				{
+					smoothing   = Math::RotationToDirection(CAM::GET_GAMEPLAY_CAM_ROT(0));
+					initialized = true;
+				}
+
+				float alpha = std::clamp(_AimbotSmoothingSpd.GetState() / 10.f, 0.001f, 1.0f);
+
+				smoothing.x += (targetDir.x - smoothing.x) * alpha;
+				smoothing.y += (targetDir.y - smoothing.y) * alpha;
+				smoothing.z += (targetDir.z - smoothing.z) * alpha;
+
+				magnitude = std::hypot(smoothing.x, smoothing.y, smoothing.z);
 				if (magnitude < 0.001f)
 				{
 					Reset();
 					return;
 				}
 
-				targetDir.x /= magnitude;
-				targetDir.y /= magnitude;
-				targetDir.z /= magnitude;
+				smoothing.x /= magnitude;
+				smoothing.y /= magnitude;
+				smoothing.z /= magnitude;
 
-				if (_AimbotSmoothing.GetState())
-				{
-					if (!initialized)
-					{
-						smoothing   = camDir;
-						initialized = true;
-					}
-
-					float alpha = std::clamp(_AimbotSmoothingSpd.GetState() / 10.f, 0.001f, 1.0f);
-
-					smoothing.x += (targetDir.x - smoothing.x) * alpha;
-					smoothing.y += (targetDir.y - smoothing.y) * alpha;
-					smoothing.z += (targetDir.z - smoothing.z) * alpha;
-
-					magnitude = std::hypot(smoothing.x, smoothing.y, smoothing.z);
-					if (magnitude < 0.001f)
-					{
-						Reset();
-						return;
-					}
-
-					smoothing.x /= magnitude;
-					smoothing.y /= magnitude;
-					smoothing.z /= magnitude;
-
-					camTarget = smoothing;
-				}
-				else
-				{
-					camTarget = targetDir;
-				}
-
-				if (targetPos.x == 0.0f && targetPos.y == 0.0f && targetPos.z == 0.0f)
-				{
-					Reset();
-					return;
-				}
-
-				constexpr float RADPI = 180.0f / std::numbers::pi;
-				float camMagnitude    = std::hypot(camTarget.x, camTarget.y, camTarget.z);
-				float camHeading      = atan2f(camTarget.x, camTarget.y) * RADPI;
-				float camPitch        = asinf(camTarget.z / camMagnitude) * RADPI;
-				float selfHeading     = ENTITY::GET_ENTITY_HEADING(playerHandle);
-				float selfPitch       = ENTITY::GET_ENTITY_PITCH(playerHandle);
-
-				if (camHeading >= 0.0f && camHeading <= 180.0f)
-				{
-					camHeading = 360.0f - camHeading;
-				}
-				else if (camHeading <= -0.0f && camHeading >= -180.0f)
-				{
-					camHeading = -camHeading;
-				}
-
-				float headingDelta = camHeading - selfHeading;
-				float pitchDelta   = camPitch - selfPitch;
-				if (CAM::IS_FIRST_PERSON_CAMERA_ACTIVE(0, 0, 0))
-				{
-					CAM::SET_FIRST_PERSON_AIM_CAM_RELATIVE_HEADING_LIMITS_THIS_UPDATE(headingDelta, headingDelta);
-					CAM::SET_FIRST_PERSON_AIM_CAM_RELATIVE_PITCH_LIMITS_THIS_UPDATE(pitchDelta, pitchDelta);
-				}
-				else
-				{
-					CAM::SET_GAMEPLAY_CAM_RELATIVE_HEADING(headingDelta, 1.0f);
-					CAM::SET_GAMEPLAY_CAM_RELATIVE_PITCH(pitchDelta, 1.0f);
-				}
+				camTarget = smoothing;
 			}
 			else
 			{
-				Reset();
+				camTarget = targetDir;
+			}
+
+			int playerHandle      = Self::GetPed().GetHandle();
+			constexpr float RADPI = 180.0f / std::numbers::pi;
+			float camMagnitude    = std::hypot(camTarget.x, camTarget.y, camTarget.z);
+			float camHeading      = atan2f(camTarget.x, camTarget.y) * RADPI;
+			float camPitch        = asinf(camTarget.z / camMagnitude) * RADPI;
+			float selfHeading     = ENTITY::GET_ENTITY_HEADING(playerHandle);
+			float selfPitch       = ENTITY::GET_ENTITY_PITCH(playerHandle);
+
+			if (camHeading >= 0.0f && camHeading <= 180.0f)
+			{
+				camHeading = 360.0f - camHeading;
+			}
+			else if (camHeading <= -0.0f && camHeading >= -180.0f)
+			{
+				camHeading = -camHeading;
+			}
+
+			float headingDelta = camHeading - selfHeading;
+			float pitchDelta   = camPitch - selfPitch;
+			if (CAM::IS_FIRST_PERSON_CAMERA_ACTIVE(0, 0, 0))
+			{
+				CAM::SET_FIRST_PERSON_AIM_CAM_RELATIVE_HEADING_LIMITS_THIS_UPDATE(headingDelta, headingDelta);
+				CAM::SET_FIRST_PERSON_AIM_CAM_RELATIVE_PITCH_LIMITS_THIS_UPDATE(pitchDelta, pitchDelta);
+			}
+			else
+			{
+				CAM::SET_GAMEPLAY_CAM_RELATIVE_HEADING(headingDelta, 1.0f);
+				CAM::SET_GAMEPLAY_CAM_RELATIVE_PITCH(pitchDelta, 1.0f);
 			}
 		}
 

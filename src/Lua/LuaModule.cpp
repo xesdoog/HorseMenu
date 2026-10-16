@@ -62,11 +62,10 @@ namespace Terminus::LuaJIT
 		};
 	}
 
-	LuaModule::LuaModule(fs::path root) :
+	LuaModule::LuaModule(const fs::path& root) :
 		m_LuaState(sol::state{}),
 		m_Root(root),
-		m_Entry(root / "main.lua"),
-		m_Name(root.filename().string())
+		m_Entry(root / "main.lua")
 	{
 		m_LuaState.open_libraries(
 		    sol::lib::base,
@@ -82,15 +81,18 @@ namespace Terminus::LuaJIT
 		    sol::lib::table,
 		    sol::lib::utf8);
 
+		m_Metadata           = GetMetadata(root);
 		m_LuaState["this*"]  = reinterpret_cast<void*>(this);
-		m_LuaState["whodis"] = m_Name;
+		m_LuaState["whodis"] = m_Metadata.m_Name;
 
 		m_LuaState.set_exception_handler(ExceptionHandler);
 		m_LuaState.set_panic(sol::c_call<decltype(&PanicHandler), &PanicHandler>);
 		lua_CFunction traceback_function = sol::c_call<decltype(&TracebackErrorHandler), &TracebackErrorHandler>;
 		sol::protected_function::set_default_handler(sol::object(m_LuaState.lua_state(), sol::in_place, traceback_function));
 
-		m_LastModified = fs::last_write_time(m_Entry);
+		std::error_code ec{};
+
+		m_LastModified = fs::last_write_time(m_Entry, ec);
 		auto strlib    = m_LuaState["string"];
 		m_LuaStrFmt    = strlib["format"];
 
@@ -111,6 +113,33 @@ namespace Terminus::LuaJIT
 			delete[] mem;
 	}
 
+	LuaModule::LuaModuleMetadata LuaModule::GetMetadata(const fs::path& root)
+	{
+		std::error_code ec{};
+
+		std::string fallback = root.filename().string();
+		fs::path jsonPath    = root / "meta.json";
+		if (!fs::exists(jsonPath, ec))
+			return {.m_Name = fallback};
+
+		try
+		{
+			nlohmann::json j;
+			std::ifstream f(jsonPath);
+			f >> j;
+			return {
+				j.value("name", fallback), 
+				j.value("description", ""), 
+				j.value("author", "Unknown"), 
+				j.value("version", "1.0.0.0")
+			};
+		}
+		catch (const std::exception&)
+		{
+			return {.m_Name = fallback};
+		}
+	}
+
 	std::string LuaModule::LuaFormatString(const std::string& fmt, sol::variadic_args args)
 	{
 		if (!m_LuaStrFmt.valid())
@@ -126,12 +155,12 @@ namespace Terminus::LuaJIT
 		if (!res.valid())
 		{
 			sol::error e = res;
-			LOG(FATAL) << "Failed to load module '" << m_Name << "' : " << e.what();
+			LOG(FATAL) << "Failed to load module '" << m_Metadata.m_Name << "' : " << e.what();
 			Suspend(e.what());
 			return false; // TODO
 		}
 
-		LOG(INFO) << "Loaded module " << m_Name;
+		LOG(INFO) << "Loaded module " << m_Metadata.m_Name;
 		m_LoadState = RUNNING;
 		return true;
 	}
@@ -179,12 +208,17 @@ namespace Terminus::LuaJIT
 
 	std::string_view LuaModule::GetName() const noexcept
 	{
-		return m_Name;
+		return m_Metadata.m_Name;
 	}
 
 	fs::path LuaModule::GetRoot() const noexcept
 	{
 		return m_Root;
+	}
+
+	LuaModule::LuaModuleMetadata LuaModule::GetMetadata()
+	{
+		return m_Metadata;
 	}
 
 	void LuaModule::SandboxOsLib()

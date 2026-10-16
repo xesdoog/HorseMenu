@@ -213,7 +213,7 @@ namespace Terminus::LuaJIT
 			* method WriteFloat
 			* param v<number>
 			
-			* method AddBytePatch Adds a `BytePatch` object, enables, and returns it.
+			* method AddBytePatch Adds a `BytePatch` object and returns it.
 			* param byteArray<{ [integer]: integer }> An array of bytes. Example: `{ 0x90, 0x90, 0x90 }`. This **MUST** be a contiguous int array, otherwise the method will thorw.
 			* return BytePatch? patch A `BytePatch` object or nil 
 			@*/
@@ -424,7 +424,7 @@ namespace Terminus::LuaJIT
 					return sol::make_object(L, sol::nil);
 				}
 
-				std::vector<std::byte> bytes;
+				std::vector<uint8_t> bytes;
 				for (auto&& [_, v] : values)
 				{
 					if (!v.is<int>())
@@ -434,10 +434,10 @@ namespace Terminus::LuaJIT
 					if (value < 0 || value > 255)
 						throw sol::error("Byte value out of range!");
 
-					bytes.push_back(static_cast<std::byte>(value));
+					bytes.push_back(static_cast<uint8_t>(value));
 				}
 
-				auto patch = std::make_shared<BytePatch>(self.As<void*>(), std::span<std::byte>(bytes));
+				auto patch = std::make_shared<BytePatch>(self.As<void*>(), std::span<uint8_t>(bytes));
 				module->m_BytePatches.push_back(patch);
 				return sol::make_object(L, patch);
 			};

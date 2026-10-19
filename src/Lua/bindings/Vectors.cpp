@@ -2,7 +2,7 @@
 
 #include "../LuaLibrary.hpp"
 #include "../LuaModule.hpp"
-#include <rage/vector.hpp>
+#include <script/types.hpp>
 
 
 namespace Terminus::LuaJIT
@@ -184,61 +184,73 @@ namespace Terminus::LuaJIT
 			* param dt<number> Delta
 			* return Vector3
 			@*/
-			auto vec3 = L.new_usertype<rage::vector3>("Vector3", 
-				sol::call_constructor, sol::constructors<rage::vector3(), rage::vector3(float, float, float)>(),
+			auto vec3 = L.new_usertype<Vector3>("Vector3", 
+				sol::call_constructor, sol::constructors<Vector3(), Vector3(float, float, float)>(),
 
-				sol::meta_function::equal_to, &rage::vector3::operator==,
-				sol::meta_function::length,   &rage::vector3::GetMagnitude,
+				sol::meta_function::equal_to, &Vector3::operator==,
 
-				"x", &rage::vector3::x, 
-				"y", &rage::vector3::y, 
-				"z", &rage::vector3::z,
+				"x", &Vector3::x, 
+				"y", &Vector3::y, 
+				"z", &Vector3::z,
 
-				sol::meta_function::to_string, [](const rage::vector3& self) {
+				sol::meta_function::length,   [](const Vector3& self) {
+					return sqrt(self.x * self.x + self.y * self.y + self.z * self.z);
+				},
+
+				sol::meta_function::to_string, [](const Vector3& self) {
 				    return std::format("({:.3f}, {:.3f}, {:.3f})", self.x, self.y, self.z);
 			    },
 
 				sol::meta_function::addition, sol::overload(
-					[](const rage::vector3& self, const rage::vector3& other) { 
-						return rage::vector3(self.x + other.x, self.y + other.y, self.z + other.z); 
+					[](const Vector3& self, const Vector3& other) { 
+						return Vector3(self.x + other.x, self.y + other.y, self.z + other.z); 
 					},
-					[](const rage::vector3& self, const float& other) { 
-						return rage::vector3(self.x + other, self.y + other, self.z + other);
+					[](const Vector3& self, const float& other) { 
+						return Vector3(self.x + other, self.y + other, self.z + other);
 					}
 				),
 
 				sol::meta_function::subtraction, sol::overload(
-					[](const rage::vector3& self, const rage::vector3& other) { 
-						return rage::vector3(self.x - other.x, self.y - other.y, self.z - other.z); 
+					[](const Vector3& self, const Vector3& other) { 
+						return Vector3(self.x - other.x, self.y - other.y, self.z - other.z); 
 					},
-					[](const rage::vector3& self, const float& other) { 
-						return rage::vector3(self.x - other, self.y - other, self.z - other);
+					[](const Vector3& self, const float& other) { 
+						return Vector3(self.x - other, self.y - other, self.z - other);
 					}
 				),
 
 				sol::meta_function::multiplication, sol::overload(
-					[](const rage::vector3& self, const rage::vector3& other) { return self * other; },
-					[](const rage::vector3& self, const float& other) { return self * other; }
-				),
-
-				sol::meta_function::division, sol::overload(
-					[](const rage::vector3& self, const rage::vector3& other) { 
-					return rage::vector3(self.x / other.x, self.y / other.y, self.z / other.z); 
+					[](const Vector3& self, const Vector3& other) { 
+						return Vector3(self.x * other.x, self.y * other.y, self.z * other.z); 
 					},
-					[](const rage::vector3& self, const float& other) { 
-						return rage::vector3(self.x / other, self.y / other, self.z / other);
+					[](const Vector3& self, const float& other) { 
+						return Vector3(self.x * other, self.y * other, self.z * other);
 					}
 				),
 
-				"Magnitude", &rage::vector3::GetMagnitude,
-				"Distance",  &rage::vector3::GetDistance,
+				sol::meta_function::division, sol::overload(
+					[](const Vector3& self, const Vector3& other) { 
+					return Vector3(self.x / other.x, self.y / other.y, self.z / other.z); 
+					},
+					[](const Vector3& self, const float& other) { 
+						return Vector3(self.x / other, self.y / other, self.z / other);
+					}
+				),
 
-				"IsZero", [](const rage::vector3& self) {
+				"IsZero", [](const Vector3& self) {
 					return self.x == 0 && self.y == 0 && self.z == 0;
 				},
 
-				"Lerp", [](const rage::vector3& self, const rage::vector3& other, const float& dt) {
-					return rage::vector3(
+				"Magnitude", [](const Vector3& self) {
+					return sqrt(self.x * self.x + self.y * self.y + self.z * self.z);
+				},
+
+				"IsZero", [](const Vector3& self) {
+					return self.x == 0 && self.y == 0 && self.z == 0;
+				},
+
+				"Lerp", [](const Vector3& self, const Vector3& other, const float& dt) {
+					return Vector3(
 						self.x + (other.x - self.x) * dt,
 						self.y + (other.y - self.y) * dt,
 						self.z + (other.z - self.z) * dt

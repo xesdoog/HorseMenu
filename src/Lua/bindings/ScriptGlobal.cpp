@@ -129,8 +129,7 @@ namespace Terminus::LuaJIT
 			};
 
 			scriptGlobal["ReadVector3"] = [](ScriptGlobal& self) {
-				auto scrVec = self.CanAccess() ? *self.As<Vector3*>() : Vector3(0, 0, 0);
-				return rage::vector3(scrVec.x, scrVec.y, scrVec.z);
+				return self.CanAccess() ? *self.As<Vector3*>() : Vector3(0, 0, 0);
 			};
 
 			scriptGlobal["WriteString"] = [](ScriptGlobal& self, const std::string& value, sol::optional<int> maxLength) {
@@ -170,11 +169,11 @@ namespace Terminus::LuaJIT
 				return true;
 			};
 
-			scriptGlobal["WriteVector3"] = [](ScriptGlobal& self, const rage::vector3& value) {
+			scriptGlobal["WriteVector3"] = [](ScriptGlobal& self, const Vector3& value) {
 				if (!self.CanAccess())
 					return false;
 
-				*self.As<Vector3*>() = Vector3(value);
+				*self.As<Vector3*>() = value;
 				return true;
 			};
 		}

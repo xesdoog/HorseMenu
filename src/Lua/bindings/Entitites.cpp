@@ -32,7 +32,7 @@ namespace Terminus::LuaJIT
 
 			entities["GetAllPedsAsHandles"] = []() {
 				auto peds = Pools::GetPeds();
-				std::vector<Ped> outPeds{};
+				std::vector<int> outPeds{};
 				outPeds.reserve(peds.size());
 
 				for (auto ped : peds)
@@ -43,7 +43,7 @@ namespace Terminus::LuaJIT
 
 			entities["GetAllVehiclesAsHandles"] = []() {
 				auto vehicles = Pools::GetVehicles();
-				std::vector<Entity> outVehs{};
+				std::vector<int> outVehs{};
 				outVehs.reserve(vehicles.size());
 
 				for (auto veh : vehicles)
@@ -54,7 +54,7 @@ namespace Terminus::LuaJIT
 
 			entities["GetAllObjectsAsHandles"] = []() {
 				auto objects = Pools::GetObjects();
-				std::vector<Entity> outObjects{};
+				std::vector<int> outObjects{};
 				outObjects.reserve(objects.size());
 
 				for (auto obj : objects)
@@ -65,7 +65,7 @@ namespace Terminus::LuaJIT
 
 			entities["GetAllPickupsAsHandles"] = []() {
 				auto pickups = Pools::GetPickups();
-				std::vector<Entity> outPickups{};
+				std::vector<int> outPickups{};
 				outPickups.reserve(pickups.size());
 
 				for (auto p : pickups)

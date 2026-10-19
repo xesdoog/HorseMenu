@@ -54,13 +54,15 @@ namespace Terminus
 		{
 			for (auto& el : list)
 			{
-				if (ImGui::Selectable(el.second, el.first == current_val))
+				bool isSelected = (el.first == current_val);
+
+				if (ImGui::Selectable(el.second, isSelected))
 				{
 					current_val = el.first;
 					m_Command->SetState(el.first);
 				}
 
-				if (el.first == current_val)
+				if (isSelected)
 				{
 					m_SelectedItem = el.second; // just in case
 					ImGui::SetItemDefaultFocus();

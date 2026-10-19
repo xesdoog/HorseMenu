@@ -7,6 +7,7 @@
 
 #include <rage/vector.hpp>
 #include <imgui_internal.h>
+#include <script/types.hpp>
 
 
 namespace Terminus::LuaJIT
@@ -931,7 +932,7 @@ namespace Terminus::LuaJIT
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
 			* return boolean changed Returns true when the color changes. The vector is mutated in-place.
 			@*/
-			imguiTable["ColorEdit3"] = [](const std::string& label, rage::vector3& outCol, sol::optional<int> flags) {
+			imguiTable["ColorEdit3"] = [](const std::string& label, Vector3& outCol, sol::optional<int> flags) {
 				float arg[3]{
 					static_cast<float>(outCol.x),
 					static_cast<float>(outCol.y),
@@ -953,7 +954,7 @@ namespace Terminus::LuaJIT
 			* param flags<integer?> Optional [ImGuiColorEditFlags](lua://ImGuiInputTextFlags)
 			* return boolean changed Returns true when the color changes. The vector is mutated in-place.
 			@*/
-			imguiTable["ColorPicker3"] = [](const std::string& label, rage::vector3& outCol, sol::optional<int> flags) {
+			imguiTable["ColorPicker3"] = [](const std::string& label, Vector3& outCol, sol::optional<int> flags) {
 				float arg[3]{
 					static_cast<float>(outCol.x),
 					static_cast<float>(outCol.y),
@@ -1240,6 +1241,13 @@ namespace Terminus::LuaJIT
 			);
 
 			/*@terminus.function ImGui.GetItemRectMin
+			* param scale<number>
+			@*/
+			imguiTable["SetWindowFontScale"] = [](const float& scale) {
+				ImGui::SetWindowFontScale(scale);
+			};
+
+			/*@terminus.function ImGui.GetItemRectMin
 			* return Vector2 rectMin
 			@*/
 			imguiTable["GetItemRectMin"] = []() {
@@ -1428,6 +1436,8 @@ namespace Terminus::LuaJIT
 			* param label<string>
 			* param v<boolean> 
 			* param size<Vector2>
+			* return boolean value
+			* return boolean clicked
 			@*/
 			imguiTable["Toggle"] = sol::overload(
 				[](const std::string& label, bool v) {
@@ -1444,6 +1454,28 @@ namespace Terminus::LuaJIT
 
 
 			//////////////////////////////////////////////// misc ////////////////////////////////////////////////
+
+			/*@terminus.function ImGui.SetTooltip
+			* param text<string>
+			* param ...<any> Optional format args
+			@*/
+			imguiTable["SetTooltip"] = [&](const std::string& text, sol::variadic_args args) {
+				ImGui::SetTooltip(LuaStringFormat(L, text, args).c_str());
+			};
+
+			/*@terminus.function ImGui.BeginTooltip
+			*
+			@*/
+			imguiTable["BeginTooltip"] = [&]() {
+				ImGui::BeginTooltip();
+			};
+
+			/*@terminus.function ImGui.EndTooltip
+			*
+			@*/
+			imguiTable["EndTooltip"] = [&]() {
+				ImGui::EndTooltip();
+			};
 
 			/*@terminus.function ImGui.GetWindowDrawList
 			* return ImDrawList
@@ -1478,6 +1510,13 @@ namespace Terminus::LuaJIT
 			@*/
 			imguiTable["GetFrameCount"] = []() {
 				return ImGui::GetFrameCount();
+			};
+
+			/*@terminus.function ImGui.GetFontSize
+			* return integer
+			@*/
+			imguiTable["GetFontSize"] = []() {
+				return ImGui::GetFontSize();
 			};
 
 			/*@terminus.function ImGui.ColorConvertU32ToFloat4

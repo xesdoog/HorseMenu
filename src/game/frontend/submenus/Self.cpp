@@ -187,7 +187,8 @@ namespace Terminus::Submenus
 
 		auto weapons             = std::make_shared<Category>("Weapons");
 		auto weaponsGlobalsGroup = std::make_shared<Group>("Globals");
-		auto aimbotGroup = std::make_shared<Group>("Aimbot");
+		auto aimbotGroup         = std::make_shared<Group>("Aimbot");
+		auto aimbotTargetsGroup  = std::make_shared<Group>("Aimbot Targets");
 
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("infiniteammo"_J));
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("infiniteclip"_J));
@@ -197,21 +198,27 @@ namespace Terminus::Submenus
 		weaponsGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("forcechoke"_J));
 
 		aimbotGroup->AddItem(std::make_shared<BoolCommandItem>("aimbot"_J));
-		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotsmoothing"_J)));
-		//aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotnpc"_J)));
-		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotenemies"_J)));
-		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotplayers"_J)));
-		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotanimals"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<ListCommandItem>("aimbotbone"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<FloatCommandItem>("aimbotdistance"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<FloatCommandItem>("aimbotfov"_J)));
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, std::make_shared<BoolCommandItem>("aimbotsmoothing"_J)));
 		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbotsmoothing"_J, std::make_shared<FloatCommandItem>("aimbotsmoothingspd"_J)));
 
+		aimbotTargetsGroup->AddItem(std::make_shared<BoolCommandItem>("aimbotenemies"_J));
+		aimbotTargetsGroup->AddItem(std::make_shared<BoolCommandItem>("aimbotplayers"_J));
+		aimbotTargetsGroup->AddItem(std::make_shared<BoolCommandItem>("aimbotnpc"_J));
+		aimbotTargetsGroup->AddItem(std::make_shared<BoolCommandItem>("aimbotignorefriendlies"_J));
+		aimbotTargetsGroup->AddItem(std::make_shared<BoolCommandItem>("aimbotanimals"_J));
+		aimbotTargetsGroup->AddItem(std::make_shared<ConditionalItem>("aimbotanimals"_J, std::make_shared<BoolCommandItem>("aimbotwildanimals"_J)));
+
+		aimbotGroup->AddItem(std::make_shared<ConditionalItem>("aimbot"_J, aimbotTargetsGroup));
 		weapons->AddItem(weaponsGlobalsGroup);
 		weapons->AddItem(aimbotGroup);
 		AddCategory(std::move(weapons));
 
 		auto horse             = std::make_shared<Category>("Horse");
 		auto horseGlobalsGroup = std::make_shared<Group>("Globals");
+
 		horseGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("horsegodmode"_J));
 		horseGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("horsenoragdoll"_J));
 		horseGlobalsGroup->AddItem(std::make_shared<BoolCommandItem>("horsesuperrun"_J));

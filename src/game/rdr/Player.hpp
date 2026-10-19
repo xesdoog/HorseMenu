@@ -58,6 +58,7 @@ namespace Terminus
 		uint32_t GetConnectionType();
 		int GetRank();
 		int GetHonor();
+		int GetTeam();
 		Language GetLanguage();
 		District GetDistrict();
 		Region GetRegion();

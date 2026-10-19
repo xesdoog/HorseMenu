@@ -57,11 +57,11 @@ namespace Terminus::LuaJIT
 			util["LoadGroundAtCoords"] = &Teleport::LoadGroundAtCoords;
 			util["GetWaypointCoords"]  = &Teleport::GetWaypointCoords;
 
-			util["TeleportPlayerToCoords"] = [](Player& player, rage::vector3& coords) {
-				return Teleport::TeleportPlayerToCoords(player, Vector3(coords));
+			util["TeleportPlayerToCoords"] = [](Player& player, Vector3& coords) {
+				return Teleport::TeleportPlayerToCoords(player, coords);
 			};
 
-			util["Teleport"] = [](int entity, rage::vector3& coords, sol::optional<bool> loadGround) {
+			util["Teleport"] = [](int entity, Vector3& coords, sol::optional<bool> loadGround) {
 				return Teleport::TeleportEntity(entity, coords, loadGround.value_or(false));
 			};
 

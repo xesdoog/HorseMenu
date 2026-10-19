@@ -42,7 +42,7 @@ namespace Terminus::LuaJIT
 				"GetMount",   &Self::GetMount,
 				"GetVehicle", &Self::GetVehicle,
 
-				"Teleport", [](const Self& self, rage::vector3& coords, sol::optional<bool> loadGround) {
+				"Teleport", [](const Self& self, Vector3& coords, sol::optional<bool> loadGround) {
 					if (!Teleport::TeleportEntity(self.GetPed().GetHandle(), coords, loadGround.value_or(false)))
 						LOG(WARNING) << "Failed to teleport LocalPlayer to coordinates!";
 				}

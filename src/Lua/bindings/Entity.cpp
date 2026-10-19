@@ -142,19 +142,13 @@ namespace Terminus::LuaJIT
 				"IsVisible",       &Entity::IsVisible,
 				"IsInvincible",    &Entity::IsInvincible,
 
-				"HasInterior", &Entity::HasInterior,
+				"HasInterior",   &Entity::HasInterior,
 
 				"GetHandle",     &Entity::GetHandle,
 
 				"GetAlpha",      &Entity::GetAlpha,
 				"SetAlpha",      &Entity::SetAlpha,
 				"ResetAlpha",    &Entity::ResetAlpha,
-
-				"GetPosition",   &Entity::GetPosition,
-				"SetPosition",   &Entity::SetPosition,
-
-				"GetVelocity",   &Entity::GetVelocity,
-				"SetVelocity",   &Entity::SetVelocity,
 
 				"GetModel",      &Entity::GetModel,
 
@@ -171,11 +165,27 @@ namespace Terminus::LuaJIT
 				// clag-format on
 			);
 
-			entity["GetRotation"] = [](Entity& self, sol::optional<int> order) {
-				return self.GetRotation(order.value_or(2));
+			entity["GetVelocity"] = [](Entity& self) {
+				return Vector3(self.GetVelocity());
 			};
 
-			entity["SetRotation"] = [](Entity& self, const rage::fvector3& rot, sol::optional<int> order) {
+			entity["SetVelocity"] = [](Entity& self, Vector3& vel) {
+				self.SetVelocity(vel);
+			};
+
+			entity["GetPosition"] = [](Entity& self) {
+				return Vector3(self.GetPosition());
+			};
+
+			entity["SetPosition"] = [](Entity& self, Vector3& pos) {
+				self.SetPosition(pos);
+			};
+
+			entity["GetRotation"] = [](Entity& self, sol::optional<int> order) {
+				return Vector3(self.GetRotation(order.value_or(2)));
+			};
+
+			entity["SetRotation"] = [](Entity& self, Vector3& rot, sol::optional<int> order) {
 				return self.SetRotation(rot, order.value_or(2));
 			};
 
@@ -199,6 +209,7 @@ namespace Terminus::LuaJIT
 			L.new_usertype<Vehicle>("Vehicle",
 				// clag-format off
 				sol::call_constructor, sol::constructors<Vehicle(int)>(),
+				sol::base_classes,     sol::bases<Entity>(),
 
 				"IsDraft",            &Vehicle::IsDraft,
 				"GetNumDraftAnimals", &Vehicle::GetNumDraftAnimals,
@@ -246,6 +257,7 @@ namespace Terminus::LuaJIT
 			L.new_usertype<Ped>("Ped",
 				// clag-format off
 				sol::call_constructor, sol::constructors<Ped(int)>(),
+				sol::base_classes,     sol::bases<Entity>(),
 
 				"IsEnemy", &Ped::IsEnemy,
 
@@ -260,7 +272,9 @@ namespace Terminus::LuaJIT
 				"GetRagdoll",    &Ped::GetRagdoll,
 				"SetRagdoll",    &Ped::SetRagdoll,
 
-				"GetBonePosition", &Ped::GetBonePosition
+				"GetBonePosition", [](Ped& self, const int& bone) {
+					return Vector3(self.GetBonePosition(bone));
+				}
 				// clag-format on
 			);
 

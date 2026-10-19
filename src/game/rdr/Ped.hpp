@@ -43,6 +43,7 @@ namespace Terminus
 
 		// relationships
 		bool IsEnemy();
+		bool IsFriendly();
 
 		// scale
 		void SetScale(float scale);

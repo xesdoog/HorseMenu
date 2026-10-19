@@ -38,6 +38,7 @@ namespace Terminus
 
 		if (!ModuleMgr.LoadModules())
 			goto unload;
+
 		if (!Pointers.Init())
 			goto unload;
 

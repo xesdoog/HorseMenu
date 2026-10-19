@@ -116,8 +116,7 @@ namespace Terminus::LuaJIT
 			};
 
 			scrLocal["ReadVector3"] = [](ScriptLocal& self) {
-				auto scrVec = *self.As<Vector3*>();
-				return rage::vector3(scrVec.x, scrVec.y, scrVec.z);
+				return *self.As<Vector3*>();
 			};
 
 			scrLocal["WriteInt"] = [](ScriptLocal& self, int value) {
@@ -130,8 +129,8 @@ namespace Terminus::LuaJIT
 				return true;
 			};
 
-			scrLocal["WriteVector3"] = [](ScriptLocal& self, const rage::vector3& value) {
-				*self.As<Vector3*>() = Vector3(value);
+			scrLocal["WriteVector3"] = [](ScriptLocal& self, const Vector3& value) {
+				*self.As<Vector3*>() = value;
 				return true;
 			};
 		}

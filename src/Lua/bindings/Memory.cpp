@@ -503,9 +503,6 @@ namespace Terminus::LuaJIT
 				if (size <= 0)
 					throw sol::error("Invalid argument into Memory.Allocate! size must be greater than zero.");
 
-				if (size <= 0)
-					throw sol::error("Invalid argument into Memory.Allocate! size must be greater than zero.");
-
 				auto mod = GetModuleFromLuaState(L, "Failed to allocate memory! Owner module is null");
 				if (!mod)
 					return retnull();

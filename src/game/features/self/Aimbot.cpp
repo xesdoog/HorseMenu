@@ -1,5 +1,6 @@
 #include "core/commands/BoolCommand.hpp"
 #include "core/commands/FloatCommand.hpp"
+#include "core/commands/ListCommand.hpp"
 #include "core/commands/LoopedCommand.hpp"
 #include "game/backend/Self.hpp"
 #include "game/rdr/Entity.hpp"
@@ -15,15 +16,34 @@
 
 namespace Terminus::Features
 {
-	static FloatCommand _AimbotDistance{"aimbotdistance", "Distance", "Aimbot Maximum Distance", 50.0f, 500.0f, 50.0f};
-	static FloatCommand _AimbotFOV{"aimbotfov", "FOV", "Field Of View", 10.0f, 200.0f, 10.0f};
-	static FloatCommand _AimbotSmoothingSpd{"aimbotsmoothingspd", "Smoothing ", "Smoothing Speed", 0.0f, 10.0f, 0.0f};
+	static FloatCommand _AimbotDistance{"aimbotdistance", "Distance", "Aimbot maximum distance.", 50.0f, 500.0f, 50.0f};
+	static FloatCommand _AimbotFOV{"aimbotfov", "FOV", "Field Of View", 0.0f, 50.0f, 1.0f};
+	static FloatCommand _AimbotSmoothingSpd{"aimbotsmoothingspd", "Smoothing ", "Smoothing speed. Higher value = smoother snapping onto target.", 0.0f, 10.0f, 0.0f};
 
-	static BoolCommand _AimbotSmoothing{"aimbotsmoothing", "Smoothing", "Enable Aimbot Smoothing"};
-	//static BoolCommand _AimbotNPC{"aimbotnpc", "NPC", "Aim At Human NPCs"};
-	static BoolCommand _AimbotEnemies{"aimbotenemies", "Enemies", "Aim At Enemies"};
-	static BoolCommand _AimbotPlayers{"aimbotplayers", "Players", "Aim At Players"};
-	static BoolCommand _AimbotAnimals{"aimbotanimals", "Animals", "Aim At Animals"};
+	static BoolCommand _AimbotSmoothing{"aimbotsmoothing", "Smoothing", "Enable aimbot smoothing."};
+	static BoolCommand _AimbotEnemies{"aimbotenemies", "Enemies", "Aim at enemies"};
+	static BoolCommand _AimbotPlayers{"aimbotplayers", "Players", "Aim at players"};
+	static BoolCommand _AimbotNPC{"aimbotnpc", "NPC", "Aim at neutral NPCs"};
+	static BoolCommand _AimbotAnimals{"aimbotanimals", "Animals", "Aim at animals."};
+	static BoolCommand _AimbotWildAnimals{"aimbotwildanimals", "Only Wild Animals", "Only aim at wild animals."};
+	static BoolCommand _AimbotIgnoreFriendlies{"aimbotignorefriendlies", "Exclude Friendlies", "Exclude friendly peds and player friends."};
+
+	static ListCommand _AimbotBone{"aimbotbone", "Bone", "Target body part to aim at.", 
+	{
+		{21030, "Head"},
+		{14283, "Neck"},
+		{14410, "Torso"},
+		{44903, "Left Shoulder"},
+		{22711, "Left Elbow"},
+		{34606, "Left Hand"},
+		{4312, "Right Shoulder"},
+		{2992, "Right Elbow"},
+		{22798, "Right Hand"},
+		{22173, "Left Knee"}, 
+		{45454, "Left Foot"}, 
+		{63133, "Right Knee"},
+		{33646, "Right Foot"}},
+	21030};
 
 	static const bool IsZeroVector(const Vector3& vec)
 	{
@@ -39,10 +59,29 @@ namespace Terminus::Features
 		static inline Vector3 targetPos;
 		static inline Ped target{0};
 
+		static const bool IsFriendly(Ped ped)
+		{
+			if (ped.IsPlayer())
+			{
+				Player other = Player(ped.GetPlayer());
+				if (other.IsFriend())
+					return true;
+
+				return Self::GetPlayer().GetTeam() == other.GetTeam();
+			}
+
+			return ped.IsFriendly();
+		}
+
 		static void AcquireTarget()
 		{
-			int playerHandle = Self::GetPed().GetHandle();
-			int playerIndex  = Self::GetPlayer().GetId();
+			target = Ped(0);
+
+			Ped self                  = Self::GetPed();
+			const int playerHandle    = self.GetHandle();
+			const int playerIndex     = Self::GetPlayer().GetId();
+			const int mountHandle     = Self::GetMount().GetHandle();
+			const int lastMountHandle = self.GetLastMount().GetHandle();
 
 			if (!GetPedPool() || !WEAPON::IS_PED_ARMED(playerHandle, 4) || !PLAYER::IS_PLAYER_FREE_AIMING(playerIndex))
 			{
@@ -50,56 +89,84 @@ namespace Terminus::Features
 				return;
 			}
 
-			auto playerPos      = Self::GetPed().GetPosition();
-			float fov           = _AimbotFOV.GetState();
-			float distance      = _AimbotDistance.GetState();
-			const float fovRads = fov * std::numbers::pi_v<float> / 180.0f;
-			const float minDot  = std::cos(fovRads * 0.5f);
+			const Vector3 playerPos = self.GetPosition();
+			const Vector3 camPos    = CAM::GET_GAMEPLAY_CAM_COORD();
+			const Vector3 camRot    = CAM::GET_GAMEPLAY_CAM_ROT(0);
+			const Vector3 camDir    = Math::RotationToDirection(camRot).Normalize();
+
+			const float distance      = _AimbotDistance.GetState();
+			const float maxDistanceSq = distance * distance;
+			const float fovRadians    = _AimbotFOV.GetState() * std::numbers::pi_v<float> / 180.0f;
+			const float minDot        = std::cos(fovRadians * 0.5f);
+
+			float bestDot = -1.0f;
+			Ped bestTarget(0);
 
 			for (auto ped : Pools::GetPeds())
 			{
-				auto pedHandle = ped.GetHandle();
-				if (ped.IsDead() || pedHandle == playerHandle)
+				const int handle = ped.GetHandle();
+
+				if (ped.IsDead() || !ENTITY::_GET_ENTITY_CAN_BE_DAMAGED(handle))
 					continue;
 
-				if (!ENTITY::HAS_ENTITY_CLEAR_LOS_TO_ENTITY_IN_FRONT(playerHandle, pedHandle, 17))
+				if (handle == 0 || handle == playerHandle || handle == mountHandle || handle == lastMountHandle)
 					continue;
 
-				auto pedCoords = ENTITY::GET_ENTITY_COORDS(pedHandle, true, false);
-				if (BUILTIN::VDIST2(playerPos.x, playerPos.y, playerPos.z, pedCoords.x, pedCoords.y, pedCoords.z) > (distance * distance))
+				const Vector3 pos = ped.GetPosition();
+				if (BUILTIN::VDIST2(playerPos.x, playerPos.y, playerPos.z, pos.x, pos.y, pos.z) > maxDistanceSq)
 					continue;
 
-				bool isAnimal = ped.IsAnimal();
-				bool isEnemy  = ped.IsEnemy();
-				bool isPlayer = ped.IsPlayer();
-				/*bool isNPC    = (!isAnimal && !isPlayer && !isEnemy);
-				if (isNPC && !_AimbotNPC.GetState())
-					continue;*/
+				const bool isAnimal     = ped.IsAnimal();
+				const bool isPlayer     = ped.IsPlayer();
+				const bool isEnemy      = ped.IsEnemy();
+				const bool isNPC        = (!isAnimal && !isPlayer && !isEnemy);
+				const bool isWildAnimal = isAnimal && FLOCK::_GET_ANIMAL_IS_WILD(handle);
 
-				if (isAnimal && !_AimbotAnimals.GetState())
-					continue;
+				bool found = false;
 
-				if (isEnemy && !_AimbotEnemies.GetState())
-					continue;
+				if (isAnimal && _AimbotAnimals.GetState())
+					found = _AimbotWildAnimals.GetState() ? isWildAnimal : true;
 
 				if (isPlayer && _AimbotPlayers.GetState())
+					found = true;
+
+				if (isEnemy && _AimbotEnemies.GetState())
+					found = true;
+
+				if (isNPC && _AimbotNPC.GetState())
+					found = true;
+
+				if (isNPC && _AimbotNPC.GetState())
+					found = true;
+
+				if (!found)
 					continue;
 
-				Vector3 camPos   = CAM::GET_GAMEPLAY_CAM_COORD();
-				Vector3 camRot   = CAM::GET_GAMEPLAY_CAM_ROT(0);
-				Vector3 camDir   = Math::RotationToDirection(camRot);
-				Vector3 toTarget = ped.GetBonePosition(21030) - camPos;
-				float magnitude  = std::hypot(toTarget.x, toTarget.y, toTarget.z);
+				if (_AimbotIgnoreFriendlies.GetState() && IsFriendly(ped))
+					continue;
+
+				if (!ENTITY::HAS_ENTITY_CLEAR_LOS_TO_ENTITY(playerHandle, handle, 17))
+					continue;
+
+				Vector3 bonePos       = ped.GetBonePosition(_AimbotBone.GetState());
+				Vector3 direction     = bonePos - camPos;
+				const float magnitude = std::hypot(direction.x, direction.y, direction.z);
 				if (magnitude < 0.001f)
 					continue;
 
-				toTarget  = Vector3(toTarget.x / magnitude, toTarget.y / magnitude, toTarget.z / magnitude);
-				float dot = camDir.x * toTarget.x + camDir.y * toTarget.y + camDir.z * toTarget.z;
-				if (dot < minDot)
+				direction.x /= magnitude;
+				direction.y /= magnitude;
+				direction.z /= magnitude;
+
+				const float dot = camDir.x * direction.x + camDir.y * direction.y + camDir.z * direction.z;
+				if (dot < minDot || dot <= bestDot)
 					continue;
 
-				target = ped;
+				bestDot    = dot;
+				bestTarget = ped;
 			}
+
+			target = bestTarget;
 		}
 
 		static void Reset()
@@ -111,19 +178,24 @@ namespace Terminus::Features
 
 		virtual void OnTick() override
 		{
-			if (!target.IsValid() || target.IsDead())
-			{
-				AcquireTarget();
+			if (PED::IS_PED_RELOADING(PLAYER::PLAYER_PED_ID()))
 				return;
-			}
 
 			if (!PLAYER::IS_PLAYER_FREE_AIMING(Self::GetPlayer().GetId()))
 			{
 				Reset();
-				return;	
+				return;
 			}
 
-			targetPos = target.GetBonePosition(21030); // TODO: add bone list
+			if (!target.IsValid() || target.IsDead())
+			{
+				AcquireTarget();
+
+				if (!target.IsValid())
+					return;
+			}
+
+			targetPos = target.GetBonePosition(_AimbotBone.GetState());
 			if (IsZeroVector(targetPos))
 			{
 				Reset();

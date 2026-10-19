@@ -288,6 +288,19 @@ namespace Terminus::LuaJIT
 
 			/*@terminus.function ImGui.BeginChild
 			* param name<string>
+			* param size<Vector2?> child size.
+			* return boolean visible
+			@*/
+
+			/*@terminus.function ImGui.BeginChild
+			* param name<string>
+			* param size<Vector2> child size.
+			* param childFlags<integer?> [ImGuiChildFlags](lua://ImGuiChildFlags)
+			* return boolean visible
+			@*/
+
+			/*@terminus.function ImGui.BeginChild
+			* param name<string>
 			* param size<Vector2> child size.
 			* param childFlags<integer> [ImGuiChildFlags](lua://ImGuiChildFlags)
 			* param windowFlags<integer?> Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)

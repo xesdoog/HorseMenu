@@ -90,6 +90,17 @@ function ImGui.Begin(name, open, windowFlags) end
 function ImGui.End() end
 
 ---@param name string 
+---@param size Vector2? child size.
+---@return boolean visible
+function ImGui.BeginChild(name, size) end
+
+---@param name string 
+---@param size Vector2 child size.
+---@param childFlags integer? [ImGuiChildFlags](lua://ImGuiChildFlags)
+---@return boolean visible
+function ImGui.BeginChild(name, size, childFlags) end
+
+---@param name string 
 ---@param size Vector2 child size.
 ---@param childFlags integer [ImGuiChildFlags](lua://ImGuiChildFlags)
 ---@param windowFlags integer? Optional [ImGuiWindowFlags](lua://ImGuiWindowFlags)

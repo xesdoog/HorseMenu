@@ -303,6 +303,45 @@ function ImGui.End() end
 ## `BeginChild`
 
 ```lua
+function ImGui.BeginChild(name, size) end
+```
+
+### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name` | `string` |  |
+| `size` | `Vector2?` | child size. |
+
+### Returns
+
+| Type | Description |
+| --- | --- |
+| `boolean` | visible |
+
+## `BeginChild`
+
+```lua
+function ImGui.BeginChild(name, size, childFlags) end
+```
+
+### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name` | `string` |  |
+| `size` | `Vector2` | child size. |
+| `childFlags` | `integer?` | [ImGuiChildFlags](./ImGuiChildFlags.md) |
+
+### Returns
+
+| Type | Description |
+| --- | --- |
+| `boolean` | visible |
+
+## `BeginChild`
+
+```lua
 function ImGui.BeginChild(name, size, childFlags, windowFlags) end
 ```
 

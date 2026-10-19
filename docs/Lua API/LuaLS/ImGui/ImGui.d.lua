@@ -541,6 +541,9 @@ function ImGui.CalcTextSize(text, wrapWidth) end
 ---@return Vector2 size
 function ImGui.CalcTextSize(text, hideTextAfterDoubleHash, wrapWidth) end
 
+---@param scale number 
+function ImGui.GetItemRectMin(scale) end
+
 ---@return Vector2 rectMin
 function ImGui.GetItemRectMin() end
 
@@ -627,7 +630,17 @@ function ImGui.Toggle(label, v) end
 ---@param label string 
 ---@param v boolean 
 ---@param size Vector2 
+---@return boolean value
+---@return boolean clicked
 function ImGui.Toggle(label, v, size) end
+
+---@param text string 
+---@param ... any Optional format args
+function ImGui.SetTooltip(text, ...) end
+
+function ImGui.BeginTooltip() end
+
+function ImGui.EndTooltip() end
 
 ---@return ImDrawList 
 function ImGui.GetWindowDrawList() end
@@ -643,6 +656,9 @@ function ImGui.GetTime() end
 
 ---@return integer 
 function ImGui.GetFrameCount() end
+
+---@return integer 
+function ImGui.GetFontSize() end
 
 ---@param col integer Packed 32bit integer
 ---@return Vector4 rgba Normalised RGBA

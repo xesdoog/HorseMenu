@@ -1759,6 +1759,18 @@ function ImGui.CalcTextSize(text, hideTextAfterDoubleHash, wrapWidth) end
 ## `GetItemRectMin`
 
 ```lua
+function ImGui.GetItemRectMin(scale) end
+```
+
+### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `scale` | `number` |  |
+
+## `GetItemRectMin`
+
+```lua
 function ImGui.GetItemRectMin() end
 ```
 
@@ -2090,6 +2102,38 @@ Draws a toggle widget that can be used instead of a regular ImGui checkbox.
 | `v` | `boolean` |  |
 | `size` | `Vector2` |  |
 
+### Returns
+
+| Type | Description |
+| --- | --- |
+| `boolean` | value |
+| `boolean` | clicked |
+
+## `SetTooltip`
+
+```lua
+function ImGui.SetTooltip(text, ...) end
+```
+
+### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `text` | `string` |  |
+| `...` | `any` | Optional format args |
+
+## `BeginTooltip`
+
+```lua
+function ImGui.BeginTooltip() end
+```
+
+## `EndTooltip`
+
+```lua
+function ImGui.EndTooltip() end
+```
+
 ## `GetWindowDrawList`
 
 ```lua
@@ -2142,6 +2186,18 @@ function ImGui.GetTime() end
 
 ```lua
 function ImGui.GetFrameCount() end
+```
+
+### Returns
+
+| Type | Description |
+| --- | --- |
+| `integer` |  |
+
+## `GetFontSize`
+
+```lua
+function ImGui.GetFontSize() end
 ```
 
 ### Returns

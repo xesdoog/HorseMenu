@@ -165,7 +165,7 @@ function ImGui.ArrowButton(label, direction) end
 ## `InvisibleButton`
 
 ```lua
-function ImGui.InvisibleButton(label, sizeX, sizeY) end
+function ImGui.InvisibleButton(label, size) end
 ```
 
 ### Parameters
@@ -173,8 +173,7 @@ function ImGui.InvisibleButton(label, sizeX, sizeY) end
 | Name | Type | Description |
 | --- | --- | --- |
 | `label` | `string` |  |
-| `sizeX` | `number` | Button width |
-| `sizeY` | `number` | Button height |
+| `size` | `Vector2` | Button size |
 
 ### Returns
 
@@ -267,6 +266,25 @@ function ImGui.Begin(name) end
 | Name | Type | Description |
 | --- | --- | --- |
 | `name` | `string` |  |
+
+### Returns
+
+| Type | Description |
+| --- | --- |
+| `boolean` | visible |
+
+## `Begin`
+
+```lua
+function ImGui.Begin(name, windowFlags) end
+```
+
+### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `name` | `string` |  |
+| `windowFlags` | `integer` | [ImGuiWindowFlags](./ImGuiWindowFlags.md) |
 
 ### Returns
 

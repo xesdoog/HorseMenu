@@ -49,10 +49,9 @@ function ImGui.SmallButton(label) end
 function ImGui.ArrowButton(label, direction) end
 
 ---@param label string 
----@param sizeX number Button width
----@param sizeY number Button height
+---@param size Vector2 Button size
 ---@return boolean clicked
-function ImGui.InvisibleButton(label, sizeX, sizeY) end
+function ImGui.InvisibleButton(label, size) end
 
 ---@param label string 
 ---@param v boolean 
@@ -80,6 +79,11 @@ function ImGui.ProgressBar(fraction, size, overlayText) end
 ---@param name string 
 ---@return boolean visible
 function ImGui.Begin(name) end
+
+---@param name string 
+---@param windowFlags integer [ImGuiWindowFlags](lua://ImGuiWindowFlags)
+---@return boolean visible
+function ImGui.Begin(name, windowFlags) end
 
 ---@param name string 
 ---@param open boolean 

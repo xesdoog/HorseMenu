@@ -50,6 +50,20 @@ namespace Terminus::Features
 		return vec.x == 0.f && vec.y == 0.f && vec.z == 0.f;
 	}
 
+	static float GetMagnitudeFromVector3(const rage::fvector3& vec)
+	{
+		return sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	}
+
+	static rage::fvector3 NormalizeVector3(const rage::fvector3& vec)
+	{
+		auto len = GetMagnitudeFromVector3(vec);
+		if (len)
+			return vec * (1 / len);
+
+		return vec;
+	}
+
 	class Aimbot : public LoopedCommand
 	{
 		using LoopedCommand::LoopedCommand;
@@ -92,7 +106,7 @@ namespace Terminus::Features
 			const Vector3 playerPos = self.GetPosition();
 			const Vector3 camPos    = CAM::GET_GAMEPLAY_CAM_COORD();
 			const Vector3 camRot    = CAM::GET_GAMEPLAY_CAM_ROT(0);
-			const Vector3 camDir    = Math::RotationToDirection(camRot).Normalize();
+			const Vector3 camDir    = NormalizeVector3(Math::RotationToDirection(camRot));
 
 			const float distance      = _AimbotDistance.GetState();
 			const float maxDistanceSq = distance * distance;

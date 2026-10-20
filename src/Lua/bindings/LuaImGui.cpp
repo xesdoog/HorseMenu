@@ -62,11 +62,9 @@ namespace Terminus::LuaJIT
 			return ImGui::Begin(name.c_str());
 		}
 
-		static inline std::tuple<bool, bool> Begin1(const std::string& name, bool open)
+		static inline bool Begin1(const std::string& name, int flags)
 		{
-			bool pOpen{open};
-			bool visible = ImGui::Begin(name.c_str(), &pOpen);
-			return std::make_tuple(visible, pOpen);
+			return ImGui::Begin(name.c_str(), nullptr, static_cast<ImGuiWindowFlags>(flags));
 		}
 
 		static inline std::tuple<bool, bool> Begin2(const std::string& name, bool open, sol::optional<int> flags)
@@ -208,12 +206,11 @@ namespace Terminus::LuaJIT
 
 			/*@terminus.function ImGui.InvisibleButton
 			* param label<string> 
-			* param sizeX<number> Button width
-			* param sizeY<number> Button height
+			* param size<Vector2> Button size
 			* return boolean clicked
 			@*/
-			imguiTable["InvisibleButton"] = [](const std::string& label, float sizeX, float sizeY) {
-				return ImGui::InvisibleButton(label.c_str(), ImVec2(sizeX, sizeY));
+			imguiTable["InvisibleButton"] = [](const std::string& label, ImVec2& size) {
+				return ImGui::InvisibleButton(label.c_str(), size);
 			};
 
 			/*@terminus.function ImGui.Checkbox
@@ -268,6 +265,12 @@ namespace Terminus::LuaJIT
 
 			/*@terminus.function ImGui.Begin
 			* param name<string>
+			* return boolean visible
+			@*/
+
+			/*@terminus.function ImGui.Begin
+			* param name<string>
+			* param windowFlags<integer> [ImGuiWindowFlags](lua://ImGuiWindowFlags)
 			* return boolean visible
 			@*/
 
